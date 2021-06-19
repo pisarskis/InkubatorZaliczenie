@@ -17,4 +17,9 @@ public class ActionPage {
         webElement.click();
     }
 
+    public void writeToForm (WebElement webElement, String formText)  {
+        moveToElement(webElement);
+        webElement.click();
+        webElement.sendKeys(formText);
+    }
 }

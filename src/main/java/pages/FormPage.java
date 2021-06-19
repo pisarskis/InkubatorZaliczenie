@@ -9,13 +9,21 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.concurrent.TimeUnit;
 
 public class FormPage {
-    // cookies
+// cookies
     @FindBy(id = "onetrust-accept-btn-handler")
     private WebElement cookiesButton;
 
     @FindBy(className = "btn-cookie-trigger")
     private WebElement cookiesBottomButton;
 
+// type of parcel
+    @FindBy(css = "[for = deliveryTypeboxmachine")
+    private WebElement deliveryToAPM;
+
+    @FindBy(css = "[for = deliveryTypeaddress")
+    private WebElement deliveryToAddress;
+
+// size of parcel
     @FindBy(css = "[for = parcelSizeA]>span")
     private WebElement parcelSizeA;
 
@@ -54,48 +62,50 @@ public class FormPage {
         PageFactory.initElements(Base.driver, this);
     }
 
-
-    public FormPage clickA() throws InterruptedException {
-        actionPage.moveToElement(parcelSizeA);
-        parcelSizeA.click();
-        TimeUnit.SECONDS.sleep(3);
-        return this;
-    }
-
-    public FormPage clickB() throws InterruptedException {
-        actionPage.moveToElement(parcelSizeA);
-        parcelSizeB.click();
-        TimeUnit.SECONDS.sleep(3);
-        return this;
-    }
-
-    public FormPage clickC() throws InterruptedException {
-        actionPage.moveToElement(parcelSizeA);
-        parcelSizeC.click();
-        TimeUnit.SECONDS.sleep(3);
-        return this;
-    }
-
     public FormPage closeCookiesPopup() throws InterruptedException {
         cookiesButton.click();
-        TimeUnit.SECONDS.sleep(3);
+        waitPage.waitShort();
         return this;
     }
 
     public FormPage closeBottomCookiesPopup() throws InterruptedException {
         cookiesBottomButton.click();
-        TimeUnit.SECONDS.sleep(3);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public FormPage chooseDeliveryToAPM() throws InterruptedException {
+        actionPage.clickCheckBox(deliveryToAPM);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public FormPage clickA() throws InterruptedException {
+        actionPage.clickCheckBox(parcelSizeA);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public FormPage clickB() throws InterruptedException {
+        actionPage.clickCheckBox(parcelSizeB);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public FormPage clickC() throws InterruptedException {
+        actionPage.clickCheckBox(parcelSizeC);
+        waitPage.waitShort();
         return this;
     }
 
     public FormPage clickHowToSendButton() throws InterruptedException {
         howToSendParcel.click();
-        TimeUnit.SECONDS.sleep(3);
+        waitPage.waitShort();
         return this;
     }
 
     public String getLabelReady() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(3);
+        waitPage.waitShort();
         return labelReady.getText();
     }
 
@@ -103,20 +113,16 @@ public class FormPage {
         return modal.isDisplayed();
     }
 
-    public void insertText (String text) {
-        parcelSizeC.sendKeys(text);
-    }
-
     public FormPage clickInvoice() throws InterruptedException {
         actionPage.clickCheckBox(invoiceCheckbox);
-        TimeUnit.SECONDS.sleep(3);
+        waitPage.waitShort();
         return this;
     }
 
     public FormPage clickForeignCompanyCheckbox() throws InterruptedException {
         clickInvoice();
         actionPage.clickCheckBox(foreignCompanyCheckbox);
-        TimeUnit.SECONDS.sleep(3);
+        waitPage.waitShort();
         return this;
     }
 }
