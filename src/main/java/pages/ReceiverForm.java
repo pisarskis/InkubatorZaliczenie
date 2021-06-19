@@ -25,6 +25,13 @@ public class ReceiverForm {
     @FindBy(css = ".ng-input > input")
     private WebElement receiverAPMNo;
 
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[8]/div/app-input/div/div/div/app-selectpicker/ng-select/div/div/div[2]/input")
+    private WebElement receiverAdressTown;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[9]/div/app-input/div/div/div/app-selectpicker/ng-select/div/div/div[2]/input")
+    private WebElement receiverAdressStreet;
+
+
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
 
@@ -54,6 +61,27 @@ public class ReceiverForm {
         actionPage.writeToForm(receiverAPMNo ,apmNo);
         waitPage.waitShort();
         receiverAPMNo.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public ReceiverForm fillReceiverZipCode(String apmNo) throws InterruptedException {
+        actionPage.writeToForm(reveiverZipCode ,apmNo);
+        waitPage.waitShort();
+        reveiverZipCode.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public ReceiverForm fillReceiverTown(String apmNo) throws InterruptedException {
+        actionPage.writeToForm(receiverAdressTown ,apmNo);
+        waitPage.waitShort();
+        receiverAdressTown.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public ReceiverForm fillReceiverStreet(String apmNo) throws InterruptedException {
+        actionPage.writeToForm(receiverAdressStreet ,apmNo);
+        waitPage.waitShort();
+        receiverAdressStreet.sendKeys(Keys.ENTER);
         return this;
     }
 }
