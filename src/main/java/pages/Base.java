@@ -16,7 +16,11 @@ public class Base {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
+
+        //      Kod pisany poza siecią firmową, bez dostęppu do oneclicka
+        //        driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
+
+        driver.get("https://inpost.pl/SzybkieNadania/");
 
         // todo odpowiednio skonfigurować sleepa.
         TimeUnit.SECONDS.sleep(10);
