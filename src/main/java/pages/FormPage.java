@@ -48,12 +48,8 @@ public class FormPage {
     @FindBy(css = "[for = newsletter")
     private WebElement newsletterCheckbox;
 
-    @FindBy(css = "[for = in_changer")
-    private WebElement invoiceCheckbox;
-
-    @FindBy(css = "[for = legalStatusforeignCompany")
-    private WebElement foreignCompanyCheckbox;
-
+    @FindBy(xpath = "//*[@id=\"parcelFormButton\"]/button")
+    private WebElement sendButton;
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
@@ -75,25 +71,31 @@ public class FormPage {
     }
 
     public FormPage chooseDeliveryToAPM() throws InterruptedException {
-        actionPage.clickCheckBox(deliveryToAPM);
+        actionPage.clickElement(deliveryToAPM);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public FormPage chooseDeliveryC2D() throws InterruptedException {
+        actionPage.clickElement(deliveryToAddress);
         waitPage.waitShort();
         return this;
     }
 
     public FormPage clickA() throws InterruptedException {
-        actionPage.clickCheckBox(parcelSizeA);
+        actionPage.clickElement(parcelSizeA);
         waitPage.waitShort();
         return this;
     }
 
     public FormPage clickB() throws InterruptedException {
-        actionPage.clickCheckBox(parcelSizeB);
+        actionPage.clickElement(parcelSizeB);
         waitPage.waitShort();
         return this;
     }
 
     public FormPage clickC() throws InterruptedException {
-        actionPage.clickCheckBox(parcelSizeC);
+        actionPage.clickElement(parcelSizeC);
         waitPage.waitShort();
         return this;
     }
@@ -113,15 +115,20 @@ public class FormPage {
         return modal.isDisplayed();
     }
 
-    public FormPage clickInvoice() throws InterruptedException {
-        actionPage.clickCheckBox(invoiceCheckbox);
+    public FormPage clickTermsCheckbox() throws InterruptedException {
+        actionPage.clickElement(termsCheckbox);
         waitPage.waitShort();
         return this;
     }
 
-    public FormPage clickForeignCompanyCheckbox() throws InterruptedException {
-        clickInvoice();
-        actionPage.clickCheckBox(foreignCompanyCheckbox);
+    public FormPage clickNewsletterCheckbox() throws InterruptedException {
+        actionPage.clickElement(newsletterCheckbox);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public FormPage clickSendButton() throws InterruptedException {
+        actionPage.clickElement(sendButton);
         waitPage.waitShort();
         return this;
     }

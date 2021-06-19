@@ -12,7 +12,7 @@ public class ActionPage {
         actions.moveToElement(webElement).build().perform();
     }
 
-    public void clickCheckBox (WebElement webElement)  {
+    public void clickElement (WebElement webElement)  {
         moveToElement(webElement);
         webElement.click();
     }
