@@ -8,7 +8,7 @@ import pages.ReceiverForm;
 import pages.SenderForm;
 
 
-public class c2dTest extends Base {
+public class C2dTest extends Base {
     private static FormPage formPage;
     private static ActionPage actionPage;
     private static ReceiverForm receiverForm;
