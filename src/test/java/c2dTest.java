@@ -77,28 +77,22 @@ public class c2dTest extends Base {
 
     @Test
     public void fillReceiverTown() throws Exception {
-        // given
         String town = "Warszawa";
 
-        // when
         formPage.chooseDeliveryC2D();
         fillReceiverZipCode();
 
-        //then
         receiverForm.fillReceiverTown(town);
     }
 
     @Test
     public void fillReceiverStreet() throws Exception {
-        // given
         String street = "Cybernetyki";
 
-        // when
         formPage.chooseDeliveryC2D();
         fillReceiverZipCode();
         fillReceiverTown();
 
-        //then
         receiverForm.fillReceiverStreet(street);
     }
 }

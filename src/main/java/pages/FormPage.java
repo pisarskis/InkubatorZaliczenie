@@ -51,6 +51,10 @@ public class FormPage {
     @FindBy(xpath = "//*[@id=\"parcelFormButton\"]/button")
     private WebElement sendButton;
 
+    @FindBy(xpath = "/html/body/modal-container/div/div/div[2]/div[3]/div[2]/button")
+    private WebElement payButton;
+
+
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
 
@@ -132,5 +136,12 @@ public class FormPage {
         waitPage.waitShort();
         return this;
     }
+
+    public FormPage clickPayButton() throws InterruptedException {
+        actionPage.clickElement(payButton);
+        waitPage.waitShort();
+        return this;
+    }
+
 }
 
