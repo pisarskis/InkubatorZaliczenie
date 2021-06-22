@@ -64,6 +64,7 @@ public class FormPage {
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[1]/ul/li[2]/div/div[2]/div/div[2]/img")
     private WebElement parcelSizeImg;
 
+//    todo dlaczmu to nie chce działąć? Trzeba posprzątać te xpathy.
 //    @FindBy(xpath = "//span[@class='to-pay-amount no-wrap']")
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[2]/div/span[2]")
     private WebElement parcelPrice;

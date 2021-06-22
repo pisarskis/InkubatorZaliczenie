@@ -2,6 +2,7 @@ package pages;
 
 import helper.ActionPage;
 import helper.WaitPage;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -25,15 +26,84 @@ public class SenderForm {
     @FindBy(css = "[for = legalStatusindividual")
     private WebElement legalStatusIndividualCheckbox;
 
-
     @FindBy(css = "[for = legalStatusforeignCompany")
     private WebElement foreignCompanyCheckbox;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[10]/div/app-input/div/div/app-error/small/ul/li")
+    private WebElement badEmailError;
+
+    @FindBy(css = "[for = legalStatuscompany] > span > span")
+    private WebElement polishCompanyCheckboxText;
+
+    @FindBy(name = "invoice.company.nip")
+    private WebElement invoicePolishCompanyNip;
+
+    @FindBy(xpath = "/html/body/modal-container/div/div/div[2]/div[1]/div/app-parcel-form-whole-summary/div/ul/li[4]/div/div[3]/div/div[1]")
+    private WebElement invoicePolishCompanyName;
+
+    @FindBy(name = "invoice.individual.companyName")
+    private WebElement invoiceIndividualName;
+
+    @FindBy(name = "invoice.individual.email")
+    private WebElement invoiceIndividualEmail;
+
+    @FindBy(name = "invoice.individual.zipCode")
+    private WebElement invoiceIndividualZIPCode;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[22]/div/app-input/div/div/div/app-selectpicker/ng-select/div/div/div[2]/input")
+    private WebElement invoiceIndividualTown;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[23]/div/app-input/div/div/div/app-selectpicker/ng-select/div/div/div[2]/input")
+    private WebElement invoiceIndividualStreet;
+
+    @FindBy(name = "invoice.individual.buildingNo")
+    private WebElement invoiceIndividualBuildingNo;
+
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
 
     public SenderForm() {
         PageFactory.initElements(Base.driver, this);
+    }
+
+    public SenderForm clickInvoiceIndividualName(String name) throws InterruptedException {
+        actionPage.writeToForm(invoiceIndividualName ,name);
+        return this;
+    }
+
+    public SenderForm clickInvoiceIndividualEmail(String email) throws InterruptedException {
+        actionPage.writeToForm(invoiceIndividualEmail ,email);
+        return this;
+    }
+
+    public SenderForm clickInvoiceIndividualZIPCode(String zip) throws InterruptedException {
+        actionPage.writeToForm(invoiceIndividualZIPCode ,zip);
+        waitPage.waitShort();
+        actionPage.clickElement(invoiceIndividualZIPCode);
+        return this;
+    }
+
+    public SenderForm clickInvoiceIndividualTown(String town) throws InterruptedException {
+        actionPage.writeToForm(invoiceIndividualTown ,town);
+        waitPage.waitShort();
+        invoiceIndividualTown.sendKeys(Keys.ENTER);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public SenderForm clickInvoiceIndividualStreet(String street) throws InterruptedException {
+        actionPage.writeToForm(invoiceIndividualStreet ,street);
+        waitPage.waitShort();
+        invoiceIndividualStreet.sendKeys(Keys.ENTER);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public SenderForm clickInvoiceIndividualBuildingNo(String apmNo) throws InterruptedException {
+        actionPage.writeToForm(invoiceIndividualBuildingNo ,apmNo);
+        waitPage.waitShort();
+        return this;
     }
 
     public SenderForm fillSenderName(String name) throws InterruptedException {
@@ -76,5 +146,23 @@ public class SenderForm {
         actionPage.clickElement(foreignCompanyCheckbox);
         waitPage.waitShort();
         return this;
+    }
+
+    public WebElement emailErrorMessage() {
+        return badEmailError;
+    }
+
+    public WebElement checkInInvoiceWasClicked() {
+        return polishCompanyCheckboxText;
+    }
+
+    public SenderForm clickPolishCompanyNIP(String nipNo) throws InterruptedException {
+        actionPage.writeToForm(invoicePolishCompanyNip, nipNo);
+        waitPage.waitLong();
+        return this;
+    }
+
+    public WebElement checkPolishCompanyName() {
+        return invoicePolishCompanyName;
     }
 }

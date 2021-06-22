@@ -31,6 +31,10 @@ public class ReceiverForm {
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[9]/div/app-input/div/div/div/app-selectpicker/ng-select/div/div/div[2]/input")
     private WebElement receiverAdressStreet;
 
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[5]/div/app-input/div/div/app-error/small/ul/li")
+    private WebElement badEmailError;
+
+
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
@@ -83,5 +87,9 @@ public class ReceiverForm {
         waitPage.waitShort();
         receiverAdressStreet.sendKeys(Keys.ENTER);
         return this;
+    }
+
+    public WebElement emailErrorMessage() {
+        return badEmailError;
     }
 }
