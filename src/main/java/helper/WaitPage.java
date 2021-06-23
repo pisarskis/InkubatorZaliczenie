@@ -20,6 +20,6 @@ public class WaitPage {
     }
 
     public void waitLong() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(5);
+        TimeUnit.SECONDS.sleep(3);
     }
 }

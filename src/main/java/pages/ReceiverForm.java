@@ -2,8 +2,11 @@ package pages;
 
 import helper.ActionPage;
 import helper.WaitPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -23,7 +26,7 @@ public class ReceiverForm {
     private WebElement reveiverZipCode;
 
     @FindBy(css = ".ng-input > input")
-    private WebElement receiverAPMNo;
+    private WebElement receiverAPMNoInput;
 
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[8]/div/app-input/div/div/div/app-selectpicker/ng-select/div/div/div[2]/input")
     private WebElement receiverAdressTown;
@@ -34,10 +37,42 @@ public class ReceiverForm {
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[5]/div/app-input/div/div/app-error/small/ul/li")
     private WebElement badEmailError;
 
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[1]/div/app-input[2]/div/span/span[2]" )
+    private WebElement howToSendParcelModal;
 
+    @FindBy(css = "div.modal-body > div")
+    private WebElement modalBody;
+
+//    Parcelbox map
+
+    @FindBy(css = ".open-map")
+    private WebElement mapButton;
+
+    @FindBy(css = ".modal-title")
+    private WebElement mModal;
+
+    @FindBy(css = ".search-input")
+    private WebElement mMSearchBar;
+
+    @FindBy(css = ".inpost-search__list > div")
+    private WebElement mMSearchResult;
+
+    @FindBy(css = ".select-link")
+    private WebElement mMParcelBoxChoseButton;
+
+    @FindBy(css = ".details-link")
+    private WebElement mMParcelBoxDetailsButton;
+
+    @FindBy(css = "p.name")
+    private WebElement mMDetailsParcelBoxNo;
+
+    private WebElement mapModalParcelBox;
+
+    private WebElement receiverAPMNo;
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
+
 
     public ReceiverForm() {
         PageFactory.initElements(Base.driver, this);
@@ -62,9 +97,15 @@ public class ReceiverForm {
     }
 
     public ReceiverForm fillReceiverAPMCode(String apmNo) throws InterruptedException {
-        actionPage.writeToForm(receiverAPMNo ,apmNo);
+        actionPage.writeToForm(receiverAPMNoInput ,apmNo);
         waitPage.waitShort();
-        receiverAPMNo.sendKeys(Keys.ENTER);
+        receiverAPMNoInput.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public ReceiverForm clickReceiverAPMCode() throws InterruptedException {
+        actionPage.clickElement(receiverAPMNoInput);
+        waitPage.waitShort();
         return this;
     }
 
@@ -91,5 +132,66 @@ public class ReceiverForm {
 
     public WebElement emailErrorMessage() {
         return badEmailError;
+    }
+
+//    Parcelbox map
+
+    public ReceiverForm clickMapButton() throws InterruptedException {
+        actionPage.clickElement(mapButton);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public WebElement getMapModal() {
+        return mModal;
+    }
+
+    public ReceiverForm fillSearchBarWithData(String town) throws InterruptedException {
+        actionPage.writeToForm(mMSearchBar ,town);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public ReceiverForm clickMapModalSearchResult() throws InterruptedException {
+        actionPage.clickElement( mMSearchResult);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public ReceiverForm clickMapModalParcelBox(String parcelBox) throws InterruptedException {
+        mapModalParcelBox = Base.driver.findElement(By.cssSelector("[alt=\"" + parcelBox + "\"]"));
+        actionPage.clickElement( mapModalParcelBox);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public ReceiverForm clickMMParcelBoxChoseButton() throws InterruptedException {
+        actionPage.clickElement(mMParcelBoxChoseButton);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public ReceiverForm clickMMParcelBoxDetailsButton() throws InterruptedException {
+        actionPage.clickElement(mMParcelBoxDetailsButton);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public WebElement getReceiverAPMNo(String parcelBox) {
+        receiverAPMNo = Base.driver.findElement(By.xpath("//*[@id=\"" + parcelBox + "\"]/div[1]/div"));
+        return receiverAPMNo;
+    }
+
+    public WebElement getMMDetailsParcelBoxNo() {
+        return mMDetailsParcelBoxNo;
+    }
+
+    public ReceiverForm clickHowToSendParcelModal() throws InterruptedException {
+        actionPage.clickElement(howToSendParcelModal);
+        return this;
+    }
+
+    public WebElement getModalBody() {
+        return modalBody;
     }
 }

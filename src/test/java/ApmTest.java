@@ -1,8 +1,12 @@
 import helper.ActionPage;
 import helper.WaitPage;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.runners.Parameterized;
 import pages.Base;
 import pages.FormPage;
 import pages.ReceiverForm;
@@ -14,7 +18,6 @@ public class ApmTest extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-
 
     @BeforeClass
     public static void closeAllCookies() throws InterruptedException {
@@ -28,10 +31,9 @@ public class ApmTest extends Base {
         formPage.closeBottomCookiesPopup();
     }
 
-    public void refreshPage() throws InterruptedException {
-        driver.navigate().refresh();
-        waitPage.waitShort();
-        formPage.closeCookiesPopup();
+    @Before
+    public void apmSetUp() throws InterruptedException {
+        formPage.chooseDeliveryToAPM();
     }
 
     public void fillFormAllData() throws Exception {
@@ -43,7 +45,6 @@ public class ApmTest extends Base {
         String senderEmail = "qwe@qwe.pl";
         String senderPhoneNo = "666999666";
 
-        formPage.chooseDeliveryToAPM();
         formPage.clickA();
         receiverForm.fillReceiverName(receiverName);
         receiverForm.fillReceiverEmail(receiverEmail);
@@ -79,12 +80,11 @@ public class ApmTest extends Base {
     public void shouldReturnCorrectSizeForAParcel() throws Exception {
         // given
         String parcelASize = "mała";
-        String returnedSize = formPage.checkParcelSizeText().getText().toLowerCase();
-        String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelASize;
 
         // when
-        formPage.chooseDeliveryToAPM();
         formPage.clickA();
+        String returnedSize = formPage.checkParcelSizeText().getText().toLowerCase();
+        String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelASize;
 
         // then
         Assert.assertEquals(errorMessage, parcelASize, returnedSize);
@@ -93,28 +93,27 @@ public class ApmTest extends Base {
     @Test
     public void shouldReturnCorrectSizeForBParcel() throws Exception {
         // given
-        String parcelBize = "średnia";
-        String returnedSize = formPage.checkParcelSizeText().getText().toLowerCase();
-        String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelBize;
+        String parcelBSize = "średnia";
 
         // when
-        formPage.chooseDeliveryToAPM();
         formPage.clickB();
+        String returnedSize = formPage.checkParcelSizeText().getText().toLowerCase();
+        String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelBSize;
 
         // then
-        Assert.assertEquals(errorMessage, parcelBize, returnedSize);
+        Assert.assertEquals(errorMessage, parcelBSize, returnedSize);
     }
 
     @Test
     public void shouldReturnCorrectSizeForCParcel() throws Exception {
         // given
         String parcelCSize = "duża";
+
+        // when
+        formPage.clickC();
         String returnedSize = formPage.checkParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelCSize;
 
-        // when
-        formPage.chooseDeliveryToAPM();
-        formPage.clickC();
 
         // then
         Assert.assertEquals(errorMessage, parcelCSize, returnedSize);
@@ -127,7 +126,6 @@ public class ApmTest extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.chooseDeliveryToAPM();
         formPage.clickA();
 
         // then
@@ -141,7 +139,6 @@ public class ApmTest extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.chooseDeliveryToAPM();
         formPage.clickB();
 
         // then
@@ -155,7 +152,6 @@ public class ApmTest extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.chooseDeliveryToAPM();
         formPage.clickC();
 
         // then
@@ -169,7 +165,6 @@ public class ApmTest extends Base {
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
-        formPage.chooseDeliveryToAPM();
         formPage.clickA();
 
         // then
@@ -183,7 +178,6 @@ public class ApmTest extends Base {
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
-        formPage.chooseDeliveryToAPM();
         formPage.clickB();
 
         //then
@@ -197,7 +191,6 @@ public class ApmTest extends Base {
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
-        formPage.chooseDeliveryToAPM();
         formPage.clickC();
 
         // then
@@ -212,13 +205,11 @@ public class ApmTest extends Base {
         String errorMessage = "";
 
         // when
-        formPage.chooseDeliveryToAPM();
         receiverForm.fillReceiverEmail(email);
         formPage.chooseDeliveryToAPM();
 
         // then
         Assert.assertEquals(errorMessage, desiredErrorMessage, receiverForm.emailErrorMessage().getText());
-        refreshPage();
     }
 
     @Test
@@ -229,13 +220,11 @@ public class ApmTest extends Base {
         String errorMessage = "";
 
         // when
-        formPage.chooseDeliveryToAPM();
         receiverForm.fillReceiverEmail(email);
         formPage.chooseDeliveryToAPM();
 
         // then
         Assert.assertEquals(errorMessage, desiredErrorMessage, receiverForm.emailErrorMessage().getText());
-        refreshPage();
     }
 
     @Test
@@ -246,13 +235,11 @@ public class ApmTest extends Base {
         String errorMessage = "";
 
         // when
-        formPage.chooseDeliveryToAPM();
         senderForm.fillSenderEmail(email);
         formPage.chooseDeliveryToAPM();
 
         // then
         Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
-        refreshPage();
     }
 
     @Test
@@ -263,13 +250,11 @@ public class ApmTest extends Base {
         String errorMessage = "";
 
         // when
-        formPage.chooseDeliveryToAPM();
         senderForm.fillSenderEmail(email);
         formPage.chooseDeliveryToAPM();
 
         // then
         Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
-        refreshPage();
     }
 
     @Test
@@ -283,7 +268,6 @@ public class ApmTest extends Base {
 
         // then
         Assert.assertEquals(errorMessage, desiredText, senderForm.checkInInvoiceWasClicked().getText());
-        refreshPage();
     }
 
     @Test
@@ -301,14 +285,14 @@ public class ApmTest extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredText, senderForm.checkPolishCompanyName().getText());
-        refreshPage();
+        Assert.assertEquals(errorMessage, desiredText, senderForm.getInvoiceNameFromSummary().getText());
     }
 
     @Test
     public void shouldPrintNameWhenIndividualIsChosen() throws Exception {
         // given
         String errorMessage = "";
+        String name = "qweqwe";
 
         // when
         fillFormAllData();
@@ -316,9 +300,110 @@ public class ApmTest extends Base {
         formPage.clickSendButton();
 
         // then
-//        Assert.assertEquals(errorMessage, name, senderForm.checkPolishCompanyName().getText());
-        refreshPage();
+        Assert.assertEquals(errorMessage, name, senderForm.getInvoiceNameFromSummary().getText());
+    }
 
+    @Test
+    public void shouldThrowErrorWhenToShrotTaxNoIsGiven() throws Exception {
+        // given
+        String errorMessage = "";
+        String countryPreFix = "DE";
+        String taxNo = "00000000";
+        String desiredErrorMessage = "PODANY NUMER NIP JEST NIEPRAWIDŁOWY";
+
+        // when
+        senderForm.clickInvoice();
+        senderForm.clickForeignCompanyCheckbox();
+        senderForm.clickInvoiceCountryPrefix(countryPreFix);
+        senderForm.fillInvoiceCountryTaxNo(taxNo);
+        senderForm.clickForeignCompanyCheckbox();
+
+        // then
+        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.invoiceCountryTaxNoError().getText());
+    }
+
+    @Test
+    public void shouldThrowErrorWhenToLongTaxNoIsGiven() throws Exception {
+        // given
+        String errorMessage = "";
+        String countryPreFix = "DE";
+        String taxNo = "0000000000";
+        String desiredErrorMessage = "PODANY NUMER NIP JEST NIEPRAWIDŁOWY";
+
+        // when
+        senderForm.clickInvoice();
+        senderForm.clickForeignCompanyCheckbox();
+        senderForm.clickInvoiceCountryPrefix(countryPreFix);
+        senderForm.fillInvoiceCountryTaxNo(taxNo);
+        senderForm.clickForeignCompanyCheckbox();
+
+        // then
+        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.invoiceCountryTaxNoError().getText());
+    }
+
+    @Test
+    public void shouldOpenParcelMap() throws Exception {
+        // given
+        String desiredModalHeader = "Paczkomat lub PaczkoPunkt, do którego dostarczymy przesyłkę";
+        String errorMessage = "";
+
+        // when
+        receiverForm.clickMapButton();
+
+        // then
+        Assert.assertEquals(errorMessage, desiredModalHeader, receiverForm.getMapModal().getText());
+    }
+
+    @Test
+    public void shouldSearchMapModalForParcelBox() throws Exception {
+        // given
+        String parcelBox = "POP-WAW62";
+        String town = "Warszawa";
+        String errorMessage = "";
+
+        // when
+        receiverForm.clickMapButton();
+        receiverForm.fillSearchBarWithData(town);
+        receiverForm.clickMapModalSearchResult();
+        receiverForm.clickMapModalParcelBox(parcelBox);
+        receiverForm.clickMMParcelBoxChoseButton();
+        receiverForm.clickReceiverAPMCode();
+
+        // then
+        Assert.assertEquals(errorMessage, parcelBox, receiverForm.getReceiverAPMNo(parcelBox).getText());
+    }
+
+    @Test
+    public void shouldShotParcelBoxDetailsInModal() throws Exception {
+        // given
+        String parcelBox = "POP-WAW62";
+        String town = "Warszawa";
+        String errorMessage = "";
+
+        // when
+        receiverForm.clickMapButton();
+        receiverForm.fillSearchBarWithData(town);
+        receiverForm.clickMapModalSearchResult();
+        receiverForm.clickMapModalParcelBox(parcelBox);
+        receiverForm.clickMMParcelBoxDetailsButton();
+
+        // then
+        Assert.assertEquals(errorMessage, parcelBox, receiverForm.getMMDetailsParcelBoxNo().getText());
+    }
+
+    @Test
+    public void shouldOpenHowToSendModal() throws Exception {
+        // given
+        String desiredText = "";
+        String errorMesage = "";
+
+        // when
+        receiverForm.clickHowToSendParcelModal();
+
+        // then
+        System.out.println(receiverForm.getModalBody().getText());
+//        Assert.assertEquals(errorMesage, desiredText, receiverForm.getModalBody().getText());
+        waitPage.waitLong();
     }
 }
 
