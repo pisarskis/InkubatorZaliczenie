@@ -39,7 +39,7 @@ public class SenderForm {
     private WebElement invoicePolishCompanyNip;
 
     @FindBy(xpath = "/html/body/modal-container/div/div/div[2]/div[1]/div/app-parcel-form-whole-summary/div/ul/li[4]/div/div[3]/div/div[1]")
-    private WebElement invoicePolishCompanyName;
+    private WebElement invoiceNameFromSummary;
 
     @FindBy(name = "invoice.individual.companyName")
     private WebElement invoiceIndividualName;
@@ -58,6 +58,15 @@ public class SenderForm {
 
     @FindBy(name = "invoice.individual.buildingNo")
     private WebElement invoiceIndividualBuildingNo;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[19]/div/app-input/div/div/div/app-complex-select/ng-select/div/div/div[2]/input")
+    private WebElement invoiceCountryPrefix;
+
+    @FindBy(name = "invoice.foreignCompany.nip")
+    private WebElement invoiceCountryTaxNo;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[20]/div/app-input/div/div/app-error/small/ul/li")
+    private WebElement invoiceCountryTaxNoError;
 
 
     ActionPage actionPage = new ActionPage();
@@ -162,7 +171,24 @@ public class SenderForm {
         return this;
     }
 
-    public WebElement checkPolishCompanyName() {
-        return invoicePolishCompanyName;
+    public WebElement getInvoiceNameFromSummary() {
+        return invoiceNameFromSummary;
+    }
+
+    public SenderForm clickInvoiceCountryPrefix(String street) throws InterruptedException {
+        actionPage.writeToForm(invoiceCountryPrefix ,street);
+        waitPage.waitShort();
+        invoiceCountryPrefix.sendKeys(Keys.ENTER);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public SenderForm fillInvoiceCountryTaxNo(String taxNo) throws InterruptedException {
+        actionPage.writeToForm(invoiceCountryTaxNo ,taxNo);
+        return this;
+    }
+
+    public WebElement invoiceCountryTaxNoError() {
+        return invoiceCountryTaxNoError;
     }
 }

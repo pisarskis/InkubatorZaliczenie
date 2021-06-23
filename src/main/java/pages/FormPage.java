@@ -102,19 +102,16 @@ public class FormPage {
 
     public FormPage clickA() throws InterruptedException {
         actionPage.clickElement(parcelSizeA);
-        waitPage.waitShort();
         return this;
     }
 
     public FormPage clickB() throws InterruptedException {
         actionPage.clickElement(parcelSizeB);
-        waitPage.waitShort();
         return this;
     }
 
     public FormPage clickC() throws InterruptedException {
         actionPage.clickElement(parcelSizeC);
-        waitPage.waitShort();
         return this;
     }
 
@@ -175,6 +172,10 @@ public class FormPage {
 
     public WebElement checkParcelPrice() {
         return parcelPrice;
+    }
+
+    public boolean checkIfCookiesButtonExists(){
+        return cookiesButton.isSelected();
     }
 }
 
