@@ -1,23 +1,19 @@
 import helper.ActionPage;
 import helper.WaitPage;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runners.Parameterized;
-import pages.Base;
-import pages.FormPage;
-import pages.ReceiverForm;
-import pages.SenderForm;
+import org.openqa.selenium.By;
+import pages.*;
 
-public class ApmTest extends Base {
+public class TestApm extends Base {
     private static FormPage formPage;
     private static ActionPage actionPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
+    private static SummaryPage summaryPage;
 
     @BeforeClass
     public static void closeAllCookies() throws InterruptedException {
@@ -26,6 +22,7 @@ public class ApmTest extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
+        summaryPage = new SummaryPage();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -34,6 +31,13 @@ public class ApmTest extends Base {
     @Before
     public void apmSetUp() throws InterruptedException {
         formPage.chooseDeliveryToAPM();
+    }
+
+    @After
+    public void refreshPage() throws InterruptedException {
+        driver.navigate().refresh();
+        waitPage.waitLong();
+        formPage.closeCookiesPopup();
     }
 
     public void fillFormAllData() throws Exception {
@@ -304,7 +308,7 @@ public class ApmTest extends Base {
     }
 
     @Test
-    public void shouldThrowErrorWhenToShrotTaxNoIsGiven() throws Exception {
+    public void shouldThrowErrorWhenToShortTaxNoIsGiven() throws Exception {
         // given
         String errorMessage = "";
         String countryPreFix = "DE";
@@ -392,18 +396,17 @@ public class ApmTest extends Base {
     }
 
     @Test
-    public void shouldOpenHowToSendModal() throws Exception {
+    public void shouldThrowErrorWhenTermsNotChecked() throws Exception {
         // given
-        String desiredText = "";
-        String errorMesage = "";
+        String desiredErrorMessage = "POLE WYMAGANE";
+        String errorMessage = "";
 
         // when
-        receiverForm.clickHowToSendParcelModal();
+        fillFormAllData();
+        formPage.clickTermsCheckbox();
+        formPage.clickSendButton();
 
         // then
-        System.out.println(receiverForm.getModalBody().getText());
-//        Assert.assertEquals(errorMesage, desiredText, receiverForm.getModalBody().getText());
-        waitPage.waitLong();
+        Assert.assertEquals(errorMessage, desiredErrorMessage, formPage.getNewsletterError().getText());
     }
 }
-

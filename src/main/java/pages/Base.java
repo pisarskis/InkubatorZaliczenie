@@ -25,13 +25,6 @@ public class Base {
         waitPage.waitLong();
     }
 
-    @After
-    public void refreshPage() throws InterruptedException {
-        driver.navigate().refresh();
-        waitPage.waitLong();
-        formPage.closeCookiesPopup();
-    }
-
     @AfterClass
     public static void tearDown() {
         driver.quit();
