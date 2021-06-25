@@ -11,28 +11,28 @@ public class PaymentPage {
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
 
-    @FindBy(xpath = "//*[@id=\"paymenttypeMain\"]/div[7]")
-    private WebElement clickAliorBank;
+    @FindBy(css = "div[title='Płacę z Alior Banku']")
+    private WebElement aliorBank;
 
-    @FindBy(xpath = "//*[@id=\"blikPaymentForm\"]/div[7]/button[1]")
-    private WebElement clickNextButton;
+    @FindBy(css = "div.button-container > button.finish-button")
+    private WebElement finishButton;
 
-    @FindBy(xpath = "/html/body/div[5]/section[1]/p[1]")
-    private WebElement senderName;
+    @FindBy(css = "p.seller-name-surname")
+    private WebElement buyerName;
 
-    @FindBy(xpath = "/html/body/div[5]/section[1]/p[2]")
-    private WebElement senderEmail;
+    @FindBy(css = "p.seller-orderdescription")
+    private WebElement buyerEmail;
 
-    @FindBy(xpath = "/html/body/div[5]/section[1]/p[3]")
-    private WebElement senderParcelPrice;
+    @FindBy(css = "p.seller-amount")
+    private WebElement parcelPrice;
 
-    @FindBy(xpath = "//*[@id=\"nifty\"]/p/button[1]")
+    @FindBy(css = "button[value='1']")
     private WebElement acceptPaymentButton;
 
-    @FindBy(xpath = "//*[@id=\"nifty\"]/p/button[2]")
+    @FindBy(css = "button[value='2']")
     private WebElement declinePaymentButton;
 
-    @FindBy(xpath = "//*[@id=\"nifty\"]/p/button[3]")
+    @FindBy(css = "button[value='3']")
     private WebElement setPaymentAsPendingButton;
 
     public PaymentPage() {
@@ -40,28 +40,15 @@ public class PaymentPage {
     }
 
     public PaymentPage clickBank() throws InterruptedException {
-        actionPage.clickElement(clickAliorBank);
+        actionPage.clickElement(aliorBank);
         waitPage.waitShort();
         return this;
     }
 
     public PaymentPage clickNextButton() throws InterruptedException {
-        actionPage.clickElement(clickNextButton);
-        waitPage.waitLong();
-        waitPage.waitLong();
+        actionPage.clickElement(finishButton);
+        waitPage.waitShort();
         return this;
-    }
-
-    public WebElement getSenderName() {
-        return senderName;
-    }
-
-    public WebElement getSenderEmail() {
-        return senderEmail;
-    }
-
-    public WebElement getSenderParcelPrice() {
-        return senderParcelPrice;
     }
 
     public PaymentPage clickAcceptPayment() throws InterruptedException {
@@ -80,6 +67,18 @@ public class PaymentPage {
         actionPage.clickElement(setPaymentAsPendingButton);
         waitPage.waitShort();
         return this;
+    }
+
+    public WebElement getSenderName() {
+        return buyerName;
+    }
+
+    public WebElement getSenderEmail() {
+        return buyerEmail;
+    }
+
+    public WebElement getSenderParcelPrice() {
+        return parcelPrice;
     }
 
 }

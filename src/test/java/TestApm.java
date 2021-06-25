@@ -9,27 +9,23 @@ import pages.*;
 
 public class TestApm extends Base {
     private static FormPage formPage;
-    private static ActionPage actionPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static SummaryPage summaryPage;
 
     @BeforeClass
-    public static void closeAllCookies() throws InterruptedException {
+    public static void setUpOnce() throws InterruptedException {
         formPage = new FormPage();
-        actionPage = new ActionPage();
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
-        summaryPage = new SummaryPage();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
     }
 
     @Before
-    public void apmSetUp() throws InterruptedException {
+    public void setUpBeforeEach() throws InterruptedException {
         formPage.chooseDeliveryToAPM();
     }
 
@@ -60,24 +56,6 @@ public class TestApm extends Base {
         senderForm.fillSenderNumber(senderPhoneNo);
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
-    }
-
-    void fillIndividualInvoiceData() throws InterruptedException {
-        String name = "qweqwe";
-        String email = "qwe@qwe.pl";
-        String zipCode = "02-677";
-        String town = "Warszawa";
-        String street = "Cybernetyki";
-        String buildingNo = "10";
-
-        senderForm.clickInvoice();
-        senderForm.clickLegalStatusIndividualCheckbox();
-        senderForm.clickInvoiceIndividualName(name);
-        senderForm.clickInvoiceIndividualEmail(email);
-        senderForm.clickInvoiceIndividualZIPCode(zipCode);
-        senderForm.clickInvoiceIndividualTown(town);
-        senderForm.clickInvoiceIndividualStreet(street);
-        senderForm.clickInvoiceIndividualBuildingNo(buildingNo);
     }
 
     @Test
@@ -202,7 +180,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldThrowErrorBadReceiverEmail() throws Exception {
+    public void shouldThrowErrorForBadReceiverEmail() throws Exception {
         // given
         String email = "qweqwe.pl";
         String desiredErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
@@ -232,7 +210,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldThrowErrorBadSenderEmail() throws Exception {
+    public void shouldThrowErrorForBadSenderEmail() throws Exception {
         // given
         String email = "qweqwe.pl";
         String desiredErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
@@ -274,76 +252,7 @@ public class TestApm extends Base {
         Assert.assertEquals(errorMessage, desiredText, senderForm.checkInInvoiceWasClicked().getText());
     }
 
-    @Test
-    public void shouldPrintPolishCompanyNameWhenNIPGiven() throws Exception {
-        // given
-        String nipNo = "6793087624";
-        String desiredText = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
-        String errorMessage = "";
 
-        // when
-        fillFormAllData();
-        senderForm.clickInvoice();
-        senderForm.clickPlishCompanyCheckbox();
-        senderForm.clickPolishCompanyNIP(nipNo);
-        formPage.clickSendButton();
-
-        // then
-        Assert.assertEquals(errorMessage, desiredText, senderForm.getInvoiceNameFromSummary().getText());
-    }
-
-    @Test
-    public void shouldPrintNameWhenIndividualIsChosen() throws Exception {
-        // given
-        String errorMessage = "";
-        String name = "qweqwe";
-
-        // when
-        fillFormAllData();
-        fillIndividualInvoiceData();
-        formPage.clickSendButton();
-
-        // then
-        Assert.assertEquals(errorMessage, name, senderForm.getInvoiceNameFromSummary().getText());
-    }
-
-    @Test
-    public void shouldThrowErrorWhenToShortTaxNoIsGiven() throws Exception {
-        // given
-        String errorMessage = "";
-        String countryPreFix = "DE";
-        String taxNo = "00000000";
-        String desiredErrorMessage = "PODANY NUMER NIP JEST NIEPRAWIDŁOWY";
-
-        // when
-        senderForm.clickInvoice();
-        senderForm.clickForeignCompanyCheckbox();
-        senderForm.clickInvoiceCountryPrefix(countryPreFix);
-        senderForm.fillInvoiceCountryTaxNo(taxNo);
-        senderForm.clickForeignCompanyCheckbox();
-
-        // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.invoiceCountryTaxNoError().getText());
-    }
-
-    @Test
-    public void shouldThrowErrorWhenToLongTaxNoIsGiven() throws Exception {
-        // given
-        String errorMessage = "";
-        String countryPreFix = "DE";
-        String taxNo = "0000000000";
-        String desiredErrorMessage = "PODANY NUMER NIP JEST NIEPRAWIDŁOWY";
-
-        // when
-        senderForm.clickInvoice();
-        senderForm.clickForeignCompanyCheckbox();
-        senderForm.clickInvoiceCountryPrefix(countryPreFix);
-        senderForm.fillInvoiceCountryTaxNo(taxNo);
-        senderForm.clickForeignCompanyCheckbox();
-
-        // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.invoiceCountryTaxNoError().getText());
-    }
 
     @Test
     public void shouldOpenParcelMap() throws Exception {

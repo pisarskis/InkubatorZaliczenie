@@ -35,8 +35,9 @@ public class TestApmEndSummary extends Base {
         formRunThrough();
     }
 
+    @After
     public void refreshPage() throws InterruptedException {
-        driver.navigate().refresh();
+        Base.driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
         waitPage.waitLong();
         formPage.closeCookiesPopup();
     }
@@ -68,20 +69,71 @@ public class TestApmEndSummary extends Base {
         paymentPage.clickNextButton();
     }
 
+    public void checkRefreshButton(String expectedMessage) throws InterruptedException {
+        int count = 0;
+        waitPage.waitLong();
+
+        while (!endSummaryPage.getPaymentStatus().getText().equals(expectedMessage)) {
+            endSummaryPage.clickRefreshButton();
+            count ++;
+
+            if (count >= 5){
+                expectedMessage = endSummaryPage.getPaymentStatus().getText();
+            }
+        }
+    }
+
     @Test
     public void shouldMarkParcelAsPaidFor() throws Exception {
         // given
-        String desiredPaymentStatus = "Twoja płatność została potwierdzona";
+        String expectedMessage = "Twoja płatność została potwierdzona";
         String errorMessage = "";
 
         // when
         formRunThrough();
         paymentPage.clickAcceptPayment();
+        waitPage.waitShort();
         formPage.closeCookiesPopup();
-        waitPage.waitLong();
-        endSummaryPage.clickRefreshButton();
+        checkRefreshButton(expectedMessage);
 
         // then
-        Assert.assertEquals(errorMessage, desiredPaymentStatus, endSummaryPage.getPaymentStatus().getText());
+        Assert.assertEquals(errorMessage, expectedMessage, endSummaryPage.getPaymentStatus().getText());
+    }
+
+    @Test
+    public void shouldMarkParcelPaymentAsPending() throws Exception {
+        // given
+        String expectedMessage = "Twoja transakcja nie została jeszcze zakończona.\n" +
+                                  "To może potrwać kilka minut. Odśwież stronę,\n" +
+                                  "aby sprawdzić jej status.";
+        String errorMessage = "";
+
+        // when
+        formRunThrough();
+        paymentPage.clickSetPaymentAsPendingButton();
+        waitPage.waitLong();
+        formPage.closeCookiesPopup();
+        checkRefreshButton(expectedMessage);
+
+        // then
+        Assert.assertEquals(errorMessage, expectedMessage, endSummaryPage.getPaymentStatus().getText());
+    }
+
+    @Test
+    public void shouldMarkParcelPaymentAsRejected() throws Exception {
+        // given
+        String expectedMessage = "Ups, mamy problem.\n" +
+                                 "Niestety nie udało się opłacić paczki.\n" +
+                                 "Spróbuj jeszcze raz.";
+        String errorMessage = "";
+
+        // when
+        formRunThrough();
+        paymentPage.clickDeclinePaymentButton();
+        waitPage.waitLong();
+        formPage.closeCookiesPopup();
+
+        // then
+        Assert.assertEquals(errorMessage, expectedMessage, endSummaryPage.getPaymentStatus().getText());
     }
 }

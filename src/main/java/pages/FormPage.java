@@ -93,7 +93,7 @@ public class FormPage {
 
     public FormPage chooseDeliveryToAPM() throws InterruptedException {
         actionPage.clickElement(deliveryToAPM);
-        waitPage.waitLong();
+        waitPage.waitShort();
         return this;
     }
 
