@@ -48,6 +48,9 @@ public class FormPage {
     @FindBy(css = "[for = newsletter")
     private WebElement newsletterCheckbox;
 
+    @FindBy(css = "ul.errors > li")
+    private WebElement newsletterError;
+
     @FindBy(xpath = "//*[@id=\"parcelFormButton\"]/button")
     private WebElement sendButton;
 
@@ -132,13 +135,11 @@ public class FormPage {
 
     public FormPage clickTermsCheckbox() throws InterruptedException {
         actionPage.clickElement(termsCheckbox);
-        waitPage.waitShort();
         return this;
     }
 
     public FormPage clickNewsletterCheckbox() throws InterruptedException {
         actionPage.clickElement(newsletterCheckbox);
-        waitPage.waitShort();
         return this;
     }
 
@@ -172,6 +173,10 @@ public class FormPage {
 
     public WebElement checkParcelPrice() {
         return parcelPrice;
+    }
+
+    public WebElement getNewsletterError() {
+        return newsletterError;
     }
 
     public boolean checkIfCookiesButtonExists(){

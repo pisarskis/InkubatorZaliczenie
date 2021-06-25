@@ -11,33 +11,74 @@ public class PaymentPage {
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
 
-    private static String bankName;
+    @FindBy(css = "div[title='Płacę z Alior Banku']")
+    private WebElement aliorBank;
 
-    @FindBy(xpath = "//*[@id=\"paymenttypeMain\"]/div[7]")
-    private WebElement clickAliorBank;
+    @FindBy(css = "div.button-container > button.finish-button")
+    private WebElement finishButton;
 
-    @FindBy(xpath = "//*[@id=\"blikPaymentForm\"]/div[7]/button[1]/div[2]")
-    private WebElement clickFinishButton;
+    @FindBy(css = "p.seller-name-surname")
+    private WebElement buyerName;
 
+    @FindBy(css = "p.seller-orderdescription")
+    private WebElement buyerEmail;
+
+    @FindBy(css = "p.seller-amount")
+    private WebElement parcelPrice;
+
+    @FindBy(css = "button[value='1']")
+    private WebElement acceptPaymentButton;
+
+    @FindBy(css = "button[value='2']")
+    private WebElement declinePaymentButton;
+
+    @FindBy(css = "button[value='3']")
+    private WebElement setPaymentAsPendingButton;
 
     public PaymentPage() {
         PageFactory.initElements(Base.driver, this);
     }
 
-    public void setBankName(String name){
-        bankName = name;
-    }
-
-    public PaymentPage chooseBank() throws InterruptedException {
-        clickAliorBank.click();
+    public PaymentPage clickBank() throws InterruptedException {
+        actionPage.clickElement(aliorBank);
         waitPage.waitShort();
         return this;
     }
 
-    public PaymentPage clickFinishButton() throws InterruptedException {
-        clickFinishButton.click();
+    public PaymentPage clickNextButton() throws InterruptedException {
+        actionPage.clickElement(finishButton);
         waitPage.waitShort();
         return this;
+    }
+
+    public PaymentPage clickAcceptPayment() throws InterruptedException {
+        actionPage.clickElement(acceptPaymentButton);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public PaymentPage clickDeclinePaymentButton() throws InterruptedException {
+        actionPage.clickElement(declinePaymentButton);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public PaymentPage clickSetPaymentAsPendingButton() throws InterruptedException {
+        actionPage.clickElement(setPaymentAsPendingButton);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public WebElement getSenderName() {
+        return buyerName;
+    }
+
+    public WebElement getSenderEmail() {
+        return buyerEmail;
+    }
+
+    public WebElement getSenderParcelPrice() {
+        return parcelPrice;
     }
 
 }

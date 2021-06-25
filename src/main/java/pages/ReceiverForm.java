@@ -40,9 +40,6 @@ public class ReceiverForm {
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[1]/div/app-input[2]/div/span/span[2]" )
     private WebElement howToSendParcelModal;
 
-    @FindBy(css = "div.modal-body > div")
-    private WebElement modalBody;
-
 //    Parcelbox map
 
     @FindBy(css = ".open-map")
@@ -189,9 +186,5 @@ public class ReceiverForm {
     public ReceiverForm clickHowToSendParcelModal() throws InterruptedException {
         actionPage.clickElement(howToSendParcelModal);
         return this;
-    }
-
-    public WebElement getModalBody() {
-        return modalBody;
     }
 }
