@@ -65,7 +65,7 @@ public class TestApm extends Base {
 
         // when
         formPage.clickA();
-        String returnedSize = formPage.checkParcelSizeText().getText().toLowerCase();
+        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelASize;
 
         // then
@@ -79,7 +79,7 @@ public class TestApm extends Base {
 
         // when
         formPage.clickB();
-        String returnedSize = formPage.checkParcelSizeText().getText().toLowerCase();
+        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelBSize;
 
         // then
@@ -93,7 +93,7 @@ public class TestApm extends Base {
 
         // when
         formPage.clickC();
-        String returnedSize = formPage.checkParcelSizeText().getText().toLowerCase();
+        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelCSize;
 
 
@@ -111,7 +111,7 @@ public class TestApm extends Base {
         formPage.clickA();
 
         // then
-        Assert.assertTrue( errorMessage,formPage.checkParcelSizeImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,formPage.getParcelSizeImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -124,7 +124,7 @@ public class TestApm extends Base {
         formPage.clickB();
 
         // then
-        Assert.assertTrue( errorMessage,formPage.checkParcelSizeImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,formPage.getParcelSizeImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -137,7 +137,7 @@ public class TestApm extends Base {
         formPage.clickC();
 
         // then
-        Assert.assertTrue( errorMessage,formPage.checkParcelSizeImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,formPage.getParcelSizeImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -150,7 +150,7 @@ public class TestApm extends Base {
         formPage.clickA();
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.checkParcelPrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelPrice().getText());
     }
 
     @Test
@@ -163,7 +163,7 @@ public class TestApm extends Base {
         formPage.clickB();
 
         //then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.checkParcelPrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelPrice().getText());
     }
 
     @Test
@@ -176,7 +176,7 @@ public class TestApm extends Base {
         formPage.clickC();
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.checkParcelPrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelPrice().getText());
     }
 
     @Test

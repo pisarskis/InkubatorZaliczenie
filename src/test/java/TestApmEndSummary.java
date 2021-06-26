@@ -64,7 +64,6 @@ public class TestApmEndSummary extends Base {
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
         formPage.clickPayButton();
-        waitPage.waitLong();
         paymentPage.clickBank();
         paymentPage.clickNextButton();
     }
