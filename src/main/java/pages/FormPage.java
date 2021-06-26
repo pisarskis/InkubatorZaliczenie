@@ -20,10 +20,10 @@ public class FormPage {
     @FindBy(css = "[for = deliveryTypeboxmachine")
     private WebElement deliveryToAPM;
 
+
     @FindBy(css = "[for = deliveryTypeaddress")
     private WebElement deliveryToAddress;
 
-// size of parcel
     @FindBy(css = "[for = parcelSizeA]>span")
     private WebElement parcelSizeA;
 
@@ -73,14 +73,22 @@ public class FormPage {
     private WebElement newsletterText;
 
 //    Do zweryfikowania, dlaczego nie chce mi wyprintować zawartości tego diva.
+//    @FindBy(css = "div.ml-20 > h4")
+//    private WebElement parcelSizeText;
+//
+//    @FindBy(css = "div.ml-20 > img")
+//    private WebElement parcelSizeImg;
 
-    @FindBy(css = "div.ml-20 > h4")
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[1]/ul/li[2]/div/div[1]/div/div/div")
     private WebElement parcelSizeText;
 
-    @FindBy(css = "div.ml-20 > img")
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[1]/ul/li[2]/div/div[2]/div/div[2]/img")
     private WebElement parcelSizeImg;
 
-    @FindBy(css = "li.pb-15 > div.to-pay < div:nth-of-type(2)")
+//    @FindBy(css = "li.pb-15 > div.to-pay < div:nth-of-type(2)")
+//    private WebElement parcelPrice;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[2]/div/span[2]")
     private WebElement parcelPrice;
 
     ActionPage actionPage = new ActionPage();

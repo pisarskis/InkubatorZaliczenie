@@ -16,8 +16,11 @@ public class TestC2DFormSummary extends Base {
     @BeforeClass
     public static void closeAllCookies() throws Exception {
         formPage = new FormPage();
+        actionPage = new ActionPage();
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
+        waitPage = new WaitPage();
+        paymentPage = new PaymentPage();
         apmTest = new TestApm();
         summaryPage = new SummaryPage();
 
@@ -38,19 +41,27 @@ public class TestC2DFormSummary extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-        String receiverName = "qweqwe";
-        String receiverEmail = "qwe@qwe.pl";
-        String receiverPhoneNo = "666999666";
-        String apmNo = "PAW04A";
-        String senderName = "qweqwqwe";
-        String senderEmail = "qweqwe@qwe.pl";
-        String senderPhoneNo = "666777666";
+        String receiverName = "foo";
+        String receiverEmail = "foo@foo.pl";
+        String receiverPhoneNo = "555555555";
+        String receiverZipCode = "02-677";
+        String receiverTown = "Warszawa";
+        String receiverStreet = "Cybernetyki";
+        String receiverStreetNo = "10";
+        String receiverFlatNo = "5";
+        String senderName = "bar";
+        String senderEmail = "bar@bar.pl";
+        String senderPhoneNo = "666666666";
 
-        formPage.chooseDeliveryToAPM();
+        formPage.chooseDeliveryC2D();
         receiverForm.fillReceiverName(receiverName);
         receiverForm.fillReceiverEmail(receiverEmail);
         receiverForm.fillReceiverNumber(receiverPhoneNo);
-        receiverForm.fillReceiverAPMCode(apmNo);
+        receiverForm.fillReceiverZipCode(receiverZipCode);
+        receiverForm.fillReceiverTown(receiverTown);
+        receiverForm.fillReceiverStreet(receiverStreet);
+        receiverForm.fillReceiverStreetNo(receiverStreetNo);
+        receiverForm.fillReceiverFlatNo(receiverFlatNo);
         senderForm.fillSenderName(senderName);
         senderForm.fillSenderEmail(senderEmail);
         senderForm.fillSenderNumber(senderPhoneNo);
@@ -145,8 +156,8 @@ public class TestC2DFormSummary extends Base {
     @Test
     public void shouldShowCorrectParcelAPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "12,99 zł";
-        String errorMessage = "";
+        String desiredParcelPrice = "14,99 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
 
         // when
         formPage.clickA();
@@ -159,8 +170,8 @@ public class TestC2DFormSummary extends Base {
     @Test
     public void shouldShowCorrectParcelBPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "13,99 zł";
-        String errorMessage = "";
+        String desiredParcelPrice = "16,49 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
 
         // when
         formPage.clickB();
@@ -173,8 +184,8 @@ public class TestC2DFormSummary extends Base {
     @Test
     public void shouldShowCorrectParcelCPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "15,49 zł";
-        String errorMessage = "";
+        String desiredParcelPrice = "19,99 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
 
         // when
         formPage.clickC();
@@ -183,15 +194,4 @@ public class TestC2DFormSummary extends Base {
         // then
         Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
     }
-
-    @Test
-    public void shouldShowCorrectReceiverAdress() throws Exception {
-        // given
-        String errorMessage = "";
-
-        // when
-
-        // then
-    }
-
 }
