@@ -39,6 +39,18 @@ public class EndSummaryPage {
     @FindBy(css = "li.border-line > div.row > div.third-column > div > div:nth-of-type(2)")
     private WebElement apmAdress;
 
+    @FindBy(css = "div.third-column > div.mb-3 > div.name")
+    private WebElement invoiceName;
+
+    @FindBy(css = "div.third-column > div.mb-3 > div:nth-of-type(2)")
+    private WebElement invoiceNIP;
+
+    @FindBy(css = "div.third-column > div.mb-3 > div:nth-of-type(3)")
+    private WebElement invoiceTown;
+
+    @FindBy(css = "div.third-column > div.mb-3 > div:nth-of-type(4)")
+    private WebElement invoiceStreet;
+
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
@@ -86,5 +98,21 @@ public class EndSummaryPage {
 
     public WebElement getApmAdress() {
         return apmAdress;
+    }
+
+    public WebElement getInvoiceName() {
+        return invoiceName;
+    }
+
+    public WebElement getInvoiceNIP() {
+        return invoiceNIP;
+    }
+
+    public WebElement getInvoiceTown() {
+        return invoiceTown;
+    }
+
+    public WebElement getInvoiceStreet() {
+        return invoiceStreet;
     }
 }

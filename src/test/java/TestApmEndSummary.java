@@ -43,12 +43,12 @@ public class TestApmEndSummary extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-        String receiverName = "qweqwe";
-        String receiverEmail = "qwe@qwe.pl";
+        String receiverName = "foo";
+        String receiverEmail = "foo@foo.pl";
         String receiverPhoneNo = "666999666";
         String apmNo = "PAW04A";
-        String senderName = "qweqwqwe";
-        String senderEmail = "qweqwe@qwe.pl";
+        String senderName = "bar";
+        String senderEmail = "bar@bar.pl";
         String senderPhoneNo = "666777666";
 
         formPage.chooseDeliveryToAPM();

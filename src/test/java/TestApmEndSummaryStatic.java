@@ -13,8 +13,6 @@ public class TestApmEndSummaryStatic extends Base {
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static PaymentPage paymentPage;
-    private static TestApm testApm;
-    private static SummaryPage summaryPage;
     private static EndSummaryPage endSummaryPage;
 
     @BeforeClass
@@ -24,8 +22,6 @@ public class TestApmEndSummaryStatic extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         paymentPage = new PaymentPage();
-        testApm = new TestApm();
-        summaryPage = new SummaryPage();
         endSummaryPage = new EndSummaryPage();
 
         formPage.closeCookiesPopup();
@@ -160,5 +156,53 @@ public class TestApmEndSummaryStatic extends Base {
 
         // then
         Assert.assertEquals(errorMessage, expectedApmAdress, endSummaryPage.getApmAdress().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectInvoiceName() {
+        // given
+        String expectedInvoiceName = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedInvoiceName, endSummaryPage.getInvoiceName().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectInvoiceNIP() {
+        // given
+        String expectedInvoiceNIP = "NIP: PL6793087624";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedInvoiceNIP, endSummaryPage.getInvoiceNIP().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectInvoiceTown() {
+        // given
+        String expectedInvoiceTown = "30-624 Kraków";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedInvoiceTown, endSummaryPage.getInvoiceTown().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectInvoiceStreet() {
+        // given
+        String expectedInvoiceStreet = "ul. Test-Krucza 130";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedInvoiceStreet, endSummaryPage.getInvoiceStreet().getText());
     }
 }
