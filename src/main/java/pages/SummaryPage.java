@@ -7,16 +7,16 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SummaryPage {
 
-    @FindBy(xpath = "/html/body/modal-container/div/div/div[2]/div[3]/div[2]/button")
+    @FindBy(css = "div.d-block > button.btn-primary")
     private WebElement payButton;
 
-    @FindBy(css = "div.d-flex > h4")
+    @FindBy(css = "div.ml-20 > h4")
     private WebElement parcelSize;
 
-    @FindBy(xpath = "/html/body/modal-container/div/div/div[2]/div[1]/div/app-parcel-form-whole-summary/div/ul/li[1]/div/div[2]/div/div[2]/img")
+    @FindBy(css = "div.ml-20 > img")
     private WebElement parcelImg;
 
-    @FindBy(xpath = "/html/body/modal-container/div/div/div[2]/div[1]/div/app-parcel-form-whole-summary/div/ul/li[5]/div/div[2]")
+    @FindBy(css = "li.pb-15 > div.price > div:nth-of-type(2)")
     private WebElement parcelPrice;
 
     @FindBy(css = "li.border-line > div.row > div.first-column > div.name")

@@ -5,11 +5,9 @@ import pages.*;
 
 public class TestApmFormSummary extends Base {
     private static FormPage formPage;
-    private static ActionPage actionPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static PaymentPage paymentPage;
     private static TestApm apmTest;
     private static SummaryPage summaryPage;
 
@@ -20,6 +18,7 @@ public class TestApmFormSummary extends Base {
         senderForm  = new SenderForm();
         apmTest = new TestApm();
         summaryPage = new SummaryPage();
+        waitPage = new WaitPage();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
