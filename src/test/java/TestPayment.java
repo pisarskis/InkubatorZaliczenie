@@ -23,25 +23,14 @@ public class TestPayment extends Base {
         formRunThrough();
     }
 
-//    @Before
-//    public void apmSummarySetUp() throws InterruptedException {
-//
-//    }
-
-//    @After
-    public void goBack() throws InterruptedException {
-        driver.navigate().back();
-        waitPage.waitLong();
-    }
-
     private static void formRunThrough() throws InterruptedException {
-        String receiverName = "qweqwe";
-        String receiverEmail = "qwe@qwe.pl";
-        String receiverPhoneNo = "666999666";
+        String receiverName = "foo";
+        String receiverEmail = "foo@foo.pl";
+        String receiverPhoneNo = "555555555";
         String apmNo = "PAW04A";
-        String senderName = "qweqweqwe";
-        String senderEmail = "qweqwe@qwe.pl";
-        String senderPhoneNo = "666777666";
+        String senderName = "bar";
+        String senderEmail = "bar@bar.pl";
+        String senderPhoneNo = "666666666";
 
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
@@ -75,7 +64,7 @@ public class TestPayment extends Base {
     @Test
     public void shouldShowCorrectNameInSummary() {
         // given
-        String desiredSenderName = "qweqweqwe";
+        String desiredSenderName = "bar";
         String errorMessage = "";
 
         // when
@@ -85,14 +74,19 @@ public class TestPayment extends Base {
     }
 
     @Test
-    public void shouldShowCorrectEMailInSummary() {
+    public void shouldShowCorrectEMailInSummary() throws InterruptedException {
         // given
-        String desiredParcelPrice = "qweqwe@qwe.pl";
+        String desiredParcelPrice = "bar@bar.pl";
         String errorMessage = "";
 
         // when
 
         // then
         Assert.assertTrue(errorMessage, paymentPage.getSenderEmail().getText().contains(desiredParcelPrice));
+        waitPage.waitLong();
+        waitPage.waitLong();
+        waitPage.waitLong();
+        waitPage.waitLong();
+        waitPage.waitLong();
     }
 }

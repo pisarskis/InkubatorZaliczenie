@@ -83,19 +83,16 @@ public class ReceiverForm {
 
     public ReceiverForm fillReceiverName(String name) throws InterruptedException {
         actionPage.writeToForm(reveiverName ,name);
-        waitPage.waitShort();
         return this;
     }
 
     public ReceiverForm fillReceiverEmail(String email) throws InterruptedException {
         actionPage.writeToForm(reveiverEmail ,email);
-        waitPage.waitShort();
         return this;
     }
 
     public ReceiverForm fillReceiverNumber(String mumber) throws InterruptedException {
         actionPage.writeToForm(reveiverPhoneNo ,mumber);
-        waitPage.waitShort();
         return this;
     }
 

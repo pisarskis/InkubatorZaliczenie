@@ -71,7 +71,7 @@ public class TestApmEndSummary extends Base {
     public void checkRefreshButton(String expectedMessage) throws InterruptedException {
         int count = 0;
         waitPage.waitLong();
-
+// todo napisać wyjątek sprawdzajacy czy pojawił się już klawisz... W innym wypadku będę otrzymywac błędy.
         while (!endSummaryPage.getPaymentStatus().getText().equals(expectedMessage)) {
             endSummaryPage.clickRefreshButton();
             count ++;
