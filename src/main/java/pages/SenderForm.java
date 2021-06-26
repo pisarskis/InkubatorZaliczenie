@@ -29,7 +29,7 @@ public class SenderForm {
     @FindBy(css = "[for = legalStatusforeignCompany")
     private WebElement foreignCompanyCheckbox;
 
-    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[10]/div/app-input/div/div/app-error/small/ul/li")
+    @FindBy(css = "ul.errors > li")
     private WebElement badEmailError;
 
     @FindBy(css = "[for = legalStatuscompany] > span > span")
@@ -38,8 +38,8 @@ public class SenderForm {
     @FindBy(name = "invoice.company.nip")
     private WebElement invoicePolishCompanyNip;
 
-    @FindBy(xpath = "/html/body/modal-container/div/div/div[2]/div[1]/div/app-parcel-form-whole-summary/div/ul/li[4]/div/div[3]/div/div[1]")
-    private WebElement invoiceNameFromSummary;
+    @FindBy(css = "div.mb-3 > div.name")
+    private WebElement invoiceNameFormSummary;
 
     @FindBy(name = "invoice.individual.companyName")
     private WebElement invoiceIndividualName;
@@ -172,8 +172,8 @@ public class SenderForm {
         return this;
     }
 
-    public WebElement getInvoiceNameFromSummary() {
-        return invoiceNameFromSummary;
+    public WebElement getInvoiceNameFormSummary() {
+        return invoiceNameFormSummary;
     }
 
     public SenderForm clickInvoiceCountryPrefix(String street) throws InterruptedException {

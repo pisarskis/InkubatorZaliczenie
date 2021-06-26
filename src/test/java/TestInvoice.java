@@ -1,10 +1,6 @@
-import helper.ActionPage;
+
 import helper.WaitPage;
 import org.junit.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
 import pages.*;
 
 public class TestInvoice extends Base {
@@ -31,19 +27,19 @@ public class TestInvoice extends Base {
 
     @After
     public void refreshPage() throws InterruptedException {
-        driver.navigate().refresh();
+        Base.driver.navigate().refresh();
         waitPage.waitLong();
         formPage.closeCookiesPopup();
     }
 
     public void fillFormAllData() throws Exception {
-        String receiverName = "qweqwe";
-        String receiverEmail = "qwe@qwe.pl";
-        String receiverPhoneNo = "666999666";
+        String receiverName = "foo";
+        String receiverEmail = "foo@foo.pl";
+        String receiverPhoneNo = "555555555";
         String apmNo = "PAW04A";
-        String senderName = "qweqwe";
-        String senderEmail = "qwe@qwe.pl";
-        String senderPhoneNo = "666999666";
+        String senderName = "bar";
+        String senderEmail = "bar@bar.pl";
+        String senderPhoneNo = "666666666";
 
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
@@ -60,8 +56,8 @@ public class TestInvoice extends Base {
     }
 
     void fillIndividualInvoiceData() throws InterruptedException {
-        String name = "qweqwe";
-        String email = "qwe@qwe.pl";
+        String name = "bar";
+        String email = "bar@bar.pl";
         String zipCode = "02-677";
         String town = "Warszawa";
         String street = "Cybernetyki";
@@ -93,34 +89,32 @@ public class TestInvoice extends Base {
     @Test
     public void shouldPrintPolishCompanyNameWhenNIPGiven() throws Exception {
         // given
-        String nipNo = "6793087624";
+        String nipNo = "ng-input";
         String desiredText = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
         String errorMessage = "";
 
         // when
-        fillFormAllData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
         senderForm.clickPolishCompanyNIP(nipNo);
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredText, senderForm.getInvoiceNameFromSummary().getText());
+        Assert.assertEquals(errorMessage, desiredText, senderForm.getInvoiceNameFormSummary().getText());
     }
 
     @Test
     public void shouldPrintNameWhenIndividualIsChosen() throws Exception {
         // given
         String errorMessage = "";
-        String name = "qweqwe";
+        String name = "bar";
 
         // when
-        fillFormAllData();
         fillIndividualInvoiceData();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, name, senderForm.getInvoiceNameFromSummary().getText());
+        Assert.assertEquals(errorMessage, name, senderForm.getInvoiceNameFormSummary().getText());
     }
 
     @Test

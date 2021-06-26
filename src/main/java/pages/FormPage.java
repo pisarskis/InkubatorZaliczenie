@@ -33,14 +33,23 @@ public class FormPage {
     @FindBy(css = "[for = parcelSizeC]>span")
     private WebElement parcelSizeC;
 
-    @FindBy(linkText = "Jak nadać paczkę?")
-    private WebElement howToSendParcel;
-
     @FindBy(css = ".modal-bdy > span")
     private WebElement labelReady;
 
     @FindBy(css = ".modal-body")
     private WebElement modal;
+
+    @FindBy(css = "app-section.col-12 > div.form-section > app-input.section-input > div > span.label > span.custom-action-in-title")
+    private WebElement howToSendParcel;
+
+    @FindBy(css = "app-section.mt-3 > div.form-section > app-input.section-input > div > span.label > span.custom-action-in-title")
+    private WebElement howToPackParcel;
+
+    @FindBy(css ="div.step-modal > div.modal-content > div.modal-header > h4")
+    private WebElement modalTitle;
+
+    @FindBy(css ="div.step-modal > div.modal-content > div.modal-body > div")
+    private WebElement modalBody;
 
     @FindBy(css = "[for = terms")
     private WebElement termsCheckbox;
@@ -54,22 +63,24 @@ public class FormPage {
     @FindBy(xpath = "//*[@id=\"parcelFormButton\"]/button")
     private WebElement sendButton;
 
-    @FindBy(xpath = "/html/body/modal-container/div/div/div[2]/div[3]/div[2]/button")
+    @FindBy(css = "div.buttons > div:nth-of-type(2) > button")
     private WebElement payButton;
 
-//  sumarry panel
+    @FindBy(css = "label[for='terms'] > span.checkbox-label > span")
+    private WebElement termsText;
+
+    @FindBy(css = "label[for='newsletter'] > span.checkbox-label > span")
+    private WebElement newsletterText;
 
 //    Do zweryfikowania, dlaczego nie chce mi wyprintować zawartości tego diva.
-//    @FindBy(css = ".chosen-text")
-    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[1]/ul/li[2]/div/div[1]/div/div/div")
+
+    @FindBy(css = "div.ml-20 > h4")
     private WebElement parcelSizeText;
 
-    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[1]/ul/li[2]/div/div[2]/div/div[2]/img")
+    @FindBy(css = "div.ml-20 > img")
     private WebElement parcelSizeImg;
 
-//    todo dlaczmu to nie chce działąć? Trzeba posprzątać te xpathy.
-//    @FindBy(xpath = "//span[@class='to-pay-amount no-wrap']")
-    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[2]/div/span[2]")
+    @FindBy(css = "li.pb-15 > div.to-pay < div:nth-of-type(2)")
     private WebElement parcelPrice;
 
     ActionPage actionPage = new ActionPage();
@@ -103,34 +114,31 @@ public class FormPage {
         return this;
     }
 
-    public FormPage clickA() throws InterruptedException {
+    public FormPage clickA() {
         actionPage.clickElement(parcelSizeA);
         return this;
     }
 
-    public FormPage clickB() throws InterruptedException {
+    public FormPage clickB() {
         actionPage.clickElement(parcelSizeB);
         return this;
     }
 
-    public FormPage clickC() throws InterruptedException {
+    public FormPage clickC() {
         actionPage.clickElement(parcelSizeC);
         return this;
     }
 
-    public FormPage clickHowToSendButton() throws InterruptedException {
+    public FormPage clickHowToSendParcel() throws InterruptedException {
         howToSendParcel.click();
         waitPage.waitShort();
         return this;
     }
 
-    public String getLabelReady() throws InterruptedException {
+    public FormPage clickHowToPackParcel() throws InterruptedException {
+        howToPackParcel.click();
         waitPage.waitShort();
-        return labelReady.getText();
-    }
-
-    public boolean isDisplayedPopup(){
-        return modal.isDisplayed();
+        return this;
     }
 
     public FormPage clickTermsCheckbox() throws InterruptedException {
@@ -151,27 +159,24 @@ public class FormPage {
 
     public FormPage clickPayButton() throws InterruptedException {
         actionPage.clickElement(payButton);
-        waitPage.waitShort();
+        waitPage.waitLong();
+        waitPage.waitLong();
         return this;
     }
 
-    public boolean verifyTextPresent(String value) {
+    public boolean getTextPresent(String value) {
         return Base.driver.getPageSource().contains(value);
     }
 
-    public void checkIfTextPresent(String value) {
-        Assert.assertTrue(verifyTextPresent(value));
-    }
-
-    public WebElement checkParcelSizeText() {
+    public WebElement getParcelSizeText() {
         return parcelSizeText;
     }
 
-    public WebElement checkParcelSizeImg() {
+    public WebElement getParcelSizeImg() {
         return parcelSizeImg;
     }
 
-    public WebElement checkParcelPrice() {
+    public WebElement getParcelPrice() {
         return parcelPrice;
     }
 
@@ -179,8 +184,18 @@ public class FormPage {
         return newsletterError;
     }
 
-    public boolean checkIfCookiesButtonExists(){
-        return cookiesButton.isSelected();
+    public WebElement getModalTitle() {
+        return modalTitle;
+    }
+
+    public WebElement getModalBody() {
+        return modalBody;
+    }
+
+    public WebElement getTermsText() { return termsText; }
+
+    public WebElement getNewsletterBody() {
+        return newsletterText;
     }
 }
 
