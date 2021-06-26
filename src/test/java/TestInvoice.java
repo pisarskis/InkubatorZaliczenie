@@ -89,7 +89,7 @@ public class TestInvoice extends Base {
     @Test
     public void shouldPrintPolishCompanyNameWhenNIPGiven() throws Exception {
         // given
-        String nipNo = "ng-input";
+        String nipNo = "6793087624";
         String desiredText = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
         String errorMessage = "";
 

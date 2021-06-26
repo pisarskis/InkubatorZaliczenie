@@ -28,6 +28,15 @@ public class SummaryPage {
     @FindBy(css = "li.border-line > div.row > div.first-column > div:nth-of-type(3)")
     private WebElement receiverEmail;
 
+    @FindBy(css = "li.border-line > div.row > div.first-column > div:nth-of-type(4)")
+    private WebElement senderTown;
+
+    @FindBy(css = "li.border-line > div.row > div.first-column > div:nth-of-type(5)")
+    private WebElement senderStreet;
+
+    @FindBy(css = "li.border-line > div.row > div.first-column > div:nth-of-type(6)")
+    private WebElement senderCountry;
+
     @FindBy(css = "div.deliveryType > div.mb-3 > div.name")
     private WebElement senderName;
 
@@ -92,6 +101,18 @@ public class SummaryPage {
 
     public WebElement getSenderEmail() {
         return senderEmail;
+    }
+
+    public WebElement getSenderTown() {
+        return senderTown;
+    }
+
+    public WebElement getSenderStreet() {
+        return senderStreet;
+    }
+
+    public WebElement getSenderCountry() {
+        return senderCountry;
     }
 
     public WebElement getApmNo() {

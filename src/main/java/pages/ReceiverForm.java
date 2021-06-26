@@ -28,8 +28,14 @@ public class ReceiverForm {
     @FindBy(css = ".ng-input > input")
     private WebElement receiverAPMNoInput;
 
-    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[8]/div/app-input/div/div/div/app-selectpicker/ng-select/div/div/div[2]/input")
+    @FindBy(css = ".ng-input > input")
     private WebElement receiverAdressTown;
+
+    @FindBy(name = "targetAddress.buildingNo")
+    private WebElement receiverStreetNo;
+
+    @FindBy(name = "targetAddress.flatNo")
+    private WebElement receiverFlatNo;
 
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[9]/div/app-input/div/div/div/app-selectpicker/ng-select/div/div/div[2]/input")
     private WebElement receiverAdressStreet;
@@ -121,9 +127,22 @@ public class ReceiverForm {
     }
 
     public ReceiverForm fillReceiverStreet(String apmNo) throws InterruptedException {
+        actionPage.clickElement(receiverAdressStreet);
         actionPage.writeToForm(receiverAdressStreet ,apmNo);
         waitPage.waitShort();
         receiverAdressStreet.sendKeys(Keys.ENTER);
+        return this;
+    }
+
+    public ReceiverForm fillReceiverStreetNo(String name) throws InterruptedException {
+        actionPage.writeToForm(receiverStreetNo ,name);
+        waitPage.waitShort();
+        return this;
+    }
+
+    public ReceiverForm fillReceiverFlatNo(String name) throws InterruptedException {
+        actionPage.writeToForm(receiverFlatNo ,name);
+        waitPage.waitShort();
         return this;
     }
 
