@@ -3,6 +3,8 @@ package pages;
 import helper.ActionPage;
 import helper.WaitPage;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -112,13 +114,11 @@ public class FormPage {
 
     public FormPage chooseDeliveryToAPM() throws InterruptedException {
         actionPage.clickElement(deliveryToAPM);
-        waitPage.waitShort();
         return this;
     }
 
     public FormPage chooseDeliveryC2D() throws InterruptedException {
         actionPage.clickElement(deliveryToAddress);
-        waitPage.waitShort();
         return this;
     }
 
@@ -168,12 +168,20 @@ public class FormPage {
     public FormPage clickPayButton() throws InterruptedException {
         actionPage.clickElement(payButton);
         waitPage.waitLong();
-        waitPage.waitLong();
-        return this;
-    }
 
-    public boolean getTextPresent(String value) {
-        return Base.driver.getPageSource().contains(value);
+/*
+Poniższa gimnastyka jest konieczna, na czas pisania tej metody, czas oczekiwania na przejście do
+płatności przekraczał 60 sekund i wyrzucał timeout. Konieczny jest kod, który umozliwia maksymalne
+wydłużenie czasu przejścia do ekranu płatności bez przerdłużania w sytuacji, kiedy strona szybko
+się załadowała.
+ */
+//        try {
+//            while (payButton.isDisplayed()){
+//                waitPage.waitLong();
+//            }
+//        } catch (NoSuchElementException e){}
+
+        return this;
     }
 
     public WebElement getParcelSizeText() {

@@ -37,13 +37,13 @@ public class TestApm extends Base {
     }
 
     public void fillFormAllData() throws Exception {
-        String receiverName = "qweqwe";
-        String receiverEmail = "qwe@qwe.pl";
-        String receiverPhoneNo = "666999666";
+        String receiverName = "foo";
+        String receiverEmail = "foo@foo.pl";
+        String receiverPhoneNo = "555555555";
         String apmNo = "PAW04A";
-        String senderName = "qweqwe";
-        String senderEmail = "qwe@qwe.pl";
-        String senderPhoneNo = "666999666";
+        String senderName = "bar";
+        String senderEmail = "bar@bar.pl";
+        String senderPhoneNo = "666666666";
 
         formPage.clickA();
         receiverForm.fillReceiverName(receiverName);

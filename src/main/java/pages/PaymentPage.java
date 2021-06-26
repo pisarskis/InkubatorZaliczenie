@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class PaymentPage {
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
@@ -40,26 +42,26 @@ public class PaymentPage {
     }
 
     public PaymentPage clickBank() throws InterruptedException {
+        Base.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         actionPage.clickElement(aliorBank);
-        waitPage.waitShort();
         return this;
     }
 
     public PaymentPage clickNextButton() throws InterruptedException {
         actionPage.clickElement(finishButton);
-        waitPage.waitShort();
+        waitPage.waitLong();
         return this;
     }
 
     public PaymentPage clickAcceptPayment() throws InterruptedException {
         actionPage.clickElement(acceptPaymentButton);
-        waitPage.waitShort();
+        waitPage.waitLong();
         return this;
     }
 
     public PaymentPage clickDeclinePaymentButton() throws InterruptedException {
         actionPage.clickElement(declinePaymentButton);
-        waitPage.waitShort();
+        waitPage.waitLong();
         return this;
     }
 

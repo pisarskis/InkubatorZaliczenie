@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class EndSummaryPage {
 
     @FindBy(css = "div.wrapper > div.text-wrapper > span")
@@ -60,59 +62,73 @@ public class EndSummaryPage {
     }
 
     public EndSummaryPage clickRefreshButton() throws InterruptedException {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         actionPage.clickElement(refreshButton);
         waitPage.waitLong();
         return this;
     }
     public WebElement getPaymentStatus() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return paymentStatus;
     }
 
     public WebElement getReceiverName() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return receiverName;
     }
 
     public WebElement getReceiverPhoneNo() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return receiverPhoneNo;
     }
 
     public WebElement getReceiverEmail() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return receiverEmail;
     }
 
     public WebElement getSenderName() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return senderName;
     }
 
     public WebElement getSenderPhoneNo() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return senderPhoneNo;
     }
 
     public WebElement getSenderEmail() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return senderEmail;
     }
 
     public WebElement getApmNo() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return apmNo;
     }
 
     public WebElement getApmAdress() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return apmAdress;
     }
 
     public WebElement getInvoiceName() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return invoiceName;
     }
 
     public WebElement getInvoiceNIP() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return invoiceNIP;
     }
 
     public WebElement getInvoiceTown() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return invoiceTown;
     }
 
     public WebElement getInvoiceStreet() {
+        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return invoiceStreet;
     }
 }

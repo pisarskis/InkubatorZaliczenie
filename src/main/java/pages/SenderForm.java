@@ -38,7 +38,7 @@ public class SenderForm {
     @FindBy(name = "invoice.company.nip")
     private WebElement invoicePolishCompanyNip;
 
-    @FindBy(css = "div.mb-3 > div.name")
+    @FindBy(css = "div.third-column > div.mb-3 > div.name")
     private WebElement invoiceNameFormSummary;
 
     @FindBy(name = "invoice.individual.companyName")
@@ -117,19 +117,16 @@ public class SenderForm {
 
     public SenderForm fillSenderName(String name) throws InterruptedException {
         actionPage.writeToForm(senderName ,name);
-        waitPage.waitShort();
         return this;
     }
 
     public SenderForm fillSenderEmail(String email) throws InterruptedException {
         actionPage.writeToForm(senderEmail ,email);
-        waitPage.waitShort();
         return this;
     }
 
     public SenderForm fillSenderNumber(String mumber) throws InterruptedException {
         actionPage.writeToForm(senderPhoneNo ,mumber);
-        waitPage.waitShort();
         return this;
     }
 
