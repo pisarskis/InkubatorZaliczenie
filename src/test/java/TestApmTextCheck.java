@@ -167,7 +167,8 @@ public class TestApmTextCheck extends Base {
                 "https://inpost.pl/kontakt",
                 "https://inpost.pl/polityka-prywatnosci#policy-inpost-pp",
                 "https://www.onetrust.com/products/cookie-consent/",
-                "https://inpost.pl/polityka-prywatnosci#policy-inpost-pp"
+                "https://inpost.pl/polityka-prywatnosci#policy-inpost-pp",
+                "https://inpost.pl/en/policy"
         );
 
         for (String link: expectedLinksList){
