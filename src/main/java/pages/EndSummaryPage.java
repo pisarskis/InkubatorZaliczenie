@@ -2,10 +2,13 @@ package pages;
 
 import helper.ActionPage;
 import helper.WaitPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -56,79 +59,81 @@ public class EndSummaryPage {
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
+    WebDriverWait wait = new WebDriverWait(Base.driver, 60);
 
     public EndSummaryPage() {
         PageFactory.initElements(Base.driver, this);
     }
 
     public EndSummaryPage clickRefreshButton() throws InterruptedException {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.parcel-summary-container > button.btn")));
         actionPage.clickElement(refreshButton);
         waitPage.waitLong();
         return this;
     }
+
     public WebElement getPaymentStatus() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.wrapper > div.text-wrapper > span")));
         return paymentStatus;
     }
 
     public WebElement getReceiverName() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("li.border-line > div.row > div.first-column > div.name")));
         return receiverName;
     }
 
     public WebElement getReceiverPhoneNo() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("li.border-line > div.row > div.first-column > div:nth-of-type(2)")));
         return receiverPhoneNo;
     }
 
     public WebElement getReceiverEmail() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("li.border-line > div.row > div.first-column > div:nth-of-type(3)")));
         return receiverEmail;
     }
 
     public WebElement getSenderName() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.deliveryType > div.mb-3 > div.name")));
         return senderName;
     }
 
     public WebElement getSenderPhoneNo() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.deliveryType > div.mb-3 > div:nth-of-type(2)")));
         return senderPhoneNo;
     }
 
     public WebElement getSenderEmail() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.deliveryType > div.mb-3 > div:nth-of-type(3)")));
         return senderEmail;
     }
 
     public WebElement getApmNo() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("li.border-line > div.row > div.third-column > div > div.name")));
         return apmNo;
     }
 
     public WebElement getApmAdress() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("li.border-line > div.row > div.third-column > div > div:nth-of-type(2)")));
         return apmAdress;
     }
 
     public WebElement getInvoiceName() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.third-column > div.mb-3 > div.name")));
         return invoiceName;
     }
 
     public WebElement getInvoiceNIP() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.third-column > div.mb-3 > div:nth-of-type(2)")));
         return invoiceNIP;
     }
 
     public WebElement getInvoiceTown() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.third-column > div.mb-3 > div:nth-of-type(3)")));
         return invoiceTown;
     }
 
     public WebElement getInvoiceStreet() {
-        Base.driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.third-column > div.mb-3 > div:nth-of-type(4)")));
         return invoiceStreet;
     }
 }

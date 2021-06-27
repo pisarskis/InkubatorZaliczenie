@@ -167,20 +167,6 @@ public class FormPage {
 
     public FormPage clickPayButton() throws InterruptedException {
         actionPage.clickElement(payButton);
-        waitPage.waitLong();
-
-/*
-Poniższa gimnastyka jest konieczna, na czas pisania tej metody, czas oczekiwania na przejście do
-płatności przekraczał 60 sekund i wyrzucał timeout. Konieczny jest kod, który umozliwia maksymalne
-wydłużenie czasu przejścia do ekranu płatności bez przerdłużania w sytuacji, kiedy strona szybko
-się załadowała.
- */
-//        try {
-//            while (payButton.isDisplayed()){
-//                waitPage.waitLong();
-//            }
-//        } catch (NoSuchElementException e){}
-
         return this;
     }
 
