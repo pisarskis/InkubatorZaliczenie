@@ -61,6 +61,17 @@ public class TestApmFormStatic extends Base {
     }
 
     @Test
+    public void shouldLanguageToEnglish() throws Exception {
+        // given
+        String expectedHeader = "Send parcels quickly and conveniently!";
+
+        // when
+
+        // then
+        Assert.assertEquals(expectedHeader, formPage.getFormEnglishHeader().getText());
+    }
+
+    @Test
     public void shouldPrintCorrectHTSModalTitle() throws Exception {
         // given
         String desiredTitle = "How to send the parcel?";
