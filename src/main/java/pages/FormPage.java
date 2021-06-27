@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class FormPage {
 // cookies
@@ -126,6 +128,7 @@ public class FormPage {
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
+    WebDriverWait wait = new WebDriverWait(Base.driver, 60);
 
     public FormPage() {
         PageFactory.initElements(Base.driver, this);
@@ -150,6 +153,7 @@ public class FormPage {
     }
 
     public FormPage chooseDeliveryToAPM() throws InterruptedException {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[for = deliveryTypeboxmachine")));
         actionPage.clickElement(deliveryToAPM);
         return this;
     }
