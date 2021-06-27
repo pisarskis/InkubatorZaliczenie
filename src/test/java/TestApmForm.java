@@ -7,7 +7,7 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import pages.*;
 
-public class TestApm extends Base {
+public class TestApmForm extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
@@ -59,7 +59,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectSizeForAParcel() throws Exception {
+    public void shouldReturnCorrectSizeForAParcel() {
         // given
         String parcelASize = "mała";
 
@@ -73,7 +73,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectSizeForBParcel() throws Exception {
+    public void shouldReturnCorrectSizeForBParcel() {
         // given
         String parcelBSize = "średnia";
 
@@ -87,7 +87,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectSizeForCParcel() throws Exception {
+    public void shouldReturnCorrectSizeForCParcel() {
         // given
         String parcelCSize = "duża";
 
@@ -102,7 +102,49 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelAImg() throws Exception {
+    public void shouldReturnCorrectParcelADimensions() {
+        // given
+        String parcelADimensions = "max. wymiar\n" +
+                                   "8 x 38 x 64 cm\n" +
+                                   "do 25 kg";
+
+        // when
+        formPage.clickA();
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelDimensions().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectParcelBDimensions() {
+        // given
+        String parcelADimensions = "max. wymiar\n" +
+                                   "19 x 38 x 64 cm\n" +
+                                   "do 25 kg";
+
+        // when
+        formPage.clickB();
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelDimensions().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectParcelCDimensions() {
+        // given
+        String parcelADimensions = "max. wymiar\n" +
+                                   "41 x 38 x 64 cm\n" +
+                                   "do 25 kg";
+
+        // when
+        formPage.clickC();
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelDimensions().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectParcelAImg() {
         // given
         String imgSize = "parcel_A";
         String errorMessage = "Wrong img loaded for chosen parcel size.";
@@ -115,7 +157,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelBImg() throws Exception {
+    public void shouldReturnCorrectParcelBImg() {
         // given
         String imgSize = "parcel_B";
         String errorMessage = "Wrong img loaded for chosen parcel size.";
@@ -128,7 +170,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelCImg() throws Exception {
+    public void shouldReturnCorrectParcelCImg() {
         // given
         String imgSize = "parcel_C";
         String errorMessage = "Wrong img loaded for chosen parcel size.";
@@ -141,7 +183,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelAPrice() throws Exception {
+    public void shouldReturnCorrectParcelAPrice() {
         // given
         String correctParcelPrice = "12,99 zł";
         String errorMessage = "Wrong price for parcel of this size.";
@@ -154,7 +196,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelBPrice() throws Exception {
+    public void shouldReturnCorrectParcelBPrice() {
         //given
         String correctParcelPrice = "13,99 zł";
         String errorMessage = "Wrong price for parcel of this size.";
@@ -167,7 +209,7 @@ public class TestApm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelCPrice() throws Exception {
+    public void shouldReturnCorrectParcelCPrice() {
         // given
         String correctParcelPrice = "15,49 zł";
         String errorMessage = "Wrong price for parcel of this size.";
@@ -182,7 +224,7 @@ public class TestApm extends Base {
     @Test
     public void shouldThrowErrorForBadReceiverEmail() throws Exception {
         // given
-        String email = "qweqwe.pl";
+        String email = "foo.pl";
         String desiredErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
         String errorMessage = "";
 
@@ -197,7 +239,7 @@ public class TestApm extends Base {
     @Test
     public void shouldThrowErrorForShortReceiverEmail() throws Exception {
         // given
-        String email = "q";
+        String email = "foo";
         String desiredErrorMessage = "WARTOŚĆ JEST ZA KRÓTKA. POWINNA MIEĆ 4 ZNAKI LUB WIĘCEJ";
         String errorMessage = "";
 
@@ -212,7 +254,7 @@ public class TestApm extends Base {
     @Test
     public void shouldThrowErrorForBadSenderEmail() throws Exception {
         // given
-        String email = "qweqwe.pl";
+        String email = "foo.pl";
         String desiredErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
         String errorMessage = "";
 
@@ -227,7 +269,7 @@ public class TestApm extends Base {
     @Test
     public void shouldThrowErrorForShortSenderEmail() throws Exception {
         // given
-        String email = "q";
+        String email = "foo";
         String desiredErrorMessage = "WARTOŚĆ JEST ZA KRÓTKA. POWINNA MIEĆ 4 ZNAKI LUB WIĘCEJ";
         String errorMessage = "";
 
@@ -316,6 +358,6 @@ public class TestApm extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, formPage.getNewsletterError().getText());
+        Assert.assertEquals(errorMessage, desiredErrorMessage, formPage.getTermsError().getText());
     }
 }

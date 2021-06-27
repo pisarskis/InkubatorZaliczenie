@@ -22,9 +22,14 @@ public class FormPage {
     @FindBy(css = "[for = deliveryTypeboxmachine")
     private WebElement deliveryToAPM;
 
-
     @FindBy(css = "[for = deliveryTypeaddress")
     private WebElement deliveryToAddress;
+
+    @FindBy(css = "div.lang")
+    private WebElement languageSelector;
+
+    @FindBy(css = "div.text-wrapper > span")
+    private WebElement formEnglishHeader;
 
     @FindBy(css = "[for = parcelSizeA]>span")
     private WebElement parcelSizeA;
@@ -56,11 +61,17 @@ public class FormPage {
     @FindBy(css = "[for = terms")
     private WebElement termsCheckbox;
 
+    @FindBy(css = "[for = terms] > div.input-checkmark")
+    private WebElement termsCheckboxEnglish;
+
     @FindBy(css = "[for = newsletter")
     private WebElement newsletterCheckbox;
 
     @FindBy(css = "ul.errors > li")
-    private WebElement newsletterError;
+    private WebElement termsError;
+
+    @FindBy(css = "ul.errors > li")
+    private WebElement termsErrorEnglish;
 
     @FindBy(xpath = "//*[@id=\"parcelFormButton\"]/button")
     private WebElement sendButton;
@@ -74,30 +85,56 @@ public class FormPage {
     @FindBy(css = "label[for='newsletter'] > span.checkbox-label > span")
     private WebElement newsletterText;
 
-//    Do zweryfikowania, dlaczego nie chce mi wyprintować zawartości tego diva.
-//    @FindBy(css = "div.ml-20 > h4")
-//    private WebElement parcelSizeText;
-//
-//    @FindBy(css = "div.ml-20 > img")
-//    private WebElement parcelSizeImg;
-
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[1]/ul/li[2]/div/div[1]/div/div/div")
     private WebElement parcelSizeText;
 
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[1]/ul/li[2]/div/div[2]/div/div[2]/img")
     private WebElement parcelSizeImg;
 
-//    @FindBy(css = "li.pb-15 > div.to-pay < div:nth-of-type(2)")
-//    private WebElement parcelPrice;
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[1]/ul/li[2]/div/div[2]/div/div[1]")
+    private WebElement parcelDimensions;
 
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[2]/div/span[2]")
     private WebElement parcelPrice;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[1]/label/div/app-parcel-options/div/div/div/p[1]/span[1]/img")
+    private WebElement parcelATileImg;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[1]/label/div/app-parcel-options/div/div/div/p[1]/span[2]")
+    private WebElement parcelATileDimensions;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[1]/label/div/app-parcel-options/div/div/div/p[2]")
+    private WebElement parcelATilePrice;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[2]/label/div/app-parcel-options/div/div/div/p[1]/span[1]/img")
+    private WebElement parcelBTileImg;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[2]/label/div/app-parcel-options/div/div/div/p[1]/span[2]")
+    private WebElement parcelBTileDimensions;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[2]/label/div/app-parcel-options/div/div/div/p[2]")
+    private WebElement parcelBTilePrice;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[3]/label/div/app-parcel-options/div/div/div/p[1]/span[1]/img")
+    private WebElement parcelCTileImg;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[3]/label/div/app-parcel-options/div/div/div/p[1]/span[2]")
+    private WebElement parcelCTileDimensions;
+
+    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[2]/div/app-input[2]/div/div/div/app-input-radio/span[3]/label/div/app-parcel-options/div/div/div/p[2]")
+    private WebElement parcelCTilePrice;
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
 
     public FormPage() {
         PageFactory.initElements(Base.driver, this);
+    }
+
+    public FormPage clickLanguageSelector() throws InterruptedException {
+        languageSelector.click();
+        waitPage.waitShort();
+        return this;
     }
 
     public FormPage closeCookiesPopup() throws InterruptedException {
@@ -154,6 +191,11 @@ public class FormPage {
         return this;
     }
 
+    public FormPage clickTermsCheckboxEngish() throws InterruptedException {
+        actionPage.clickElement(termsCheckboxEnglish);
+        return this;
+    }
+
     public FormPage clickNewsletterCheckbox() throws InterruptedException {
         actionPage.clickElement(newsletterCheckbox);
         return this;
@@ -174,16 +216,14 @@ public class FormPage {
         return parcelSizeText;
     }
 
-    public WebElement getParcelSizeImg() {
-        return parcelSizeImg;
+    public WebElement getParcelSizeImg() { return parcelSizeImg; }
+
+    public WebElement getParcelDimensions() {
+        return parcelDimensions;
     }
 
     public WebElement getParcelPrice() {
         return parcelPrice;
-    }
-
-    public WebElement getNewsletterError() {
-        return newsletterError;
     }
 
     public WebElement getModalTitle() {
@@ -196,8 +236,53 @@ public class FormPage {
 
     public WebElement getTermsText() { return termsText; }
 
+    public WebElement getTermsError() { return termsError; }
+
+    public WebElement getTermsErrorEnglish() { return termsErrorEnglish; }
+
     public WebElement getNewsletterBody() {
         return newsletterText;
     }
+
+    public WebElement getFormEnglishHeader() {
+        return formEnglishHeader;
+    }
+
+    public WebElement getParcelATileImg() {
+        return parcelATileImg;
+    }
+
+    public WebElement getParcelATileDimensions() {
+        return parcelATileDimensions;
+    }
+
+    public WebElement getParcelATilePrice() {
+        return parcelATilePrice;
+    }
+
+    public WebElement getParcelBTileImg() {
+        return parcelBTileImg;
+    }
+
+    public WebElement getParcelBTileDimensions() {
+        return parcelBTileDimensions;
+    }
+
+    public WebElement getParcelBTilePrice() {
+        return parcelBTilePrice;
+    }
+
+    public WebElement getParcelCTileImg() {
+        return parcelCTileImg;
+    }
+
+    public WebElement getParcelCTileDimensions() {
+        return parcelCTileDimensions;
+    }
+
+    public WebElement getParcelCTilePrice() {
+        return parcelCTilePrice;
+    }
+
 }
 
