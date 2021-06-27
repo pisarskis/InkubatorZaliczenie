@@ -2,10 +2,13 @@ package pages;
 
 import helper.ActionPage;
 import helper.WaitPage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,13 +39,14 @@ public class PaymentPage {
 
     @FindBy(css = "button[value='3']")
     private WebElement setPaymentAsPendingButton;
+    WebDriverWait wait = new WebDriverWait(Base.driver, 60);
 
     public PaymentPage() {
         PageFactory.initElements(Base.driver, this);
     }
 
     public PaymentPage clickBank() throws InterruptedException {
-        Base.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[title='Płacę z Alior Banku")));
         actionPage.clickElement(aliorBank);
         return this;
     }
