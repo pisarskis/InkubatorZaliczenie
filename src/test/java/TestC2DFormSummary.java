@@ -10,7 +10,7 @@ public class TestC2DFormSummary extends Base {
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static PaymentPage paymentPage;
-    private static TestApm apmTest;
+    private static TestApmForm apmTest;
     private static SummaryPage summaryPage;
 
     @BeforeClass
@@ -21,7 +21,7 @@ public class TestC2DFormSummary extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         paymentPage = new PaymentPage();
-        apmTest = new TestApm();
+        apmTest = new TestApmForm();
         summaryPage = new SummaryPage();
 
         formPage.closeCookiesPopup();

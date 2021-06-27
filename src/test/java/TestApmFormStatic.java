@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestApmTextCheck extends Base {
+public class TestApmFormStatic extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
@@ -51,6 +51,117 @@ public class TestApmTextCheck extends Base {
         while (cleanLinkList.remove(null)){}
 
         return cleanLinkList;
+    }
+
+    @Test
+    public void shouldReturnCorrectTileADimensions() {
+        // given
+        String parcelADimensions = "max.\n" +
+                "8 x 38 x 64 cm\n" +
+                "do 25 kg";
+
+        // when
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelATileDimensions().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectTileBDimensions() {
+        // given
+        String parcelADimensions = "max.\n" +
+                "19 x 38 x 64 cm\n" +
+                "do 25 kg";
+
+        // when
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelBTileDimensions().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectTileCDimensions() {
+        // given
+        String parcelADimensions = "max.\n" +
+                "41 x 38 x 64 cm\n" +
+                "do 25 kg";
+
+        // when
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelCTileDimensions().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectTileAImg() {
+        // given
+        String imgSize = "20351";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
+
+        // when
+
+        // then
+        Assert.assertTrue( errorMessage,formPage.getParcelATileImg().getAttribute("src").contains(imgSize));
+    }
+
+    @Test
+    public void shouldReturnCorrectTileBImg() {
+        // given
+        String imgSize = "20350";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
+
+        // when
+
+        // then
+        Assert.assertTrue( errorMessage,formPage.getParcelBTileImg().getAttribute("src").contains(imgSize));
+    }
+
+    @Test
+    public void shouldReturnCorrectTileCImg() {
+        // given
+        String imgSize = "20349";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
+
+        // when
+
+        // then
+        Assert.assertTrue( errorMessage,formPage.getParcelCTileImg().getAttribute("src").contains(imgSize));
+    }
+
+    @Test
+    public void shouldReturnCorrectTileAPrice() {
+        // given
+        String correctParcelPrice = "12,99 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelATilePrice().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectTileBPrice() {
+        //given
+        String correctParcelPrice = "13,99 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
+
+        //when
+
+        //then
+        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelBTilePrice().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectTileCPrice() {
+        // given
+        String correctParcelPrice = "15,49 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelCTilePrice().getText());
     }
 
     @Test
@@ -147,7 +258,6 @@ public class TestApmTextCheck extends Base {
         // given
         List<String> missingLinks = new ArrayList<String>();
         List<String> expectedLinksList = Arrays.asList(
-                "https://inpost.pl/",
                 "https://inpost.pl/",
                 "https://inpost.pl/regulaminy",
                 "http://integer.pl/",

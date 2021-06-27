@@ -1,3 +1,5 @@
+package English;
+
 import helper.WaitPage;
 import org.junit.*;
 import pages.*;
@@ -21,6 +23,8 @@ public class TestApmFormSummary extends Base {
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
+        formPage.clickLanguageSelector();
+        formPage.closeCookiesPopup();
     }
 
     @Before
@@ -52,50 +56,47 @@ public class TestApmFormSummary extends Base {
         senderForm.fillSenderName(senderName);
         senderForm.fillSenderEmail(senderEmail);
         senderForm.fillSenderNumber(senderPhoneNo);
-        formPage.clickTermsCheckbox();
+        formPage.clickTermsCheckboxEngish();
         formPage.clickNewsletterCheckbox();
     }
 
     @Test
     public void shouldShowCorrectParcelSizeAInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Mała";
-        String errorMessage = "";
+        String desiredParcelSize = "Small";
 
         // when
         formPage.clickA();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(desiredParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
     public void shouldShowCorrectParcelSizeBInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Średnia";
-        String errorMessage = "";
+        String desiredParcelSize = "Medium";
 
         // when
         formPage.clickB();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(desiredParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
     public void shouldShowCorrectParcelSizeCInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Duża";
-        String errorMessage = "";
+        String desiredParcelSize = "Large";
 
         // when
         formPage.clickC();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(desiredParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
@@ -143,42 +144,39 @@ public class TestApmFormSummary extends Base {
     @Test
     public void shouldShowCorrectParcelAPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "12,99 zł";
-        String errorMessage = "";
+        String desiredParcelPrice = "PLN 12.99";
 
         // when
         formPage.clickA();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(desiredParcelPrice, summaryPage.getParcelPrice().getText());
     }
 
     @Test
     public void shouldShowCorrectParcelBPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "13,99 zł";
-        String errorMessage = "";
+        String desiredParcelPrice = "PLN 13.99";
 
         // when
         formPage.clickB();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(desiredParcelPrice, summaryPage.getParcelPrice().getText());
     }
 
     @Test
     public void shouldShowCorrectParcelCPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "15,49 zł";
-        String errorMessage = "";
+        String desiredParcelPrice = "PLN 15.49";
 
         // when
         formPage.clickC();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(desiredParcelPrice, summaryPage.getParcelPrice().getText());
     }
 }
