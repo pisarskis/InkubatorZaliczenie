@@ -45,7 +45,7 @@ public class TestC2DForm extends Base {
         formPage.clickA();
         receiverForm.fillReceiverName(formDataFactory.getReceiverName());
         receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
         receiverForm.fillReceiverZipCode(formDataFactory.getReceiverZipCode());
         receiverForm.fillReceiverTown(formDataFactory.getReceiverTown());
         receiverForm.fillReceiverStreet(formDataFactory.getReceiverStreet());

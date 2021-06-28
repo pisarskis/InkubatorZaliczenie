@@ -37,7 +37,7 @@ public class TestEndSummaryStatic extends Base {
         formPage.clickA();
         receiverForm.fillReceiverName(formDataFactory.getReceiverName());
         receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
         receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
         senderForm.fillSenderName(formDataFactory.getSenderName());
         senderForm.fillSenderEmail(formDataFactory.getSenderEmail());

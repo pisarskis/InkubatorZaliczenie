@@ -28,7 +28,7 @@ public class TestC2DFormSummaryStatic extends Base {
          formPage.chooseDeliveryC2D();
         receiverForm.fillReceiverName(formDataFactory.getReceiverName());
         receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
         receiverForm.fillReceiverZipCode(formDataFactory.getReceiverZipCode());
         receiverForm.fillReceiverTown(formDataFactory.getReceiverTown());
         receiverForm.fillReceiverStreet(formDataFactory.getReceiverStreet());

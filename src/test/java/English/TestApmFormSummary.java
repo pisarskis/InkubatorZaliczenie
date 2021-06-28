@@ -46,7 +46,7 @@ public class TestApmFormSummary extends Base {
         formPage.chooseDeliveryToAPM();
         receiverForm.fillReceiverName(formDataFactory.getReceiverName());
         receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
         receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
         senderForm.fillSenderName(formDataFactory.getSenderName());
         senderForm.fillSenderEmail(formDataFactory.getSenderEmail());

@@ -165,7 +165,6 @@ public class SenderForm {
     public SenderForm clickPolishCompanyNIP(String nipNo) throws InterruptedException {
         actionPage.writeToForm(invoicePolishCompanyNip, nipNo);
         waitPage.waitLong();
-        waitPage.waitLong();
         return this;
     }
 
