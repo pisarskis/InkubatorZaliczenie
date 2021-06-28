@@ -4,10 +4,7 @@ import helper.WaitPage;
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import pages.Base;
-import pages.FormPage;
-import pages.ReceiverForm;
-import pages.SenderForm;
+import pages.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +15,7 @@ public class TestC2DFormStatic extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
+    private static ParcelTiles parcelTiles;
 
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
@@ -28,6 +26,7 @@ public class TestC2DFormStatic extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
+        parcelTiles = new ParcelTiles();
 
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
@@ -73,7 +72,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, formPage.getParcelATileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelATileDimensions().getText());
     }
 
     @Test
@@ -85,7 +84,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, formPage.getParcelBTileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelBTileDimensions().getText());
     }
 
     @Test
@@ -97,7 +96,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, formPage.getParcelCTileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelCTileDimensions().getText());
     }
 
     @Test
@@ -109,7 +108,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue( errorMessage,formPage.getParcelATileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -121,7 +120,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue( errorMessage,formPage.getParcelBTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -133,7 +132,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue( errorMessage,formPage.getParcelCTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -145,7 +144,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelATilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
     }
 
     @Test
@@ -157,7 +156,7 @@ public class TestC2DFormStatic extends Base {
         //when
 
         //then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelBTilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
     }
 
     @Test
@@ -169,7 +168,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelCTilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
     }
 
     @Test

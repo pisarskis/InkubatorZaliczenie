@@ -104,6 +104,48 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    public void shouldReturnCorrectParcelADimensions() {
+        // given
+        String parcelADimensions = "max. wymiar\n" +
+                "8 x 38 x 64 cm\n" +
+                "do 25 kg";
+
+        // when
+        formPage.clickA();
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelDimensions().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectParcelBDimensions() {
+        // given
+        String parcelADimensions = "max. wymiar\n" +
+                "19 x 38 x 64 cm\n" +
+                "do 25 kg";
+
+        // when
+        formPage.clickB();
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelDimensions().getText());
+    }
+
+    @Test
+    public void shouldReturnCorrectParcelCDimensions() {
+        // given
+        String parcelADimensions = "max. wymiar\n" +
+                "41 x 38 x 64 cm\n" +
+                "do 25 kg";
+
+        // when
+        formPage.clickC();
+
+        // then
+        Assert.assertEquals(parcelADimensions, formPage.getParcelDimensions().getText());
+    }
+
+    @Test
     public void shouldReturnCorrectParcelAImg() {
         // given
         String imgSize = "parcel_A";

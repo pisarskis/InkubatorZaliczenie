@@ -7,10 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import pages.Base;
-import pages.FormPage;
-import pages.ReceiverForm;
-import pages.SenderForm;
+import pages.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +18,7 @@ public class TestApmFormStatic extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
+    private static ParcelTiles parcelTiles;
 
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
@@ -31,6 +29,7 @@ public class TestApmFormStatic extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
+        parcelTiles = new ParcelTiles();
 
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
@@ -61,7 +60,7 @@ public class TestApmFormStatic extends Base {
     }
 
     @Test
-    public void shouldLanguageToEnglish() throws Exception {
+    public void shouldSwitchLanguageToEnglish() throws Exception {
         // given
         String expectedHeader = "Send parcels quickly and conveniently!";
 
@@ -94,7 +93,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, formPage.getParcelATileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelATileDimensions().getText());
     }
 
     @Test
@@ -106,7 +105,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, formPage.getParcelBTileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelBTileDimensions().getText());
     }
 
     @Test
@@ -118,7 +117,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, formPage.getParcelCTileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelCTileDimensions().getText());
     }
 
     @Test
@@ -129,7 +128,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue(formPage.getParcelATileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -140,7 +139,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue(formPage.getParcelBTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -151,7 +150,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue(formPage.getParcelCTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -162,7 +161,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(correctParcelPrice, formPage.getParcelATilePrice().getText());
+        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
     }
 
     @Test
@@ -173,7 +172,7 @@ public class TestApmFormStatic extends Base {
         //when
 
         //then
-        Assert.assertEquals(correctParcelPrice, formPage.getParcelBTilePrice().getText());
+        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
     }
 
     @Test
@@ -184,7 +183,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(correctParcelPrice, formPage.getParcelCTilePrice().getText());
+        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
     }
 
     @Test
