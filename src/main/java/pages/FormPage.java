@@ -96,6 +96,20 @@ public class FormPage {
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[2]/div[2]/app-parcel-form-summary/div/div[2]/div/span[2]")
     private WebElement parcelPrice;
 
+//    statics
+    @FindBy(css = "div.home-header-step > div:nth-of-type(2) > p ")
+    private WebElement homeHeaderStepFistText;
+
+    @FindBy(css = "div.home-header-step > div:nth-of-type(3) > p ")
+    private WebElement homeHeaderStepSecondText;
+
+    @FindBy(css = "div.home-header-step > div:nth-of-type(4) > p ")
+    private WebElement homeHeaderStepThirdText;
+
+    @FindBy(css = "div.home-header-step > div:nth-of-type(5) > p ")
+    private WebElement homeHeaderStepFourthText;
+
+
 
 
     ActionPage actionPage = new ActionPage();
