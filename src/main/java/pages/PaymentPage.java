@@ -5,12 +5,9 @@ import helper.WaitPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.concurrent.TimeUnit;
 
 public class PaymentPage {
     ActionPage actionPage = new ActionPage();
@@ -45,7 +42,7 @@ public class PaymentPage {
         PageFactory.initElements(Base.driver, this);
     }
 
-    public PaymentPage clickBank() throws InterruptedException {
+    public PaymentPage clickBank() {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[title='Płacę z Alior Banku")));
         actionPage.clickElement(aliorBank);
         return this;
@@ -86,5 +83,4 @@ public class PaymentPage {
     public WebElement getSenderParcelPrice() {
         return parcelPrice;
     }
-
 }

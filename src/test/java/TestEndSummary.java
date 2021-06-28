@@ -2,7 +2,7 @@ import helper.WaitPage;
 import org.junit.*;
 import pages.*;
 
-public class TestApmEndSummary extends Base {
+public class TestEndSummary extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;

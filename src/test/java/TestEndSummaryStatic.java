@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
 
-public class TestApmEndSummaryStatic extends Base {
+public class TestEndSummaryStatic extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;

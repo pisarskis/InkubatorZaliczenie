@@ -2,7 +2,7 @@ import helper.WaitPage;
 import org.junit.*;
 import pages.*;
 
-public class TestC2D extends Base {
+public class TestC2DForm extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;

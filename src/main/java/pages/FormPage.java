@@ -141,6 +141,7 @@ public class FormPage {
     }
 
     public FormPage closeCookiesPopup() throws InterruptedException {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("onetrust-accept-btn-handler")));
         cookiesButton.click();
         waitPage.waitShort();
         return this;

@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import pages.*;
 
-public class TestApmEndSummary extends Base {
+public class TestEndSummary extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
