@@ -100,7 +100,7 @@ public class TestInvoice extends Base {
     public void shouldPrintNameWhenIndividualIsChosen() throws Exception {
         // given
         String errorMessage = "";
-        String name = "bar";
+        String name = "foo-bar";
 
         // when
         fillIndividualInvoiceData();
