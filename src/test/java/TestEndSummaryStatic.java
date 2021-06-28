@@ -1,3 +1,4 @@
+import helper.FormDataFactory;
 import helper.WaitPage;
 import org.junit.After;
 import org.junit.Assert;
@@ -14,6 +15,7 @@ public class TestEndSummaryStatic extends Base {
     private static WaitPage waitPage;
     private static PaymentPage paymentPage;
     private static EndSummaryPage endSummaryPage;
+    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
@@ -23,6 +25,7 @@ public class TestEndSummaryStatic extends Base {
         waitPage = new WaitPage();
         paymentPage = new PaymentPage();
         endSummaryPage = new EndSummaryPage();
+        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -30,27 +33,18 @@ public class TestEndSummaryStatic extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-        String receiverName = "foo";
-        String receiverEmail = "foo@foo.pl";
-        String receiverPhoneNo = "555555555";
-        String apmNo = "PAW04A";
-        String senderName = "bar";
-        String senderEmail = "bar@bar.pl";
-        String senderPhoneNo = "666666666";
-        String nipNo = "6793087624";
-
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
-        receiverForm.fillReceiverName(receiverName);
-        receiverForm.fillReceiverEmail(receiverEmail);
-        receiverForm.fillReceiverNumber(receiverPhoneNo);
-        receiverForm.fillReceiverAPMCode(apmNo);
-        senderForm.fillSenderName(senderName);
-        senderForm.fillSenderEmail(senderEmail);
-        senderForm.fillSenderNumber(senderPhoneNo);
+        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
+        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverNumber(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
+        senderForm.fillSenderName(formDataFactory.getSenderName());
+        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
+        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
-        senderForm.clickPolishCompanyNIP(nipNo);
+        senderForm.clickPolishCompanyNIP(formDataFactory.getPolishNipNo());
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();

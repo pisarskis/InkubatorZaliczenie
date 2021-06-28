@@ -42,8 +42,6 @@ public class TestC2DFormStatic extends Base {
         formPage.chooseDeliveryC2D();
     }
 
-
-
     @After
     public void refreshPage() throws InterruptedException {
         driver.navigate().refresh();

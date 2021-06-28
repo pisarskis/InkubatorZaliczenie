@@ -1,5 +1,6 @@
 package English;
 
+import helper.FormDataFactory;
 import helper.WaitPage;
 import org.junit.After;
 import org.junit.Assert;
@@ -16,6 +17,7 @@ public class TestEndSummary extends Base {
     private static TestApmForm testApmForm;
     private static SummaryPage summaryPage;
     private static EndSummaryPage endSummaryPage;
+    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
@@ -27,6 +29,7 @@ public class TestEndSummary extends Base {
         testApmForm = new TestApmForm();
         summaryPage = new SummaryPage();
         endSummaryPage = new EndSummaryPage();
+        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -47,23 +50,15 @@ public class TestEndSummary extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-        String receiverName = "foo";
-        String receiverEmail = "foo@foo.pl";
-        String receiverPhoneNo = "555555555";
-        String apmNo = "PAW04A";
-        String senderName = "bar";
-        String senderEmail = "bar@bar.pl";
-        String senderPhoneNo = "666666666";
-
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
-        receiverForm.fillReceiverName(receiverName);
-        receiverForm.fillReceiverEmail(receiverEmail);
-        receiverForm.fillReceiverNumber(receiverPhoneNo);
-        receiverForm.fillReceiverAPMCode(apmNo);
-        senderForm.fillSenderName(senderName);
-        senderForm.fillSenderEmail(senderEmail);
-        senderForm.fillSenderNumber(senderPhoneNo);
+        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
+        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverNumber(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
+        senderForm.fillSenderName(formDataFactory.getSenderName());
+        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
+        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
         formPage.clickTermsCheckboxEngish();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();

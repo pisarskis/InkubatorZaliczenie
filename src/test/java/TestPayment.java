@@ -1,4 +1,5 @@
 import helper.ActionPage;
+import helper.FormDataFactory;
 import helper.WaitPage;
 import org.junit.*;
 import pages.*;
@@ -9,6 +10,7 @@ public class TestPayment extends Base {
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static PaymentPage paymentPage;
+    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
@@ -17,6 +19,7 @@ public class TestPayment extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         paymentPage = new PaymentPage();
+        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -24,23 +27,15 @@ public class TestPayment extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-        String receiverName = "foo";
-        String receiverEmail = "foo@foo.pl";
-        String receiverPhoneNo = "555555555";
-        String apmNo = "PAW04A";
-        String senderName = "bar";
-        String senderEmail = "bar@bar.pl";
-        String senderPhoneNo = "666666666";
-
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
-        receiverForm.fillReceiverName(receiverName);
-        receiverForm.fillReceiverEmail(receiverEmail);
-        receiverForm.fillReceiverNumber(receiverPhoneNo);
-        receiverForm.fillReceiverAPMCode(apmNo);
-        senderForm.fillSenderName(senderName);
-        senderForm.fillSenderEmail(senderEmail);
-        senderForm.fillSenderNumber(senderPhoneNo);
+        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
+        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverNumber(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
+        senderForm.fillSenderName(formDataFactory.getSenderName());
+        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
+        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
@@ -74,7 +69,7 @@ public class TestPayment extends Base {
     }
 
     @Test
-    public void shouldShowCorrectEMailInSummary() throws InterruptedException {
+    public void shouldShowCorrectEMailInSummary(){
         // given
         String desiredParcelPrice = "bar@bar.pl";
         String errorMessage = "";
@@ -83,10 +78,5 @@ public class TestPayment extends Base {
 
         // then
         Assert.assertTrue(errorMessage, paymentPage.getSenderEmail().getText().contains(desiredParcelPrice));
-        waitPage.waitLong();
-        waitPage.waitLong();
-        waitPage.waitLong();
-        waitPage.waitLong();
-        waitPage.waitLong();
     }
 }

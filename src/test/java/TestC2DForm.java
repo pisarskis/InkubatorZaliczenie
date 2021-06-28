@@ -1,3 +1,4 @@
+import helper.FormDataFactory;
 import helper.WaitPage;
 import org.junit.*;
 import pages.*;
@@ -7,6 +8,7 @@ public class TestC2DForm extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
+    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
@@ -14,6 +16,7 @@ public class TestC2DForm extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
+        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -32,30 +35,18 @@ public class TestC2DForm extends Base {
     }
 
     public void fillFormAllData() throws Exception {
-        String receiverName = "foo";
-        String receiverEmail = "foo@foo.pl";
-        String receiverPhoneNo = "555555555";
-        String receiverZipCode = "02-677";
-        String receiverTown = "Warszawa";
-        String receiverStreet = "Cybernetyki";
-        String receiverStreetNo = "10";
-        String receiverFlatNo = "5";
-        String senderName = "bar";
-        String senderEmail = "bar@bar.pl";
-        String senderPhoneNo = "666666666";
-
         formPage.clickA();
-        receiverForm.fillReceiverName(receiverName);
-        receiverForm.fillReceiverEmail(receiverEmail);
-        receiverForm.fillReceiverNumber(receiverPhoneNo);
-        receiverForm.fillReceiverZipCode(receiverZipCode);
-        receiverForm.fillReceiverTown(receiverTown);
-        receiverForm.fillReceiverStreet(receiverStreet);
-        receiverForm.fillReceiverStreetNo(receiverStreetNo);
-        receiverForm.fillReceiverFlatNo(receiverFlatNo);
-        senderForm.fillSenderName(senderName);
-        senderForm.fillSenderEmail(senderEmail);
-        senderForm.fillSenderNumber(senderPhoneNo);
+        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
+        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverNumber(formDataFactory.getReceiverEmail());
+        receiverForm.fillReceiverZipCode(formDataFactory.getReceiverZipCode());
+        receiverForm.fillReceiverTown(formDataFactory.getReceiverTown());
+        receiverForm.fillReceiverStreet(formDataFactory.getReceiverStreet());
+        receiverForm.fillReceiverStreetNo(formDataFactory.getReceiverStreetNo());
+        receiverForm.fillReceiverFlatNo(formDataFactory.getReceiverFlatNo());
+        senderForm.fillSenderName(formDataFactory.getSenderName());
+        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
+        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
     }
