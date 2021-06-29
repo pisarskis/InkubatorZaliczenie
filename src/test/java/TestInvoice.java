@@ -38,26 +38,9 @@ public class TestInvoice extends Base {
     public void fillFormAllData() throws Exception {
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
-        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
-        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
-        receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
-        senderForm.fillSenderName(formDataFactory.getSenderName());
-        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
-        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
+        formDataFactory.fillAPMFormData();
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
-    }
-
-    void fillIndividualInvoiceData() throws InterruptedException {
-        senderForm.clickInvoice();
-        senderForm.clickLegalStatusIndividualCheckbox();
-        senderForm.clickInvoiceIndividualName(formDataFactory.getIndividualInvoiceName());
-        senderForm.clickInvoiceIndividualEmail(formDataFactory.getIndividualInvoiceEmail());
-        senderForm.clickInvoiceIndividualZIPCode(formDataFactory.getIndividualInvoiceZipCode());
-        senderForm.clickInvoiceIndividualTown(formDataFactory.getIndividualInvoiceTown());
-        senderForm.clickInvoiceIndividualStreet(formDataFactory.getIndividualInvoiceStreet());
-        senderForm.clickInvoiceIndividualBuildingNo(formDataFactory.getIndividualInvoiceStreetNo());
     }
 
     @Test
@@ -97,7 +80,7 @@ public class TestInvoice extends Base {
         String name = "foo-bar";
 
         // when
-        fillIndividualInvoiceData();
+        formDataFactory.fillIndividualInvoice();
         formPage.clickSendButton();
 
         // then

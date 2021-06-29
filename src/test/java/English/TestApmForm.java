@@ -43,18 +43,10 @@ public class TestApmForm extends Base {
 
     public void fillFormAllData() throws Exception {
         formPage.clickA();
-        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
-        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
-        receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
-        senderForm.fillSenderName(formDataFactory.getSenderName());
-        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
-        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
+        formDataFactory.fillAPMFormData();
         formPage.clickTermsCheckboxEngish();
         formPage.clickNewsletterCheckbox();
     }
-
-
 
     @Test
     public void shouldReturnCorrectSizeForAParcel() throws Exception {
