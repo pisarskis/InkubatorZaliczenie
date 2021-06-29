@@ -69,6 +69,7 @@ public class SummaryPage {
 
 
     private WebDriver driver;
+
     private WebDriverWait wait = new WebDriverWait(Base.driver, 60);
 
     public SummaryPage () {

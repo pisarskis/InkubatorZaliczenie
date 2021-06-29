@@ -40,13 +40,7 @@ public class TestApmFormSummary extends Base {
 
     private static void formRunThrough() throws InterruptedException {
         formPage.chooseDeliveryToAPM();
-        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
-        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
-        receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
-        senderForm.fillSenderName(formDataFactory.getSenderName());
-        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
-        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
+        formDataFactory.fillAPMFormData();
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
     }

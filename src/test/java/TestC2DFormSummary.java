@@ -45,17 +45,7 @@ public class TestC2DFormSummary extends Base {
 
     private static void formRunThrough() throws InterruptedException {
         formPage.chooseDeliveryC2D();
-        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
-        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
-        receiverForm.fillReceiverZipCode(formDataFactory.getReceiverZipCode());
-        receiverForm.fillReceiverTown(formDataFactory.getReceiverTown());
-        receiverForm.fillReceiverStreet(formDataFactory.getReceiverStreet());
-        receiverForm.fillReceiverStreetNo(formDataFactory.getReceiverStreetNo());
-        receiverForm.fillReceiverFlatNo(formDataFactory.getReceiverFlatNo());
-        senderForm.fillSenderName(formDataFactory.getSenderName());
-        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
-        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
+        formDataFactory.fillC2DFormData();
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
     }

@@ -35,16 +35,10 @@ public class TestEndSummaryStatic extends Base {
     private static void formRunThrough() throws InterruptedException {
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
-        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
-        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
-        receiverForm.fillReceiverAPMCode(formDataFactory.getParcelBoxNo());
-        senderForm.fillSenderName(formDataFactory.getSenderName());
-        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
-        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
+        formDataFactory.fillAPMFormData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
-        senderForm.clickPolishCompanyNIP(formDataFactory.getPolishNipNo());
+        senderForm.clickPolishCompanyNIP(formDataFactory.getSenderData().get("nipNo"));
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();

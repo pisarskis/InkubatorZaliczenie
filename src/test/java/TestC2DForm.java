@@ -36,17 +36,7 @@ public class TestC2DForm extends Base {
 
     public void fillFormAllData() throws Exception {
         formPage.clickA();
-        receiverForm.fillReceiverName(formDataFactory.getReceiverName());
-        receiverForm.fillReceiverEmail(formDataFactory.getReceiverEmail());
-        receiverForm.fillReceiverNumber(formDataFactory.getReceiverPhoneNo());
-        receiverForm.fillReceiverZipCode(formDataFactory.getReceiverZipCode());
-        receiverForm.fillReceiverTown(formDataFactory.getReceiverTown());
-        receiverForm.fillReceiverStreet(formDataFactory.getReceiverStreet());
-        receiverForm.fillReceiverStreetNo(formDataFactory.getReceiverStreetNo());
-        receiverForm.fillReceiverFlatNo(formDataFactory.getReceiverFlatNo());
-        senderForm.fillSenderName(formDataFactory.getSenderName());
-        senderForm.fillSenderEmail(formDataFactory.getSenderEmail());
-        senderForm.fillSenderNumber(formDataFactory.getSenderPhoneNo());
+        formDataFactory.fillC2DFormData();
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
     }
