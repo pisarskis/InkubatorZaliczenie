@@ -1,9 +1,12 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SummaryPage {
 
@@ -66,12 +69,14 @@ public class SummaryPage {
 
 
     private WebDriver driver;
+    private WebDriverWait wait = new WebDriverWait(Base.driver, 60);
 
     public SummaryPage () {
         PageFactory.initElements(Base.driver, this);
     }
 
     public WebElement getParcelSize() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.ml-20 > h4")));
         return parcelSize;
     }
 

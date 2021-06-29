@@ -193,12 +193,14 @@ public class FormPage {
     }
 
     public FormPage clickSendButton() throws InterruptedException {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"parcelFormButton\"]/button")));
         actionPage.clickElement(sendButton);
         waitPage.waitShort();
         return this;
     }
 
     public FormPage clickPayButton() throws InterruptedException {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.buttons > div:nth-of-type(2) > button")));
         actionPage.clickElement(payButton);
         return this;
     }
