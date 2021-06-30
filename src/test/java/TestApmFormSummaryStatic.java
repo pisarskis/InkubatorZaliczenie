@@ -1,5 +1,6 @@
 import helper.ActionPage;
 import helper.FormDataFactory;
+import helper.SenderFormData;
 import helper.WaitPage;
 import org.junit.*;
 import pages.*;
@@ -29,7 +30,7 @@ public class TestApmFormSummaryStatic extends Base {
         formDataFactory.fillAPMFormData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
-        senderForm.clickPolishCompanyNIP(formDataFactory.getSenderData().get("nipNo"));
+        senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();

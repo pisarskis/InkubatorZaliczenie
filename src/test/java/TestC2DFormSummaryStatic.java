@@ -1,4 +1,5 @@
 import helper.FormDataFactory;
+import helper.SenderFormData;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class TestC2DFormSummaryStatic extends Base {
         formDataFactory.fillC2DFormData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
-        senderForm.clickPolishCompanyNIP(formDataFactory.getSenderData().get("nipNo"));
+        senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
