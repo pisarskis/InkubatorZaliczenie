@@ -1,3 +1,5 @@
+package secondary;
+
 import helper.FormDataFactory;
 import helper.WaitPage;
 import org.junit.*;

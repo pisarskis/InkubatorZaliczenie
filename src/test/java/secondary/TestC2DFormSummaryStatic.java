@@ -1,11 +1,13 @@
-import helper.ActionPage;
+package secondary;
+
 import helper.FormDataFactory;
 import helper.SenderFormData;
-import helper.WaitPage;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import pages.*;
 
-public class TestApmFormSummaryStatic extends Base {
+public class TestC2DFormSummaryStatic extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SummaryPage summaryPage;
@@ -26,8 +28,8 @@ public class TestApmFormSummaryStatic extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-        formPage.chooseDeliveryToAPM();
-        formDataFactory.fillAPMFormData();
+         formPage.chooseDeliveryC2D();
+        formDataFactory.fillC2DFormData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
         senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
@@ -109,30 +111,6 @@ public class TestApmFormSummaryStatic extends Base {
     }
 
     @Test
-    public void shouldPrintCorrectApmNo() {
-        // given
-        String expectedApmNo = "PAW04A";
-        String errorMessage = "";
-
-        // when
-
-        // then
-        Assert.assertEquals(errorMessage, expectedApmNo, summaryPage.getApmNo().getText());
-    }
-
-    @Test
-    public void shouldPrintCorrectApmAdress() {
-        // given
-        String expectedApmAdress = "Warszawa 00-175";
-        String errorMessage = "";
-
-        // when
-
-        // then
-        Assert.assertEquals(errorMessage, expectedApmAdress, summaryPage.getApmAdress().getText());
-    }
-
-    @Test
     public void shouldPrintCorrectInvoiceName() {
         // given
         String expectedInvoiceName = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
@@ -178,5 +156,41 @@ public class TestApmFormSummaryStatic extends Base {
 
         // then
         Assert.assertEquals(errorMessage, expectedInvoiceStreet, summaryPage.getInvoiceStreet().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectReceiverTown() {
+        // given
+        String expectedReceiverTown = "02-677 Warszawa";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedReceiverTown, summaryPage.getSenderTown().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectReceiverStreet() {
+        // given
+        String expectedReceiverStreet = "Cybernetyki 10/5";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedReceiverStreet, summaryPage.getSenderStreet().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectInvoiceCountry() {
+        // given
+        String expectedReceiverCountry = "Polska";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedReceiverCountry, summaryPage.getSenderCountry().getText());
     }
 }

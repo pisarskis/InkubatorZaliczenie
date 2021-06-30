@@ -1,7 +1,10 @@
-package English;
+package English.secondary;
 
 import helper.WaitPage;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
@@ -10,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestC2DFormStatic extends Base {
+public class TestApmFormStatic extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
@@ -37,11 +40,6 @@ public class TestC2DFormStatic extends Base {
         formPage.closeCookiesPopup();
     }
 
-    @Before
-    public void setUpForm() throws InterruptedException {
-        formPage.chooseDeliveryC2D();
-    }
-
     @After
     public void refreshPage() throws InterruptedException {
         driver.navigate().refresh();
@@ -59,6 +57,31 @@ public class TestC2DFormStatic extends Base {
         while (cleanLinkList.remove(null)){}
 
         return cleanLinkList;
+    }
+
+    @Test
+    public void shouldSwitchLanguageToEnglish() throws Exception {
+        // given
+        String expectedHeader = "Send parcels quickly and conveniently!";
+
+        // when
+
+        // then
+        Assert.assertEquals(expectedHeader, formPage.getFormEnglishHeader().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectHTSModalTitle() throws Exception {
+        // given
+        String desiredTitle = "How to send the parcel?";
+
+        // when
+        formPage.clickHowToSendParcel();
+
+        // then
+        Assert.assertEquals(desiredTitle, formPage.getModalTitle().getText());
+
+        refreshPage();
     }
 
     @Test
@@ -101,86 +124,65 @@ public class TestC2DFormStatic extends Base {
     public void shouldReturnCorrectTileAImg() {
         // given
         String imgSize = "20351";
-        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue( errorMessage, parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
     public void shouldReturnCorrectTileBImg() {
         // given
         String imgSize = "20350";
-        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue( errorMessage, parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
     public void shouldReturnCorrectTileCImg() {
         // given
         String imgSize = "20349";
-        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue( errorMessage, parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = "PLN 14.99";
-        String errorMessage = "Wrong price for parcel of this size.";
+        String correctParcelPrice = "PLN 12.99";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
+        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
     }
 
     @Test
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = "PLN 16.49";
-        String errorMessage = "Wrong price for parcel of this size.";
+        String correctParcelPrice = "PLN 13.99";
 
         //when
 
         //then
-        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
+        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
     }
 
     @Test
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = "PLN 19.99";
-        String errorMessage = "Wrong price for parcel of this size.";
+        String correctParcelPrice = "PLN 15.49";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
-    }
-
-    @Test
-    public void shouldPrintCorrectHTSModalTitle() throws Exception {
-        // given
-        String desiredTitle = "How to send the parcel?";
-        String errorMessage = "";
-
-        // when
-        formPage.clickHowToSendParcel();
-
-        // then
-        Assert.assertEquals(errorMessage, desiredTitle, formPage.getModalTitle().getText());
-
-        refreshPage();
+        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
     }
 }

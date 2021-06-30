@@ -1,10 +1,7 @@
-package English;
+package secondary;
 
 import helper.WaitPage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
@@ -26,8 +23,8 @@ public class TestApmFormStatic extends Base {
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
         formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
+        receiverForm = new ReceiverForm();
+        senderForm = new SenderForm();
         waitPage = new WaitPage();
         parcelTiles = new ParcelTiles();
 
@@ -36,8 +33,6 @@ public class TestApmFormStatic extends Base {
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
-        formPage.clickLanguageSelector();
-        formPage.closeCookiesPopup();
     }
 
     @After
@@ -47,48 +42,25 @@ public class TestApmFormStatic extends Base {
         formPage.closeCookiesPopup();
     }
 
-    public List<String> pullUpAllLinks(){
+    public List<String> pullUpAllLinks() {
         linkList = driver.findElements(By.tagName("a"));
 
-        for(WebElement link:linkList){
+        for (WebElement link : linkList) {
             cleanLinkList.add(link.getAttribute("href"));
         }
 
-        while (cleanLinkList.remove(null)){}
+        while (cleanLinkList.remove(null)) {
+        }
 
         return cleanLinkList;
     }
 
     @Test
-    public void shouldSwitchLanguageToEnglish() throws Exception {
-        // given
-        String expectedHeader = "Send parcels quickly and conveniently!";
-
-        // when
-
-        // then
-        Assert.assertEquals(expectedHeader, formPage.getFormEnglishHeader().getText());
-    }
-
-    @Test
-    public void shouldPrintCorrectHTSModalTitle() throws Exception {
-        // given
-        String desiredTitle = "How to send the parcel?";
-
-        // when
-        formPage.clickHowToSendParcel();
-
-        // then
-        Assert.assertEquals(desiredTitle, formPage.getModalTitle().getText());
-
-        refreshPage();
-    }
-
-    @Test
     public void shouldReturnCorrectTileADimensions() {
         // given
-        String parcelADimensions = "max. 8 x 38 x 64 cm\n" +
-                "up to 25 kg";
+        String parcelADimensions = "max.\n" +
+                "8 x 38 x 64 cm\n" +
+                "do 25 kg";
 
         // when
 
@@ -99,8 +71,9 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileBDimensions() {
         // given
-        String parcelADimensions = "max. 19 x 38 x 64 cm\n" +
-                "up to 25 kg";
+        String parcelADimensions = "max.\n" +
+                "19 x 38 x 64 cm\n" +
+                "do 25 kg";
 
         // when
 
@@ -111,8 +84,9 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileCDimensions() {
         // given
-        String parcelADimensions = "max. 41 x 38 x 64 cm\n" +
-                "up to 25 kg";
+        String parcelADimensions = "max.\n" +
+                "41 x 38 x 64 cm\n" +
+                "do 25 kg";
 
         // when
 
@@ -124,65 +98,71 @@ public class TestApmFormStatic extends Base {
     public void shouldReturnCorrectTileAImg() {
         // given
         String imgSize = "20351";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(errorMessage, parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
     public void shouldReturnCorrectTileBImg() {
         // given
         String imgSize = "20350";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(errorMessage, parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
     public void shouldReturnCorrectTileCImg() {
         // given
         String imgSize = "20349";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(errorMessage, parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = "PLN 12.99";
+        String correctParcelPrice = "12,99 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
 
         // when
 
         // then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
     }
 
     @Test
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = "PLN 13.99";
+        String correctParcelPrice = "13,99 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
 
         //when
 
         //then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
     }
 
     @Test
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = "PLN 15.49";
+        String correctParcelPrice = "15,49 zł";
+        String errorMessage = "Wrong price for parcel of this size.";
 
         // when
 
         // then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
     }
 }
