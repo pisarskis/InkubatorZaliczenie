@@ -1,6 +1,7 @@
 package primary.APM;
 
 import helper.FormDataFactory;
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import pages.*;
@@ -134,7 +135,7 @@ public class TestApmFormSummary extends Base {
     @Test
     public void shouldShowCorrectParcelAPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "12,99 zł";
+        String desiredParcelPrice = Prices.APM_A_PL.getPrice();
         String errorMessage = "";
 
         // when
@@ -148,7 +149,7 @@ public class TestApmFormSummary extends Base {
     @Test
     public void shouldShowCorrectParcelBPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "13,99 zł";
+        String desiredParcelPrice = Prices.APM_B_PL.getPrice();
         String errorMessage = "";
 
         // when
@@ -162,7 +163,7 @@ public class TestApmFormSummary extends Base {
     @Test
     public void shouldShowCorrectParcelCPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = "15,49 zł";
+        String desiredParcelPrice = Prices.APM_C_PL.getPrice();
         String errorMessage = "";
 
         // when

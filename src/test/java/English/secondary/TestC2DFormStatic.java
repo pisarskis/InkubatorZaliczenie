@@ -1,5 +1,7 @@
 package English.secondary;
 
+import helper.FormDataFactory;
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import org.openqa.selenium.By;
@@ -16,6 +18,7 @@ public class TestC2DFormStatic extends Base {
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static ParcelTiles parcelTiles;
+    private static FormDataFactory formDataFactory;
 
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
@@ -27,6 +30,7 @@ public class TestC2DFormStatic extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         parcelTiles = new ParcelTiles();
+        formDataFactory = new FormDataFactory();
 
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
@@ -136,7 +140,7 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = "PLN 14.99";
+        String correctParcelPrice = Prices.C2D_A_EN.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -148,7 +152,7 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = "PLN 16.49";
+        String correctParcelPrice = Prices.C2D_B_EN.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -160,7 +164,7 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = "PLN 19.99";
+        String correctParcelPrice = Prices.C2D_C_EN.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when

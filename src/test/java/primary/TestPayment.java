@@ -2,6 +2,7 @@ package primary;
 
 import helper.ActionPage;
 import helper.FormDataFactory;
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import pages.*;
@@ -29,8 +30,7 @@ public class TestPayment extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-        formPage.chooseDeliveryToAPM();
-        formPage.clickA();
+
         formDataFactory.fillAPMFormData();
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
@@ -41,36 +41,70 @@ public class TestPayment extends Base {
     }
 
     @Test
-    public void shouldShowCorrectParcelAPriceInPayment() {
+    public void shouldShowCorrectParcelAPriceInPayment() throws InterruptedException {
         // given
-        String desiredParcelPrice = "12,99 PLN";
+        String desiredParcelPrice = Prices.APM_A_PL.getPrice();
         String errorMessage = "";
 
         // when
+        formPage.chooseDeliveryToAPM();
+        formPage.clickA();
 
         // then
         Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
     }
 
     @Test
-    public void shouldShowCorrectNameInSummary() {
+    public void shouldShowCorrectParcelBPriceInPayment() throws InterruptedException {
+        // given
+        String desiredParcelPrice = Prices.APM_B_PL.getPrice();
+        String errorMessage = "";
+
+        // when
+        formPage.chooseDeliveryToAPM();
+        formPage.clickB();
+
+        // then
+        Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
+    }
+
+    @Test
+    public void shouldShowCorrectParcelCPriceInPayment() throws InterruptedException {
+        // given
+        String desiredParcelPrice = Prices.APM_C_PL.getPrice();
+        String errorMessage = "";
+
+        // when
+        formPage.chooseDeliveryToAPM();
+        formPage.clickC();
+
+        // then
+        Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
+    }
+
+    @Test
+    public void shouldShowCorrectNameInSummary() throws InterruptedException {
         // given
         String desiredSenderName = "bar";
         String errorMessage = "";
 
         // when
+        formPage.chooseDeliveryToAPM();
+        formPage.clickA();
 
         // then
         Assert.assertEquals(errorMessage, desiredSenderName, paymentPage.getSenderName().getText());
     }
 
     @Test
-    public void shouldShowCorrectEMailInSummary(){
+    public void shouldShowCorrectEMailInSummary() throws InterruptedException {
         // given
         String desiredParcelPrice = "bar@bar.pl";
         String errorMessage = "";
 
         // when
+        formPage.chooseDeliveryToAPM();
+        formPage.clickA();
 
         // then
         Assert.assertTrue(errorMessage, paymentPage.getSenderEmail().getText().contains(desiredParcelPrice));

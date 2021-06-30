@@ -1,5 +1,7 @@
 package English.secondary;
 
+import helper.FormDataFactory;
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.After;
 import org.junit.Assert;
@@ -19,6 +21,7 @@ public class TestApmFormStatic extends Base {
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static ParcelTiles parcelTiles;
+    private static FormDataFactory formDataFactory;
 
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
@@ -30,6 +33,7 @@ public class TestApmFormStatic extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         parcelTiles = new ParcelTiles();
+        formDataFactory = new FormDataFactory();
 
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
@@ -156,7 +160,7 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = "PLN 12.99";
+        String correctParcelPrice = Prices.APM_A_EN.getPrice();
 
         // when
 
@@ -167,7 +171,7 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = "PLN 13.99";
+        String correctParcelPrice = Prices.APM_B_EN.getPrice();
 
         //when
 
@@ -178,7 +182,7 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = "PLN 15.49";
+        String correctParcelPrice = Prices.APM_C_EN.getPrice();
 
         // when
 

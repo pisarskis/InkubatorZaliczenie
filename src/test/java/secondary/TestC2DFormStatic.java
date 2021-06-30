@@ -1,5 +1,6 @@
 package secondary;
 
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import org.openqa.selenium.By;
@@ -119,7 +120,7 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = "14,99 zł";
+        String correctParcelPrice = Prices.C2D_A_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -131,7 +132,7 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = "16,49 zł";
+        String correctParcelPrice = Prices.C2D_B_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -143,7 +144,7 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = "19,99 zł";
+        String correctParcelPrice = Prices.C2D_C_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when

@@ -2,6 +2,7 @@ package primary.APM;
 
 import helper.ActionPage;
 import helper.FormDataFactory;
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -175,7 +176,7 @@ public class TestApmForm extends Base {
     @Test
     public void shouldReturnCorrectParcelAPrice() {
         // given
-        String correctParcelPrice = "12,99 zł";
+        String correctParcelPrice = Prices.APM_A_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -188,7 +189,7 @@ public class TestApmForm extends Base {
     @Test
     public void shouldReturnCorrectParcelBPrice() {
         //given
-        String correctParcelPrice = "13,99 zł";
+        String correctParcelPrice = Prices.APM_B_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -201,7 +202,7 @@ public class TestApmForm extends Base {
     @Test
     public void shouldReturnCorrectParcelCPrice() {
         // given
-        String correctParcelPrice = "15,49 zł";
+        String correctParcelPrice = Prices.APM_C_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
