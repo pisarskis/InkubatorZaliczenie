@@ -3,6 +3,7 @@ package secondary;
 import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Tag("pl")
 public class TestC2DFormStatic extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
@@ -43,6 +45,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileADimensions() {
         // given
         String parcelADimensions =  "max.\n" +
@@ -56,6 +59,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileBDimensions() {
         // given
         String parcelADimensions = "max.\n" +
@@ -69,6 +73,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileCDimensions() {
         // given
         String parcelADimensions = "max.\n" +
@@ -82,6 +87,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileAImg() {
         // given
         String imgSize = "20351";
@@ -94,6 +100,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileBImg() {
         // given
         String imgSize = "20350";
@@ -106,6 +113,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileCImg() {
         // given
         String imgSize = "20349";
@@ -118,6 +126,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileAPrice() {
         // given
         String correctParcelPrice = Prices.C2D_A_PL.getPrice();
@@ -130,6 +139,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileBPrice() {
         //given
         String correctParcelPrice = Prices.C2D_B_PL.getPrice();
@@ -142,6 +152,7 @@ public class TestC2DFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectTileCPrice() {
         // given
         String correctParcelPrice = Prices.C2D_C_PL.getPrice();

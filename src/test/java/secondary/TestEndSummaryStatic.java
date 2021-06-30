@@ -6,6 +6,7 @@ import helper.WaitPage;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 
 public class TestEndSummaryStatic extends Base {
@@ -59,6 +60,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectReceiverName(){
         // given
         String expectedReceiverName = "foo";
@@ -71,6 +73,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectReceiverPhoneNo() {
         // given
         String expectedReceiverPhoneNo = "555 555 555";
@@ -83,6 +86,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectReceiverEmail() {
         // given
         String expectedReceiverEmail = "foo@foo.pl";
@@ -95,6 +99,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectSenderName() {
         // given
         String expectedSenderName = "bar";
@@ -107,6 +112,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectSenderPhoneNo() {
         // given
         String expectedSenderPhoneNo = "666 666 666";
@@ -119,6 +125,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectSenderEmail() {
         // given
         String expectedSenderEmail = "bar@bar.pl";
@@ -131,6 +138,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectApmNo() {
         // given
         String expectedApmNo = "PAW04A";
@@ -143,6 +151,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectApmAdress() {
         // given
         String expectedApmAdress = "Warszawa 00-175";
@@ -155,6 +164,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceName() {
         // given
         String expectedInvoiceName = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
@@ -167,6 +177,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceNIP() {
         // given
         String expectedInvoiceNIP = "NIP: PL6793087624";
@@ -179,6 +190,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceTown() {
         // given
         String expectedInvoiceTown = "30-624 Kraków";
@@ -191,6 +203,7 @@ public class TestEndSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceStreet() {
         // given
         String expectedInvoiceStreet = "ul. Test-Krucza 130";

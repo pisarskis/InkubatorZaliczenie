@@ -3,12 +3,14 @@ package English.primary.C2D;
 import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import pages.Base;
 import pages.FormPage;
 import pages.ReceiverForm;
 import pages.SenderForm;
 
-public class TestC2DForm extends Base {
+@Tag("en")
+public class TestC2DFormEng extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
@@ -40,6 +42,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectSizeForAParcel() {
         // given
         String parcelASize = "small";
@@ -54,6 +57,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectSizeForBParcel() {
         // given
         String parcelBSize = "medium";
@@ -68,6 +72,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectSizeForCParcel() {
         // given
         String parcelCSize = "large";
@@ -83,6 +88,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelAImg() {
         // given
         String imgSize = "parcel_A";
@@ -96,6 +102,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelBImg() {
         // given
         String imgSize = "parcel_B";
@@ -109,6 +116,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelCImg() {
         // given
         String imgSize = "parcel_C";
@@ -122,6 +130,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelAPrice() {
         // given
         String correctParcelPrice = Prices.C2D_A_EN.getPrice();
@@ -135,6 +144,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelBPrice() {
         //given
         String correctParcelPrice = Prices.C2D_B_EN.getPrice();
@@ -148,6 +158,7 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelCPrice() {
         // given
         String correctParcelPrice = Prices.C2D_C_EN.getPrice();
@@ -161,10 +172,11 @@ public class TestC2DForm extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorForBadReceiverEmail() throws Exception {
         // given
         String email = "foo.pl";
-        String desiredErrorMessage = "INCORRECT E-MAIL ADDRESS";
+        String expectedErrorMessage = "INCORRECT E-MAIL ADDRESS";
         String errorMessage = "";
 
         // when
@@ -172,14 +184,15 @@ public class TestC2DForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, receiverForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, receiverForm.emailErrorMessage().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorForShortReceiverEmail() throws Exception {
         // given
         String email = "q";
-        String desiredErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
+        String expectedErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
         String errorMessage = "";
 
         // when
@@ -187,14 +200,15 @@ public class TestC2DForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, receiverForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, receiverForm.emailErrorMessage().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorForBadSenderEmail() throws Exception {
         // given
         String email = "bar.pl";
-        String desiredErrorMessage = "INCORRECT E-MAIL ADDRESS";
+        String expectedErrorMessage = "INCORRECT E-MAIL ADDRESS";
         String errorMessage = "";
 
         // when
@@ -202,14 +216,15 @@ public class TestC2DForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.emailErrorMessage().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorForShortSenderEmail() throws Exception {
         // given
         String email = "q";
-        String desiredErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
+        String expectedErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
         String errorMessage = "";
 
         // when
@@ -217,6 +232,6 @@ public class TestC2DForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.emailErrorMessage().getText());
     }
 }

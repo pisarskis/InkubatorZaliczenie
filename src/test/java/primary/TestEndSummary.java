@@ -2,9 +2,11 @@ package primary;
 
 import helper.*;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 import primary.APM.TestApmForm;
 
+@Tag("pl")
 public class TestEndSummary extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
@@ -74,6 +76,7 @@ public class TestEndSummary extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldMarkParcelAsPaidFor() throws Exception {
         // given
         String expectedMessage = "Twoja płatność została potwierdzona";
@@ -91,6 +94,7 @@ public class TestEndSummary extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldMarkParcelPaymentAsPending() throws Exception {
         // given
         String expectedMessage = "Twoja transakcja nie została jeszcze zakończona.\n" +
@@ -110,6 +114,7 @@ public class TestEndSummary extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldMarkParcelPaymentAsRejected() throws Exception {
         // given
         String expectedMessage = "Ups, mamy problem.\n" +

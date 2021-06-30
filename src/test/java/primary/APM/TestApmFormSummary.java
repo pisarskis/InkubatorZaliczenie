@@ -2,8 +2,10 @@ package primary.APM;
 
 import helper.*;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 
+@Tag("pl")
 public class TestApmFormSummary extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
@@ -51,9 +53,11 @@ public class TestApmFormSummary extends Base {
     }
 
     @Test
+    @Tag("pl")
+    @Tag("vitalTest")
     public void shouldShowCorrectParcelSizeAInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Mała";
+        String expectedParcelSize = "Mała";
         String errorMessage = "";
 
         // when
@@ -61,13 +65,15 @@ public class TestApmFormSummary extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(errorMessage, expectedParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
+    @Tag("pl")
+    @Tag("vitalTest")
     public void shouldShowCorrectParcelSizeBInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Średnia";
+        String expectedParcelSize = "Średnia";
         String errorMessage = "";
 
         // when
@@ -75,13 +81,15 @@ public class TestApmFormSummary extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(errorMessage, expectedParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
+    @Tag("pl")
+    @Tag("vitalTest")
     public void shouldShowCorrectParcelSizeCInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Duża";
+        String expectedParcelSize = "Duża";
         String errorMessage = "";
 
         // when
@@ -89,10 +97,11 @@ public class TestApmFormSummary extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(errorMessage, expectedParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldShowCorrectParcelAImgInSummary() throws Exception {
         // given
         String imgSize = "parcel_A";
@@ -107,6 +116,7 @@ public class TestApmFormSummary extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldShowCorrectParcelBImgInSummary() throws Exception {
         // given
         String imgSize = "parcel_B";
@@ -121,6 +131,7 @@ public class TestApmFormSummary extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldShowCorrectParcelCImgInSummary() throws Exception {
         // given
         String imgSize = "parcel_C";
@@ -135,9 +146,11 @@ public class TestApmFormSummary extends Base {
     }
 
     @Test
+    @Tag("pl")
+    @Tag("vitalTest")
     public void shouldShowCorrectParcelAPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = Prices.APM_A_PL.getPrice();
+        String expectedParcelPrice = Prices.APM_A_PL.getPrice();
         String errorMessage = "";
 
         // when
@@ -145,13 +158,15 @@ public class TestApmFormSummary extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, summaryPage.getParcelPrice().getText());
     }
 
     @Test
+    @Tag("pl")
+    @Tag("vitalTest")
     public void shouldShowCorrectParcelBPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = Prices.APM_B_PL.getPrice();
+        String expectedParcelPrice = Prices.APM_B_PL.getPrice();
         String errorMessage = "";
 
         // when
@@ -159,13 +174,15 @@ public class TestApmFormSummary extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, summaryPage.getParcelPrice().getText());
     }
 
     @Test
+    @Tag("pl")
+    @Tag("vitalTest")
     public void shouldShowCorrectParcelCPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = Prices.APM_C_PL.getPrice();
+        String expectedParcelPrice = Prices.APM_C_PL.getPrice();
         String errorMessage = "";
 
         // when
@@ -173,6 +190,6 @@ public class TestApmFormSummary extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, summaryPage.getParcelPrice().getText());
     }
 }

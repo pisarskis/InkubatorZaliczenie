@@ -2,10 +2,8 @@ package English.secondary;
 
 import helper.Prices;
 import helper.WaitPage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
@@ -13,7 +11,8 @@ import pages.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestApmFormStatic extends Base {
+@Tag("en")
+public class TestC2DFormStaticEng extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
@@ -40,9 +39,14 @@ public class TestApmFormStatic extends Base {
         formPage.closeCookiesPopup();
     }
 
+    @Before
+    public void setUpForm() throws InterruptedException {
+        formPage.chooseDeliveryC2D();
+    }
+
     @After
     public void refreshPage() throws InterruptedException {
-        Base.driver.navigate().refresh();
+        driver.navigate().refresh();
         waitPage.waitLong();
         formPage.closeCookiesPopup();
     }
@@ -60,20 +64,7 @@ public class TestApmFormStatic extends Base {
     }
 
     @Test
-    public void shouldPrintCorrectHTSModalTitle() throws Exception {
-        // given
-        String desiredTitle = "How to send the parcel?";
-
-        // when
-        formPage.clickHowToSendParcel();
-
-        // then
-        Assert.assertEquals(desiredTitle, formPage.getModalTitle().getText());
-
-        refreshPage();
-    }
-
-    @Test
+    @Tag("en")
     public void shouldReturnCorrectTileADimensions() {
         // given
         String parcelADimensions = "max. 8 x 38 x 64 cm\n" +
@@ -86,6 +77,7 @@ public class TestApmFormStatic extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectTileBDimensions() {
         // given
         String parcelADimensions = "max. 19 x 38 x 64 cm\n" +
@@ -98,6 +90,7 @@ public class TestApmFormStatic extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectTileCDimensions() {
         // given
         String parcelADimensions = "max. 41 x 38 x 64 cm\n" +
@@ -110,68 +103,96 @@ public class TestApmFormStatic extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectTileAImg() {
         // given
         String imgSize = "20351";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectTileBImg() {
         // given
         String imgSize = "20350";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectTileCImg() {
         // given
         String imgSize = "20349";
+        String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = Prices.APM_A_EN.getPrice();
+        String correctParcelPrice = Prices.C2D_A_EN.getPrice();
+        String errorMessage = "Wrong price for parcel of this size.";
 
         // when
 
         // then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = Prices.APM_B_EN.getPrice();
+        String correctParcelPrice = Prices.C2D_B_EN.getPrice();
+        String errorMessage = "Wrong price for parcel of this size.";
 
         //when
 
         //then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = Prices.APM_C_EN.getPrice();
+        String correctParcelPrice = Prices.C2D_C_EN.getPrice();
+        String errorMessage = "Wrong price for parcel of this size.";
 
         // when
 
         // then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
+    }
+
+    @Test
+    @Tag("en")
+    public void shouldPrintCorrectHTSModalTitle() throws Exception {
+        // given
+        String expectedTitle = "How to send the parcel?";
+        String errorMessage = "";
+
+        // when
+        formPage.clickHowToSendParcel();
+
+        // then
+        Assert.assertEquals(errorMessage, expectedTitle, formPage.getModalTitle().getText());
+
+        refreshPage();
     }
 }

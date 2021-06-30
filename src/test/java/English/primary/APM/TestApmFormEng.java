@@ -7,7 +7,7 @@ import pages.FormPage;
 import pages.ReceiverForm;
 import pages.SenderForm;
 
-public class TestApmForm extends Base {
+public class TestApmFormEng extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
@@ -222,7 +222,7 @@ public class TestApmForm extends Base {
     public void shouldThrowErrorForBadReceiverEmail() throws Exception {
         // given
         String email = "qweqwe.pl";
-        String desiredErrorMessage = "INCORRECT E-MAIL ADDRESS";
+        String expectedErrorMessage = "INCORRECT E-MAIL ADDRESS";
         String errorMessage = "";
 
         // when
@@ -230,14 +230,14 @@ public class TestApmForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, receiverForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, receiverForm.emailErrorMessage().getText());
     }
 
     @Test
     public void shouldThrowErrorForShortReceiverEmail() throws Exception {
         // given
         String email = "q";
-        String desiredErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
+        String expectedErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
         String errorMessage = "";
 
         // when
@@ -245,14 +245,14 @@ public class TestApmForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, receiverForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, receiverForm.emailErrorMessage().getText());
     }
 
     @Test
     public void shouldThrowErrorForBadSenderEmail() throws Exception {
         // given
         String email = "qweqwe.pl";
-        String desiredErrorMessage = "INCORRECT E-MAIL ADDRESS";
+        String expectedErrorMessage = "INCORRECT E-MAIL ADDRESS";
         String errorMessage = "";
 
         // when
@@ -260,14 +260,14 @@ public class TestApmForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.emailErrorMessage().getText());
     }
 
     @Test
     public void shouldThrowErrorForShortSenderEmail() throws Exception {
         // given
         String email = "q";
-        String desiredErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
+        String expectedErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
         String errorMessage = "";
 
         // when
@@ -275,20 +275,20 @@ public class TestApmForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.emailErrorMessage().getText());
     }
 
     @Test
     public void shouldPrintInvoiceOptions() throws Exception {
         // given
-        String desiredText = "Company in Poland";
+        String expectedText = "Company in Poland";
         String errorMessage = "";
 
         // when
         senderForm.clickInvoice();
 
         // then
-        Assert.assertEquals(errorMessage, desiredText, senderForm.checkInInvoiceWasClicked().getText());
+        Assert.assertEquals(errorMessage, expectedText, senderForm.checkInInvoiceWasClicked().getText());
     }
 
 
@@ -296,14 +296,14 @@ public class TestApmForm extends Base {
     @Test
     public void shouldOpenParcelMap() throws Exception {
         // given
-        String desiredModalHeader = "Parcel locker or Parcel Point where your shipment will be delivered";
+        String expectedModalHeader = "Parcel locker or Parcel Point where your shipment will be delivered";
         String errorMessage = "";
 
         // when
         receiverForm.clickMapButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredModalHeader, receiverForm.getMapModal().getText());
+        Assert.assertEquals(errorMessage, expectedModalHeader, receiverForm.getMapModal().getText());
     }
 
     @Test
@@ -346,7 +346,7 @@ public class TestApmForm extends Base {
     @Test
     public void shouldThrowErrorWhenTermsNotChecked() throws Exception {
         // given
-        String desiredErrorMessage = "REQUIRED FIELD";
+        String expectedErrorMessage = "REQUIRED FIELD";
         String errorMessage = "";
 
         // when
@@ -355,6 +355,6 @@ public class TestApmForm extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, formPage.getTermsErrorEnglish().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, formPage.getTermsErrorEnglish().getText());
     }
 }

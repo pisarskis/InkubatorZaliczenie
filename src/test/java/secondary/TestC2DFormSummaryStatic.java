@@ -5,8 +5,10 @@ import helper.SenderFormData;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 
+@Tag("pl")
 public class TestC2DFormSummaryStatic extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
@@ -51,6 +53,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectReceiverName(){
         // given
         String expectedReceiverName = "foo";
@@ -63,6 +66,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectReceiverPhoneNo() {
         // given
         String expectedReceiverPhoneNo = "555 555 555";
@@ -75,6 +79,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectReceiverEmail() {
         // given
         String expectedReceiverEmail = "foo@foo.pl";
@@ -87,6 +92,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectSenderName() {
         // given
         String expectedSenderName = "bar";
@@ -99,6 +105,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectSenderPhoneNo() {
         // given
         String expectedSenderPhoneNo = "666 666 666";
@@ -111,6 +118,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectSenderEmail() {
         // given
         String expectedSenderEmail = "bar@bar.pl";
@@ -123,6 +131,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceName() {
         // given
         String expectedInvoiceName = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
@@ -135,6 +144,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceNIP() {
         // given
         String expectedInvoiceNIP = "NIP: 6793087624";
@@ -147,6 +157,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceTown() {
         // given
         String expectedInvoiceTown = "30-624 Kraków";
@@ -159,6 +170,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceStreet() {
         // given
         String expectedInvoiceStreet = "ul. Test-Krucza 130";
@@ -171,6 +183,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectReceiverTown() {
         // given
         String expectedReceiverTown = "02-677 Warszawa";
@@ -183,6 +196,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectReceiverStreet() {
         // given
         String expectedReceiverStreet = "Cybernetyki 10/5";
@@ -195,6 +209,7 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectInvoiceCountry() {
         // given
         String expectedReceiverCountry = "Polska";

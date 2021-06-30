@@ -2,8 +2,10 @@ package primary.APM;
 
 import helper.*;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 
+@Tag("pl")
 public class TestApmForm extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
@@ -51,6 +53,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectSizeForAParcel() {
         // given
         String parcelASize = "mała";
@@ -65,6 +68,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectSizeForBParcel() {
         // given
         String parcelBSize = "średnia";
@@ -79,6 +83,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectSizeForCParcel() {
         // given
         String parcelCSize = "duża";
@@ -94,6 +99,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelADimensions() {
         // given
         String parcelADimensions = "max. wymiar\n" +
@@ -108,6 +114,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelBDimensions() {
         // given
         String parcelADimensions = "max. wymiar\n" +
@@ -122,6 +129,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelCDimensions() {
         // given
         String parcelADimensions = "max. wymiar\n" +
@@ -136,6 +144,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelAImg() {
         // given
         String imgSize = "parcel_A";
@@ -149,6 +158,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelBImg() {
         // given
         String imgSize = "parcel_B";
@@ -162,6 +172,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelCImg() {
         // given
         String imgSize = "parcel_C";
@@ -175,6 +186,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelAPrice() {
         // given
         String correctParcelPrice = Prices.APM_A_PL.getPrice();
@@ -188,6 +200,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelBPrice() {
         //given
         String correctParcelPrice = Prices.APM_B_PL.getPrice();
@@ -201,6 +214,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldReturnCorrectParcelCPrice() {
         // given
         String correctParcelPrice = Prices.APM_C_PL.getPrice();
@@ -214,10 +228,11 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldThrowErrorForBadReceiverEmail() throws Exception {
         // given
         String email = "foo.pl";
-        String desiredErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
+        String expectedErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
         String errorMessage = "";
 
         // when
@@ -225,14 +240,15 @@ public class TestApmForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, receiverForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, receiverForm.emailErrorMessage().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldThrowErrorForShortReceiverEmail() throws Exception {
         // given
         String email = "foo";
-        String desiredErrorMessage = "WARTOŚĆ JEST ZA KRÓTKA. POWINNA MIEĆ 4 ZNAKI LUB WIĘCEJ";
+        String expectedErrorMessage = "WARTOŚĆ JEST ZA KRÓTKA. POWINNA MIEĆ 4 ZNAKI LUB WIĘCEJ";
         String errorMessage = "";
 
         // when
@@ -240,14 +256,15 @@ public class TestApmForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, receiverForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, receiverForm.emailErrorMessage().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldThrowErrorForBadSenderEmail() throws Exception {
         // given
         String email = "foo.pl";
-        String desiredErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
+        String expectedErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
         String errorMessage = "";
 
         // when
@@ -255,14 +272,15 @@ public class TestApmForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.emailErrorMessage().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldThrowErrorForShortSenderEmail() throws Exception {
         // given
         String email = "foo";
-        String desiredErrorMessage = "WARTOŚĆ JEST ZA KRÓTKA. POWINNA MIEĆ 4 ZNAKI LUB WIĘCEJ";
+        String expectedErrorMessage = "WARTOŚĆ JEST ZA KRÓTKA. POWINNA MIEĆ 4 ZNAKI LUB WIĘCEJ";
         String errorMessage = "";
 
         // when
@@ -270,38 +288,41 @@ public class TestApmForm extends Base {
         formPage.chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.emailErrorMessage().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintInvoiceOptions() throws Exception {
         // given
-        String desiredText = "Firma w Polsce";
+        String expectedText = "Firma w Polsce";
         String errorMessage = "";
 
         // when
         senderForm.clickInvoice();
 
         // then
-        Assert.assertEquals(errorMessage, desiredText, senderForm.checkInInvoiceWasClicked().getText());
+        Assert.assertEquals(errorMessage, expectedText, senderForm.checkInInvoiceWasClicked().getText());
     }
 
 
 
     @Test
+    @Tag("pl")
     public void shouldOpenParcelMap() throws Exception {
         // given
-        String desiredModalHeader = "Paczkomat lub PaczkoPunkt, do którego dostarczymy przesyłkę";
+        String expectedModalHeader = "Paczkomat lub PaczkoPunkt, do którego dostarczymy przesyłkę";
         String errorMessage = "";
 
         // when
         receiverForm.clickMapButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredModalHeader, receiverForm.getMapModal().getText());
+        Assert.assertEquals(errorMessage, expectedModalHeader, receiverForm.getMapModal().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldSearchMapModalForParcelBox() throws Exception {
         // given
         String parcelBox = "POP-WAW62";
@@ -321,6 +342,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldShotParcelBoxDetailsInModal() throws Exception {
         // given
         String parcelBox = "POP-WAW62";
@@ -339,9 +361,10 @@ public class TestApmForm extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldThrowErrorWhenTermsNotChecked() throws Exception {
         // given
-        String desiredErrorMessage = "POLE WYMAGANE";
+        String expectedErrorMessage = "POLE WYMAGANE";
         String errorMessage = "";
 
         // when
@@ -350,6 +373,6 @@ public class TestApmForm extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, formPage.getTermsError().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, formPage.getTermsError().getText());
     }
 }

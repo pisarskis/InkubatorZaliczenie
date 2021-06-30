@@ -2,6 +2,7 @@ package secondary;
 
 import helper.WaitPage;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
@@ -54,23 +55,25 @@ public class TestFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectHTSModalTitle() throws Exception {
         // given
-        String desiredTitle = "Jak nadać paczkę?";
+        String expectedTitle = "Jak nadać paczkę?";
         String errorMessage = "";
 
         // when
         formPage.clickHowToSendParcel();
 
         // then
-        Assert.assertEquals(errorMessage, desiredTitle, formPageStatics.getModalTitle().getText());
+        Assert.assertEquals(errorMessage, expectedTitle, formPageStatics.getModalTitle().getText());
         refreshPage();
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectHTSModalBody() throws Exception {
         // given
-        String desiredBody = "Na początku wybierz odpowiednią dla Ciebie formę wysyłki: możesz wysłać z Paczkomatu/PaczkoPunktu do Paczkomatu/PaczkoPunktu lub wybrać dostawę przez kuriera. Następnie uzupełnij wymagane dane dla nadawcy i odbiorcy.\n" +
+        String expectedBody = "Na początku wybierz odpowiednią dla Ciebie formę wysyłki: możesz wysłać z Paczkomatu/PaczkoPunktu do Paczkomatu/PaczkoPunktu lub wybrać dostawę przez kuriera. Następnie uzupełnij wymagane dane dla nadawcy i odbiorcy.\n" +
                              "\n" +
                              "Po uzupełnieniu informacji, zostaniesz przekierowany do strony z wygodnymi płatnościami online. Wybierz najwygodniejszy dla siebie sposób płatności, a następnie pobierz i wydrukuj etykietę. Pamiętaj, że etykietę możesz pobrać w PDF i wydrukować, gdzie Ci wygodnie.\n" +
                              "\n" +
@@ -83,40 +86,43 @@ public class TestFormStatic extends Base {
         formPage.clickHowToSendParcel();
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getModalBody().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getModalBody().getText());
         refreshPage();
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectHTPModalTitle() throws Exception {
         // given
-        String desiredTitle = "Jak spakować paczkę?";
+        String expectedTitle = "Jak spakować paczkę?";
         String errorMessage = "";
 
         // when
         formPage.clickHowToPackParcel();
 
         // then
-        Assert.assertEquals(errorMessage, desiredTitle, formPageStatics.getModalTitle().getText());
+        Assert.assertEquals(errorMessage, expectedTitle, formPageStatics.getModalTitle().getText());
         refreshPage();
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectTermsText() {
         // given
-        String desiredText = "*Zapoznałam/em się z Regulaminem świadczenia usług pocztowych i przewozowych przez InPost Sp. z o.o. i akceptuję jego treść.";
+        String expectedText = "*Zapoznałam/em się z Regulaminem świadczenia usług pocztowych i przewozowych przez InPost Sp. z o.o. i akceptuję jego treść.";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredText, formPageStatics.getTermsText().getText());
+        Assert.assertEquals(errorMessage, expectedText, formPageStatics.getTermsText().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectNewsletterText() {
         // given
-        String desiredText = "Wyrażam zgodę na otrzymywanie od InPost Sp. z o.o. informacji handlowych dotyczących produktów i usług InPost Sp. z o.o., spółek z Grupy Integer.pl oraz podmiotów współpracujących z ww. spółkami na podany przeze mnie numer telefonu lub adres e-mail.\n" +
+        String expectedText = "Wyrażam zgodę na otrzymywanie od InPost Sp. z o.o. informacji handlowych dotyczących produktów i usług InPost Sp. z o.o., spółek z Grupy Integer.pl oraz podmiotów współpracujących z ww. spółkami na podany przeze mnie numer telefonu lub adres e-mail.\n" +
                              "Administratorem Twoich danych osobowych jest InPost Sp. z o.o. Podane dane osobowe będą przetwarzane w celu wykonania usługi oraz w celach statystycznych i analitycznych administratora, a także w celu ewentualnego dochodzenia roszczeń lub obrony przed roszczeniami.\n" +
                              "\n" +
                              "W przypadku wyrażenia zgody na otrzymywanie informacji handlowych InPost Sp. z o.o. będą przetwarzać Twoje dane osobowe w celach marketingowych, w tym poprzez profilowanie oraz w celu kierowania do Ciebie informacji handlowych drogą elektroniczną w zakresie objętym wyrażoną zgodą. Wycofanie zgody na otrzymywanie informacji handlowych jest możliwe w dowolnym momencie, co nie wpływa na zgodność przetwarzania danych przed jej wycofaniem. Masz też prawo wyrazić sprzeciw wobec przetwarzania Twoich danych w celach marketingowych.\n" +
@@ -127,24 +133,26 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredText, formPageStatics.getNewsletterBody().getText());
+        Assert.assertEquals(errorMessage, expectedText, formPageStatics.getNewsletterBody().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintCorrectHTPModalBody() throws Exception {
         // given
-        String desiredBody = "Zadbaj o odpowiednie zabezpieczenie przesyłki i zmierz jej gabaryt. Jeśli potrzebujesz dodatkowych informacji o tym, jak poprawnie spakować przedmiot do wysyłki, zapoznaj się z naszym Poradnikiem Pakowania. Znajdziesz tam wiele ciekawych i przydatnych wskazówek, które sprawią, że przygotowanie paczki do wysyłki nie będzie miało dla Ciebie żadnych tajemnic.";
+        String expectedBody = "Zadbaj o odpowiednie zabezpieczenie przesyłki i zmierz jej gabaryt. Jeśli potrzebujesz dodatkowych informacji o tym, jak poprawnie spakować przedmiot do wysyłki, zapoznaj się z naszym Poradnikiem Pakowania. Znajdziesz tam wiele ciekawych i przydatnych wskazówek, które sprawią, że przygotowanie paczki do wysyłki nie będzie miało dla Ciebie żadnych tajemnic.";
         String errorMessage = "";
 
         // when
         formPage.clickHowToPackParcel();
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getModalBody().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getModalBody().getText());
         refreshPage();
     }
 
     @Test
+    @Tag("pl")
     public void shouldHaveGoodLinks(){
         // given
         List<String> missingLinks = new ArrayList<String>();
@@ -185,198 +193,214 @@ public class TestFormStatic extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintHeaderFirstText() throws Exception {
         // given
-        String desiredBody = "Spakuj paczkę";
+        String expectedBody = "Spakuj paczkę";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getHomeHeaderStepFistText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepFistText().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintHeaderStepSecondText() throws Exception {
         // given
-        String desiredBody = "Uzupełnij dane\n" +
+        String expectedBody = "Uzupełnij dane\n" +
                              "dostawy";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getHomeHeaderStepSecondText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepSecondText().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintHeaderStepThirdText() throws Exception {
         // given
-        String desiredBody = "Opłać, wydrukuj i naklej\n" +
+        String expectedBody = "Opłać, wydrukuj i naklej\n" +
                              "etykietę na paczkę";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getHomeHeaderStepThirdText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepThirdText().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintHeaderStepFourthText() throws Exception {
         // given
-        String desiredBody = "Nadaj w Paczkomacie\n" +
+        String expectedBody = "Nadaj w Paczkomacie\n" +
                              "lub PaczkoPunkcie";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getHomeHeaderStepFourthText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepFourthText().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintTypeOfDeliveryHeader() throws Exception {
         // given
-        String desiredBody = "Sposób dostawy";
+        String expectedBody = "Sposób dostawy";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getTypeOfDeliveryHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getTypeOfDeliveryHeader().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintTypeOfDeliveryHeaderSubtitle() throws Exception {
         // given
-        String desiredBody = "Wybierz sposób dostawy";
+        String expectedBody = "Wybierz sposób dostawy";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getTypeOfDeliveryHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getTypeOfDeliveryHeaderSubtitle().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintSizeOfParcelHeader() throws Exception {
         // given
-        String desiredBody = "Rozmiar paczki";
+        String expectedBody = "Rozmiar paczki";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getSizeOfParcelHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSizeOfParcelHeader().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintSizeOfParcelHeaderSubtitle() throws Exception {
         // given
-        String desiredBody = "Wybierz rozmiar paczki";
+        String expectedBody = "Wybierz rozmiar paczki";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getSizeOfParcelHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSizeOfParcelHeaderSubtitle().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintReceiverHeader() throws Exception {
         // given
-        String desiredBody = "Rozmiar paczki";
+        String expectedBody = "Rozmiar paczki";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getReceiverHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getReceiverHeader().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintReceiverHeaderSubtitle() throws Exception {
         // given
-        String desiredBody = "Wpisz dane odbiorcy";
+        String expectedBody = "Wpisz dane odbiorcy";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getReceiverHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getReceiverHeaderSubtitle().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintSenderHeader() throws Exception {
         // given
-        String desiredBody = "Nadawca";
+        String expectedBody = "Nadawca";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getSenderHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSenderHeader().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintSenderHeaderSubtitle() throws Exception {
         // given
-        String desiredBody = "Wpisz swoje dane";
+        String expectedBody = "Wpisz swoje dane";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getSenderHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSenderHeaderSubtitle().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintSummaryHeader() throws Exception {
         // given
-        String desiredBody = "Podsumowanie";
+        String expectedBody = "Podsumowanie";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getSummaryHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryHeader().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintSummaryTypeOfDelivery() throws Exception {
         // given
-        String desiredBody = "Sposób\n" +
+        String expectedBody = "Sposób\n" +
                 "dostawy";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getSummaryTypeOfDelivery().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryTypeOfDelivery().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintSummaryInsuranceHeader() throws Exception {
         // given
-        String desiredBody = "Ubezpieczenie";
+        String expectedBody = "Ubezpieczenie";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getSummaryInsuranceHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryInsuranceHeader().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintSummaryInsuranceHeaderSubtitle() throws Exception {
         // given
-        String desiredBody = "Przesyłka jest objęta podstawowym ubezpieczeniem do kwoty 5000 zł.";
+        String expectedBody = "Przesyłka jest objęta podstawowym ubezpieczeniem do kwoty 5000 zł.";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, desiredBody, formPageStatics.getSummaryInsuranceHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryInsuranceHeaderSubtitle().getText());
     }
 }

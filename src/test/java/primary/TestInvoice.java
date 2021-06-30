@@ -2,8 +2,10 @@ package primary;
 
 import helper.*;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 
+@Tag("pl")
 public class TestInvoice extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
@@ -60,23 +62,25 @@ public class TestInvoice extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintInvoiceOptions() throws Exception {
         // given
-        String desiredText = "Firma w Polsce";
+        String expectedText = "Firma w Polsce";
         String errorMessage = "";
 
         // when
         senderForm.clickInvoice();
 
         // then
-        Assert.assertEquals(errorMessage, desiredText, senderForm.checkInInvoiceWasClicked().getText());
+        Assert.assertEquals(errorMessage, expectedText, senderForm.checkInInvoiceWasClicked().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintPolishCompanyNameWhenNIPGiven() throws Exception {
         // given
         String nipNo = "6793087624";
-        String desiredText = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
+        String expectedText = "INPOST SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ";
         String errorMessage = "";
 
         // when
@@ -86,10 +90,11 @@ public class TestInvoice extends Base {
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredText, senderForm.getInvoiceNameFormSummary().getText());
+        Assert.assertEquals(errorMessage, expectedText, senderForm.getInvoiceNameFormSummary().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldPrintNameWhenIndividualIsChosen() throws Exception {
         // given
         String errorMessage = "";
@@ -104,12 +109,13 @@ public class TestInvoice extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldThrowErrorWhenToShortTaxNoIsGiven() throws Exception {
         // given
         String errorMessage = "";
         String countryPreFix = "DE";
         String taxNo = "00000000";
-        String desiredErrorMessage = "PODANY NUMER NIP JEST NIEPRAWIDŁOWY";
+        String expectedErrorMessage = "PODANY NUMER NIP JEST NIEPRAWIDŁOWY";
 
         // when
         senderForm.clickInvoice();
@@ -119,16 +125,17 @@ public class TestInvoice extends Base {
         senderForm.clickForeignCompanyCheckbox();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.invoiceCountryTaxNoError().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.invoiceCountryTaxNoError().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldThrowErrorWhenToLongTaxNoIsGiven() throws Exception {
         // given
         String errorMessage = "";
         String countryPreFix = "DE";
         String taxNo = "0000000000";
-        String desiredErrorMessage = "PODANY NUMER NIP JEST NIEPRAWIDŁOWY";
+        String expectedErrorMessage = "PODANY NUMER NIP JEST NIEPRAWIDŁOWY";
 
         // when
         senderForm.clickInvoice();
@@ -138,6 +145,6 @@ public class TestInvoice extends Base {
         senderForm.clickForeignCompanyCheckbox();
 
         // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.invoiceCountryTaxNoError().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.invoiceCountryTaxNoError().getText());
     }
 }

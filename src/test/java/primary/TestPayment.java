@@ -2,8 +2,10 @@ package primary;
 
 import helper.*;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 
+@Tag("pl")
 public class TestPayment extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
@@ -52,9 +54,10 @@ public class TestPayment extends Base {
     }
 
     @Test
+    @Tag("pl")
     public void shouldShowAPMParcelAPriceInPayment() throws InterruptedException {
         // given
-        String desiredParcelPrice = "12,99 PLN";
+        String expectedParcelPrice = "12,99 PLN";
         String errorMessage = "";
 
         // when
@@ -63,13 +66,14 @@ public class TestPayment extends Base {
         formRunThrough();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, paymentPage.getSenderParcelPrice().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldShowAPMParcelBPriceInPayment() throws InterruptedException {
         // given
-        String desiredParcelPrice = "13,99 PLN";
+        String expectedParcelPrice = "13,99 PLN";
         String errorMessage = "";
 
         // when
@@ -78,13 +82,14 @@ public class TestPayment extends Base {
         formRunThrough();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, paymentPage.getSenderParcelPrice().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldShowAPMParcelCPriceInPayment() throws InterruptedException {
         // given
-        String desiredParcelPrice = "15,49 PLN";
+        String expectedParcelPrice = "15,49 PLN";
         String errorMessage = "";
 
         // when
@@ -93,13 +98,14 @@ public class TestPayment extends Base {
         formRunThrough();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, paymentPage.getSenderParcelPrice().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldShowCorrectNameInSummary() throws InterruptedException {
         // given
-        String desiredSenderName = "bar";
+        String expectedSenderName = "bar";
         String errorMessage = "";
 
         // when
@@ -108,13 +114,14 @@ public class TestPayment extends Base {
         formRunThrough();
 
         // then
-        Assert.assertEquals(errorMessage, desiredSenderName, paymentPage.getSenderName().getText());
+        Assert.assertEquals(errorMessage, expectedSenderName, paymentPage.getSenderName().getText());
     }
 
     @Test
+    @Tag("pl")
     public void shouldShowCorrectEMailInSummary() throws InterruptedException {
         // given
-        String desiredParcelPrice = "bar@bar.pl";
+        String expectedParcelPrice = "bar@bar.pl";
         String errorMessage = "";
 
         // when
@@ -123,6 +130,6 @@ public class TestPayment extends Base {
         formRunThrough();
 
         // then
-        Assert.assertTrue(errorMessage, paymentPage.getSenderEmail().getText().contains(desiredParcelPrice));
+        Assert.assertTrue(errorMessage, paymentPage.getSenderEmail().getText().contains(expectedParcelPrice));
     }
 }

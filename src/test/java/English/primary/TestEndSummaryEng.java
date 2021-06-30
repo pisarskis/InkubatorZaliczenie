@@ -1,6 +1,6 @@
 package English.primary;
 
-import English.primary.APM.TestApmForm;
+import English.primary.APM.TestApmFormEng;
 import helper.ReceiverFormData;
 import helper.SenderFormData;
 import helper.WaitPage;
@@ -8,15 +8,17 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 
-public class TestEndSummary extends Base {
+@Tag("en")
+public class TestEndSummaryEng extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static PaymentPage paymentPage;
-    private static TestApmForm testApmForm;
+    private static TestApmFormEng testApmFormEng;
     private static SummaryPage summaryPage;
     private static EndSummaryPage endSummaryPage;
 
@@ -27,7 +29,7 @@ public class TestEndSummary extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         paymentPage = new PaymentPage();
-        testApmForm = new TestApmForm();
+        testApmFormEng = new TestApmFormEng();
         summaryPage = new SummaryPage();
         endSummaryPage = new EndSummaryPage();
 
@@ -81,6 +83,7 @@ public class TestEndSummary extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldMarkParcelAsPaidFor() throws Exception {
         // given
         String expectedMessage = "Your payment was confirmed";
@@ -97,6 +100,7 @@ public class TestEndSummary extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldMarkParcelPaymentAsPending() throws Exception {
         // given
         String expectedMessage = "Your transaction has not been concluded – this may take a few minutes. Refresh the page to check its status.";
@@ -113,6 +117,7 @@ public class TestEndSummary extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldMarkParcelPaymentAsRejected() throws Exception {
         // given
         String expectedMessage = "Oops, we have a problem. Your payment did not succeed. Try again.";

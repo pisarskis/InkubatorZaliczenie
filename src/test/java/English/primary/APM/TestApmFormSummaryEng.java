@@ -1,30 +1,28 @@
-package English.primary.C2D;
+package English.primary.APM;
 
-import English.primary.APM.TestApmForm;
 import helper.*;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import pages.*;
 
-public class TestC2DFormSummary extends Base {
+@Tag("en")
+public class TestApmFormSummaryEng extends Base {
     private static FormPage formPage;
-    private static ActionPage actionPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static PaymentPage paymentPage;
-    private static TestApmForm apmTest;
+    private static TestApmFormEng apmTest;
     private static SummaryPage summaryPage;
+
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
         formPage = new FormPage();
-        actionPage = new ActionPage();
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
-        waitPage = new WaitPage();
-        paymentPage = new PaymentPage();
-        apmTest = new TestApmForm();
+        apmTest = new TestApmFormEng();
         summaryPage = new SummaryPage();
+        waitPage = new WaitPage();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -45,69 +43,66 @@ public class TestC2DFormSummary extends Base {
     }
 
     private void formRunThrough() throws InterruptedException {
-        formPage.chooseDeliveryC2D();
-        fillC2DFormData();
+        formPage.chooseDeliveryToAPM();
+        fillAPMFormData();
         formPage.clickTermsCheckboxEngish();
         formPage.clickNewsletterCheckbox();
     }
 
-    public void fillC2DFormData() throws InterruptedException {
+    public void fillAPMFormData() throws InterruptedException {
         receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
         receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
         receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
-        receiverForm.fillReceiverZipCode(ReceiverFormData.ZIPCODE.getValue());
-        receiverForm.fillReceiverTown(ReceiverFormData.TOWN.getValue());
-        receiverForm.fillReceiverStreet(ReceiverFormData.STREET.getValue());
-        receiverForm.fillReceiverStreetNo(ReceiverFormData.STREETNO.getValue());
-        receiverForm.fillReceiverFlatNo(ReceiverFormData.FLATNO.getValue());
+        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
         senderForm.fillSenderName(SenderFormData.NAME.getValue());
         senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
         senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelSizeAInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Small";
-        String errorMessage = "";
+        String expectedParcelSize = "Small";
 
         // when
         formPage.clickA();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(expectedParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelSizeBInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Medium";
-        String errorMessage = "";
+        String expectedParcelSize = "Medium";
 
         // when
         formPage.clickB();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(expectedParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelSizeCInSummary() throws Exception {
         // given
-        String desiredParcelSize = "Large";
-        String errorMessage = "";
+        String expectedParcelSize = "Large";
 
         // when
         formPage.clickC();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(expectedParcelSize, summaryPage.getParcelSize().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelAImgInSummary() throws Exception {
         // given
         String imgSize = "parcel_A";
@@ -122,6 +117,7 @@ public class TestC2DFormSummary extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelBImgInSummary() throws Exception {
         // given
         String imgSize = "parcel_B";
@@ -136,6 +132,7 @@ public class TestC2DFormSummary extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelCImgInSummary() throws Exception {
         // given
         String imgSize = "parcel_C";
@@ -150,44 +147,44 @@ public class TestC2DFormSummary extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelAPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = Prices.C2D_A_EN.getPrice();
-        String errorMessage = "Wrong price for parcel of this size.";
+        String expectedParcelPrice = Prices.APM_A_EN.getPrice();
 
         // when
         formPage.clickA();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(expectedParcelPrice, summaryPage.getParcelPrice().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelBPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = Prices.C2D_B_EN.getPrice();
-        String errorMessage = "Wrong price for parcel of this size.";
+        String expectedParcelPrice = Prices.APM_B_EN.getPrice();
 
         // when
         formPage.clickB();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(expectedParcelPrice, summaryPage.getParcelPrice().getText());
     }
 
     @Test
+    @Tag("en")
     public void shouldShowCorrectParcelCPriceInSummary() throws Exception {
         // given
-        String desiredParcelPrice = Prices.C2D_C_EN.getPrice();
-        String errorMessage = "Wrong price for parcel of this size.";
+        String expectedParcelPrice = Prices.APM_C_EN.getPrice();
 
         // when
         formPage.clickC();
         formPage.clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, desiredParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(expectedParcelPrice, summaryPage.getParcelPrice().getText());
     }
 }
