@@ -1,3 +1,5 @@
+package primary;
+
 import helper.ActionPage;
 import helper.FormDataFactory;
 import helper.WaitPage;

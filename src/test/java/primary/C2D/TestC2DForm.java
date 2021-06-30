@@ -1,14 +1,11 @@
-package English;
+package primary.C2D;
 
 import helper.FormDataFactory;
 import helper.WaitPage;
 import org.junit.*;
-import pages.Base;
-import pages.FormPage;
-import pages.ReceiverForm;
-import pages.SenderForm;
+import pages.*;
 
-public class TestApmForm extends Base {
+public class TestC2DForm extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
@@ -25,13 +22,11 @@ public class TestApmForm extends Base {
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
-        formPage.clickLanguageSelector();
-        formPage.closeCookiesPopup();
     }
 
     @Before
     public void setUpBeforeEach() throws InterruptedException {
-        formPage.chooseDeliveryToAPM();
+        formPage.chooseDeliveryC2D();
     }
 
     @After
@@ -43,19 +38,19 @@ public class TestApmForm extends Base {
 
     public void fillFormAllData() throws Exception {
         formPage.clickA();
-        formDataFactory.fillAPMFormData();
-        formPage.clickTermsCheckboxEngish();
+        formDataFactory.fillC2DFormData();
+        formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
     }
 
     @Test
-    public void shouldReturnCorrectSizeForAParcel() throws Exception {
+    public void shouldReturnCorrectSizeForAParcel() {
         // given
-        String parcelASize = "Small";
+        String parcelASize = "mała";
 
         // when
         formPage.clickA();
-        String returnedSize = formPage.getParcelSizeText().getText();
+        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelASize;
 
         // then
@@ -63,13 +58,13 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectSizeForBParcel() throws Exception {
+    public void shouldReturnCorrectSizeForBParcel() {
         // given
-        String parcelBSize = "Medium";
+        String parcelBSize = "średnia";
 
         // when
         formPage.clickB();
-        String returnedSize = formPage.getParcelSizeText().getText();
+        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelBSize;
 
         // then
@@ -77,13 +72,13 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectSizeForCParcel() throws Exception {
+    public void shouldReturnCorrectSizeForCParcel() {
         // given
-        String parcelCSize = "Large";
+        String parcelCSize = "duża";
 
         // when
         formPage.clickC();
-        String returnedSize = formPage.getParcelSizeText().getText();
+        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelCSize;
 
 
@@ -92,11 +87,11 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelADimensions() throws Exception {
+    public void shouldReturnCorrectParcelADimensions() {
         // given
-        String parcelADimensions = "max. dimension\n" +
+        String parcelADimensions = "max. wymiar\n" +
                 "8 x 38 x 64 cm\n" +
-                "up to 25 kg";
+                "do 25 kg";
 
         // when
         formPage.clickA();
@@ -106,11 +101,11 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelBDimensions() throws Exception {
+    public void shouldReturnCorrectParcelBDimensions() {
         // given
-        String parcelADimensions = "max. dimension\n" +
+        String parcelADimensions = "max. wymiar\n" +
                 "19 x 38 x 64 cm\n" +
-                "up to 25 kg";
+                "do 25 kg";
 
         // when
         formPage.clickB();
@@ -120,11 +115,11 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelCDimensions() throws Exception {
+    public void shouldReturnCorrectParcelCDimensions() {
         // given
-        String parcelADimensions = "max. dimension\n" +
+        String parcelADimensions = "max. wymiar\n" +
                 "41 x 38 x 64 cm\n" +
-                "up to 25 kg";
+                "do 25 kg";
 
         // when
         formPage.clickC();
@@ -134,7 +129,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelAImg() throws Exception {
+    public void shouldReturnCorrectParcelAImg() {
         // given
         String imgSize = "parcel_A";
         String errorMessage = "Wrong img loaded for chosen parcel size.";
@@ -147,7 +142,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelBImg() throws Exception {
+    public void shouldReturnCorrectParcelBImg() {
         // given
         String imgSize = "parcel_B";
         String errorMessage = "Wrong img loaded for chosen parcel size.";
@@ -160,7 +155,7 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelCImg() throws Exception {
+    public void shouldReturnCorrectParcelCImg() {
         // given
         String imgSize = "parcel_C";
         String errorMessage = "Wrong img loaded for chosen parcel size.";
@@ -173,9 +168,9 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelAPrice() throws Exception {
+    public void shouldReturnCorrectParcelAPrice() {
         // given
-        String correctParcelPrice = "PLN 12.99";
+        String correctParcelPrice = "14,99 zł";
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -186,9 +181,9 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelBPrice() throws Exception {
+    public void shouldReturnCorrectParcelBPrice() {
         //given
-        String correctParcelPrice = "PLN 13.99";
+        String correctParcelPrice = "16,49 zł";
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -199,9 +194,9 @@ public class TestApmForm extends Base {
     }
 
     @Test
-    public void shouldReturnCorrectParcelCPrice() throws Exception {
+    public void shouldReturnCorrectParcelCPrice() {
         // given
-        String correctParcelPrice = "PLN 15.49";
+        String correctParcelPrice = "19,99 zł";
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -214,8 +209,8 @@ public class TestApmForm extends Base {
     @Test
     public void shouldThrowErrorForBadReceiverEmail() throws Exception {
         // given
-        String email = "qweqwe.pl";
-        String desiredErrorMessage = "INCORRECT E-MAIL ADDRESS";
+        String email = "foo.pl";
+        String desiredErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
         String errorMessage = "";
 
         // when
@@ -230,7 +225,7 @@ public class TestApmForm extends Base {
     public void shouldThrowErrorForShortReceiverEmail() throws Exception {
         // given
         String email = "q";
-        String desiredErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
+        String desiredErrorMessage = "WARTOŚĆ JEST ZA KRÓTKA. POWINNA MIEĆ 4 ZNAKI LUB WIĘCEJ";
         String errorMessage = "";
 
         // when
@@ -244,8 +239,8 @@ public class TestApmForm extends Base {
     @Test
     public void shouldThrowErrorForBadSenderEmail() throws Exception {
         // given
-        String email = "qweqwe.pl";
-        String desiredErrorMessage = "INCORRECT E-MAIL ADDRESS";
+        String email = "bar.pl";
+        String desiredErrorMessage = "NIEPRAWIDŁOWY ADRES EMAIL";
         String errorMessage = "";
 
         // when
@@ -260,7 +255,7 @@ public class TestApmForm extends Base {
     public void shouldThrowErrorForShortSenderEmail() throws Exception {
         // given
         String email = "q";
-        String desiredErrorMessage = "THE VALUE IS TOO SHORT. IT SHOULD BE 4 CHARACTERS LONG OR LONGER.";
+        String desiredErrorMessage = "WARTOŚĆ JEST ZA KRÓTKA. POWINNA MIEĆ 4 ZNAKI LUB WIĘCEJ";
         String errorMessage = "";
 
         // when
@@ -269,85 +264,5 @@ public class TestApmForm extends Base {
 
         // then
         Assert.assertEquals(errorMessage, desiredErrorMessage, senderForm.emailErrorMessage().getText());
-    }
-
-    @Test
-    public void shouldPrintInvoiceOptions() throws Exception {
-        // given
-        String desiredText = "Company in Poland";
-        String errorMessage = "";
-
-        // when
-        senderForm.clickInvoice();
-
-        // then
-        Assert.assertEquals(errorMessage, desiredText, senderForm.checkInInvoiceWasClicked().getText());
-    }
-
-
-
-    @Test
-    public void shouldOpenParcelMap() throws Exception {
-        // given
-        String desiredModalHeader = "Parcel locker or Parcel Point where your shipment will be delivered";
-        String errorMessage = "";
-
-        // when
-        receiverForm.clickMapButton();
-
-        // then
-        Assert.assertEquals(errorMessage, desiredModalHeader, receiverForm.getMapModal().getText());
-    }
-
-    @Test
-    public void shouldSearchMapModalForParcelBox() throws Exception {
-        // given
-        String parcelBox = "POP-WAW62";
-        String town = "Warszawa";
-        String errorMessage = "";
-
-        // when
-        receiverForm.clickMapButton();
-        receiverForm.fillSearchBarWithData(town);
-        receiverForm.clickMapModalSearchResult();
-        receiverForm.clickMapModalParcelBox(parcelBox);
-        receiverForm.clickMMParcelBoxChoseButton();
-        receiverForm.clickReceiverAPMCode();
-
-        // then
-        Assert.assertEquals(errorMessage, parcelBox, receiverForm.getReceiverAPMNo(parcelBox).getText());
-    }
-
-    @Test
-    public void shouldShotParcelBoxDetailsInModal() throws Exception {
-        // given
-        String parcelBox = "POP-WAW62";
-        String town = "Warszawa";
-        String errorMessage = "";
-
-        // when
-        receiverForm.clickMapButton();
-        receiverForm.fillSearchBarWithData(town);
-        receiverForm.clickMapModalSearchResult();
-        receiverForm.clickMapModalParcelBox(parcelBox);
-        receiverForm.clickMMParcelBoxDetailsButton();
-
-        // then
-        Assert.assertEquals(errorMessage, parcelBox, receiverForm.getMMDetailsParcelBoxNo().getText());
-    }
-
-    @Test
-    public void shouldThrowErrorWhenTermsNotChecked() throws Exception {
-        // given
-        String desiredErrorMessage = "REQUIRED FIELD";
-        String errorMessage = "";
-
-        // when
-        fillFormAllData();
-        formPage.clickTermsCheckboxEngish();
-        formPage.clickSendButton();
-
-        // then
-        Assert.assertEquals(errorMessage, desiredErrorMessage, formPage.getTermsErrorEnglish().getText());
     }
 }

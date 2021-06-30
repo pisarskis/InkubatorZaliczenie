@@ -1,12 +1,10 @@
-package English;
+package primary;
 
 import helper.FormDataFactory;
 import helper.WaitPage;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import pages.*;
+import primary.APM.TestApmForm;
 
 public class TestEndSummary extends Base {
     private static FormPage formPage;
@@ -33,8 +31,13 @@ public class TestEndSummary extends Base {
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
-        formPage.clickLanguageSelector();
-        formPage.closeCookiesPopup();
+        waitPage.waitLong();
+        waitPage.waitLong();
+    }
+
+    public void apmSummarySetUp() throws InterruptedException {
+        Base.driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
+        formRunThrough();
     }
 
     @After
@@ -48,7 +51,7 @@ public class TestEndSummary extends Base {
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
         formDataFactory.fillAPMFormData();
-        formPage.clickTermsCheckboxEngish();
+        formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
         formPage.clickPayButton();
@@ -73,7 +76,8 @@ public class TestEndSummary extends Base {
     @Test
     public void shouldMarkParcelAsPaidFor() throws Exception {
         // given
-        String expectedMessage = "Your payment was confirmed";
+        String expectedMessage = "Twoja płatność została potwierdzona";
+        String errorMessage = "";
 
         // when
         formRunThrough();
@@ -83,13 +87,16 @@ public class TestEndSummary extends Base {
         checkRefreshButton(expectedMessage);
 
         // then
-        Assert.assertEquals(expectedMessage, endSummaryPage.getPaymentStatus().getText());
+        Assert.assertEquals(errorMessage, expectedMessage, endSummaryPage.getPaymentStatus().getText());
     }
 
     @Test
     public void shouldMarkParcelPaymentAsPending() throws Exception {
         // given
-        String expectedMessage = "Your transaction has not been concluded – this may take a few minutes. Refresh the page to check its status.";
+        String expectedMessage = "Twoja transakcja nie została jeszcze zakończona.\n" +
+                                  "To może potrwać kilka minut. Odśwież stronę,\n" +
+                                  "aby sprawdzić jej status.";
+        String errorMessage = "";
 
         // when
         formRunThrough();
@@ -99,13 +106,16 @@ public class TestEndSummary extends Base {
         checkRefreshButton(expectedMessage);
 
         // then
-        Assert.assertEquals(expectedMessage, endSummaryPage.getPaymentStatus().getText());
+        Assert.assertEquals(errorMessage, expectedMessage, endSummaryPage.getPaymentStatus().getText());
     }
 
     @Test
     public void shouldMarkParcelPaymentAsRejected() throws Exception {
         // given
-        String expectedMessage = "Oops, we have a problem. Your payment did not succeed. Try again.";
+        String expectedMessage = "Ups, mamy problem.\n" +
+                                 "Niestety nie udało się opłacić paczki.\n" +
+                                 "Spróbuj jeszcze raz.";
+        String errorMessage = "";
 
         // when
         formRunThrough();
@@ -114,6 +124,6 @@ public class TestEndSummary extends Base {
         formPage.closeCookiesPopup();
 
         // then
-        Assert.assertEquals(expectedMessage, endSummaryPage.getPaymentStatus().getText());
+        Assert.assertEquals(errorMessage, expectedMessage, endSummaryPage.getPaymentStatus().getText());
     }
 }

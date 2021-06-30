@@ -1,3 +1,5 @@
+package English.secondary;
+
 import helper.WaitPage;
 import org.junit.*;
 import org.openqa.selenium.By;
@@ -15,6 +17,9 @@ public class TestC2DFormStatic extends Base {
     private static WaitPage waitPage;
     private static ParcelTiles parcelTiles;
 
+    private static List<WebElement> linkList;
+    private static List<String> cleanLinkList;
+
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
         formPage = new FormPage();
@@ -23,8 +28,13 @@ public class TestC2DFormStatic extends Base {
         waitPage = new WaitPage();
         parcelTiles = new ParcelTiles();
 
+        linkList = new ArrayList<WebElement>();
+        cleanLinkList = new ArrayList<String>();
+
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
+        formPage.clickLanguageSelector();
+        formPage.closeCookiesPopup();
     }
 
     @Before
@@ -39,12 +49,23 @@ public class TestC2DFormStatic extends Base {
         formPage.closeCookiesPopup();
     }
 
+    public List<String> pullUpAllLinks(){
+        linkList = driver.findElements(By.tagName("a"));
+
+        for(WebElement link:linkList){
+            cleanLinkList.add(link.getAttribute("href"));
+        }
+
+        while (cleanLinkList.remove(null)){}
+
+        return cleanLinkList;
+    }
+
     @Test
     public void shouldReturnCorrectTileADimensions() {
         // given
-        String parcelADimensions =  "max.\n" +
-                                    "8 x 38 x 64 cm\n" +
-                                    "do 25 kg";
+        String parcelADimensions = "max. 8 x 38 x 64 cm\n" +
+                "up to 25 kg";
 
         // when
 
@@ -55,9 +76,8 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileBDimensions() {
         // given
-        String parcelADimensions = "max.\n" +
-                                   "19 x 38 x 64 cm\n" +
-                                   "do 25 kg";
+        String parcelADimensions = "max. 19 x 38 x 64 cm\n" +
+                "up to 25 kg";
 
         // when
 
@@ -68,9 +88,8 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileCDimensions() {
         // given
-        String parcelADimensions = "max.\n" +
-                                   "41 x 38 x 64 cm\n" +
-                                   "do 25 kg";
+        String parcelADimensions = "max. 41 x 38 x 64 cm\n" +
+                "up to 25 kg";
 
         // when
 
@@ -117,7 +136,7 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = "14,99 zł";
+        String correctParcelPrice = "PLN 14.99";
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -129,7 +148,7 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = "16,49 zł";
+        String correctParcelPrice = "PLN 16.49";
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -141,12 +160,27 @@ public class TestC2DFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = "19,99 zł";
+        String correctParcelPrice = "PLN 19.99";
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
 
         // then
         Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectHTSModalTitle() throws Exception {
+        // given
+        String desiredTitle = "How to send the parcel?";
+        String errorMessage = "";
+
+        // when
+        formPage.clickHowToSendParcel();
+
+        // then
+        Assert.assertEquals(errorMessage, desiredTitle, formPage.getModalTitle().getText());
+
+        refreshPage();
     }
 }

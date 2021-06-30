@@ -1,3 +1,5 @@
+package secondary;
+
 import helper.WaitPage;
 import org.junit.*;
 import org.openqa.selenium.By;
@@ -8,29 +10,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestApmFormStatic extends Base {
+public class TestC2DFormStatic extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static ParcelTiles parcelTiles;
 
-    private static List<WebElement> linkList;
-    private static List<String> cleanLinkList;
-
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
         formPage = new FormPage();
-        receiverForm = new ReceiverForm();
-        senderForm = new SenderForm();
+        receiverForm  = new ReceiverForm();
+        senderForm  = new SenderForm();
         waitPage = new WaitPage();
         parcelTiles = new ParcelTiles();
 
-        linkList = new ArrayList<WebElement>();
-        cleanLinkList = new ArrayList<String>();
-
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
+    }
+
+    @Before
+    public void setUpForm() throws InterruptedException {
+        formPage.chooseDeliveryC2D();
     }
 
     @After
@@ -40,25 +41,12 @@ public class TestApmFormStatic extends Base {
         formPage.closeCookiesPopup();
     }
 
-    public List<String> pullUpAllLinks() {
-        linkList = driver.findElements(By.tagName("a"));
-
-        for (WebElement link : linkList) {
-            cleanLinkList.add(link.getAttribute("href"));
-        }
-
-        while (cleanLinkList.remove(null)) {
-        }
-
-        return cleanLinkList;
-    }
-
     @Test
     public void shouldReturnCorrectTileADimensions() {
         // given
-        String parcelADimensions = "max.\n" +
-                "8 x 38 x 64 cm\n" +
-                "do 25 kg";
+        String parcelADimensions =  "max.\n" +
+                                    "8 x 38 x 64 cm\n" +
+                                    "do 25 kg";
 
         // when
 
@@ -70,8 +58,8 @@ public class TestApmFormStatic extends Base {
     public void shouldReturnCorrectTileBDimensions() {
         // given
         String parcelADimensions = "max.\n" +
-                "19 x 38 x 64 cm\n" +
-                "do 25 kg";
+                                   "19 x 38 x 64 cm\n" +
+                                   "do 25 kg";
 
         // when
 
@@ -83,8 +71,8 @@ public class TestApmFormStatic extends Base {
     public void shouldReturnCorrectTileCDimensions() {
         // given
         String parcelADimensions = "max.\n" +
-                "41 x 38 x 64 cm\n" +
-                "do 25 kg";
+                                   "41 x 38 x 64 cm\n" +
+                                   "do 25 kg";
 
         // when
 
@@ -101,7 +89,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue(errorMessage, parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -113,7 +101,7 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue(errorMessage, parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -125,13 +113,13 @@ public class TestApmFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue(errorMessage, parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = "12,99 zł";
+        String correctParcelPrice = "14,99 zł";
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -143,7 +131,7 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = "13,99 zł";
+        String correctParcelPrice = "16,49 zł";
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -155,7 +143,7 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = "15,49 zł";
+        String correctParcelPrice = "19,99 zł";
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when

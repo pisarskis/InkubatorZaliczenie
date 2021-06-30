@@ -1,23 +1,33 @@
+package secondary;
+
 import helper.FormDataFactory;
 import helper.SenderFormData;
+import helper.WaitPage;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import pages.*;
 
-public class TestC2DFormSummaryStatic extends Base {
+public class TestEndSummaryStatic extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
-    private static SummaryPage summaryPage;
     private static SenderForm senderForm;
+    private static WaitPage waitPage;
+    private static PaymentPage paymentPage;
+    private static EndSummaryPage endSummaryPage;
     private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
         formPage = new FormPage();
         receiverForm  = new ReceiverForm();
-        summaryPage = new SummaryPage();
-        senderForm = new SenderForm();
+        senderForm  = new SenderForm();
+        waitPage = new WaitPage();
+        paymentPage = new PaymentPage();
+        endSummaryPage = new EndSummaryPage();
         formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
@@ -26,14 +36,21 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-         formPage.chooseDeliveryC2D();
-        formDataFactory.fillC2DFormData();
+        formPage.chooseDeliveryToAPM();
+        formPage.clickA();
+        formDataFactory.fillAPMFormData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
         senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
+        formPage.clickPayButton();
+        waitPage.waitLong();
+        paymentPage.clickBank();
+        paymentPage.clickNextButton();
+        paymentPage.clickAcceptPayment();
+        formPage.closeCookiesPopup();
     }
 
     @Test
@@ -45,7 +62,7 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverName, summaryPage.getReceiverName().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverName, endSummaryPage.getReceiverName().getText());
     }
 
     @Test
@@ -57,7 +74,7 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverPhoneNo, summaryPage.getReceiverPhoneNo().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverPhoneNo, endSummaryPage.getReceiverPhoneNo().getText());
     }
 
     @Test
@@ -69,7 +86,7 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverEmail, summaryPage.getReceiverEmail().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverEmail, endSummaryPage.getReceiverEmail().getText());
     }
 
     @Test
@@ -81,7 +98,7 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderName, summaryPage.getSenderName().getText());
+        Assert.assertEquals(errorMessage, expectedSenderName, endSummaryPage.getSenderName().getText());
     }
 
     @Test
@@ -93,7 +110,7 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderPhoneNo, summaryPage.getSenderPhoneNo().getText());
+        Assert.assertEquals(errorMessage, expectedSenderPhoneNo, endSummaryPage.getSenderPhoneNo().getText());
     }
 
     @Test
@@ -105,7 +122,31 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderEmail, summaryPage.getSenderEmail().getText());
+        Assert.assertEquals(errorMessage, expectedSenderEmail, endSummaryPage.getSenderEmail().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectApmNo() {
+        // given
+        String expectedApmNo = "PAW04A";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedApmNo, endSummaryPage.getApmNo().getText());
+    }
+
+    @Test
+    public void shouldPrintCorrectApmAdress() {
+        // given
+        String expectedApmAdress = "Warszawa 00-175";
+        String errorMessage = "";
+
+        // when
+
+        // then
+        Assert.assertEquals(errorMessage, expectedApmAdress, endSummaryPage.getApmAdress().getText());
     }
 
     @Test
@@ -117,19 +158,19 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceName, summaryPage.getInvoiceName().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceName, endSummaryPage.getInvoiceName().getText());
     }
 
     @Test
     public void shouldPrintCorrectInvoiceNIP() {
         // given
-        String expectedInvoiceNIP = "NIP: 6793087624";
+        String expectedInvoiceNIP = "NIP: PL6793087624";
         String errorMessage = "";
 
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceNIP, summaryPage.getInvoiceNIP().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceNIP, endSummaryPage.getInvoiceNIP().getText());
     }
 
     @Test
@@ -141,7 +182,7 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceTown, summaryPage.getInvoiceTown().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceTown, endSummaryPage.getInvoiceTown().getText());
     }
 
     @Test
@@ -153,42 +194,6 @@ public class TestC2DFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceStreet, summaryPage.getInvoiceStreet().getText());
-    }
-
-    @Test
-    public void shouldPrintCorrectReceiverTown() {
-        // given
-        String expectedReceiverTown = "02-677 Warszawa";
-        String errorMessage = "";
-
-        // when
-
-        // then
-        Assert.assertEquals(errorMessage, expectedReceiverTown, summaryPage.getSenderTown().getText());
-    }
-
-    @Test
-    public void shouldPrintCorrectReceiverStreet() {
-        // given
-        String expectedReceiverStreet = "Cybernetyki 10/5";
-        String errorMessage = "";
-
-        // when
-
-        // then
-        Assert.assertEquals(errorMessage, expectedReceiverStreet, summaryPage.getSenderStreet().getText());
-    }
-
-    @Test
-    public void shouldPrintCorrectInvoiceCountry() {
-        // given
-        String expectedReceiverCountry = "Polska";
-        String errorMessage = "";
-
-        // when
-
-        // then
-        Assert.assertEquals(errorMessage, expectedReceiverCountry, summaryPage.getSenderCountry().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceStreet, endSummaryPage.getInvoiceStreet().getText());
     }
 }

@@ -34,8 +34,8 @@ public class FormDataFactory {
     public void fillIndividualInvoice() throws InterruptedException {
         senderForm.clickInvoice();
         senderForm.clickLegalStatusIndividualCheckbox();
-        senderForm.fillSenderName(SenderFormData.NAME.getValue());
-        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.clickInvoiceIndividualName(SenderFormData.NAME.getValue());
+        senderForm.clickInvoiceIndividualEmail(SenderFormData.EMAIL.getValue());
         senderForm.clickInvoiceIndividualZIPCode(SenderFormData.ZIPCODE.getValue());
         senderForm.clickInvoiceIndividualTown(SenderFormData.TOWN.getValue());
         senderForm.clickInvoiceIndividualStreet(SenderFormData.STREET.getValue());
