@@ -15,8 +15,8 @@ public enum SenderFormData {
 
     private String value;
 
-    SenderFormData(String velue) {
-        this.value = velue;
+    SenderFormData(String value) {
+        this.value = value;
     }
 
     public String getValue() {

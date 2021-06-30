@@ -1,7 +1,6 @@
 package primary;
 
-import helper.FormDataFactory;
-import helper.WaitPage;
+import helper.*;
 import org.junit.*;
 import pages.*;
 
@@ -10,7 +9,6 @@ public class TestInvoice extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
@@ -18,30 +16,47 @@ public class TestInvoice extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
-    }
-
-    @Before
-    public void setUpBeforeEach() throws Exception {
-        fillFormAllData();
+        waitPage.waitShort();
     }
 
     @After
     public void refreshPage() throws InterruptedException {
         Base.driver.navigate().refresh();
-        waitPage.waitLong();
+        waitPage.waitShort();
         formPage.closeCookiesPopup();
     }
 
+    @Before
     public void fillFormAllData() throws Exception {
         formPage.chooseDeliveryToAPM();
-        formPage.clickA();
-        formDataFactory.fillAPMFormData();
+        formPage.clickC();
+        fillAPMFormData();
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
+    }
+
+    public void fillAPMFormData() throws InterruptedException {
+        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
+        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
+        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
+        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
+        senderForm.fillSenderName(SenderFormData.NAME.getValue());
+        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
+    }
+
+    public void fillIndividualInvoice() throws InterruptedException {
+        senderForm.clickInvoice();
+        senderForm.clickLegalStatusIndividualCheckbox();
+        senderForm.clickInvoiceIndividualName(SenderFormData.NAME.getValue());
+        senderForm.clickInvoiceIndividualEmail(SenderFormData.EMAIL.getValue());
+        senderForm.clickInvoiceIndividualZIPCode(SenderFormData.ZIPCODE.getValue());
+        senderForm.clickInvoiceIndividualTown(SenderFormData.TOWN.getValue());
+        senderForm.clickInvoiceIndividualStreet(SenderFormData.STREET.getValue());
+        senderForm.clickInvoiceIndividualBuildingNo(SenderFormData.STREETNO.getValue());
     }
 
     @Test
@@ -81,7 +96,7 @@ public class TestInvoice extends Base {
         String name = "bar";
 
         // when
-        formDataFactory.fillIndividualInvoice();
+        fillIndividualInvoice();
         formPage.clickSendButton();
 
         // then

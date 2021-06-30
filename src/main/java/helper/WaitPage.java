@@ -16,10 +16,10 @@ public class WaitPage {
     }
 
     public void waitShort() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(1);
     }
 
     public void waitLong() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(4);
+        TimeUnit.SECONDS.sleep(3);
     }
 }

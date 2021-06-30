@@ -1,6 +1,5 @@
 package secondary;
 
-import helper.FormDataFactory;
 import helper.WaitPage;
 import org.junit.*;
 import org.openqa.selenium.By;
@@ -16,7 +15,6 @@ public class TestFormStatic extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static FormDataFactory formDataFactory;
     private static FormPageStatics formPageStatics;
 
     private static List<WebElement> linkList;
@@ -28,7 +26,6 @@ public class TestFormStatic extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
-        formDataFactory = new FormDataFactory();
         formPageStatics = new FormPageStatics();
 
         linkList = new ArrayList<WebElement>();

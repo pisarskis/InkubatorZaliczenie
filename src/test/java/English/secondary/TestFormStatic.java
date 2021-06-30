@@ -1,6 +1,5 @@
 package English.secondary;
 
-import helper.FormDataFactory;
 import helper.WaitPage;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -18,7 +17,6 @@ public class TestFormStatic extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static FormDataFactory formDataFactory;
     private static FormPageStatics formPageStatics;
 
     private static List<WebElement> linkList;
@@ -30,7 +28,6 @@ public class TestFormStatic extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
-        formDataFactory = new FormDataFactory();
         formPageStatics = new FormPageStatics();
 
         linkList = new ArrayList<WebElement>();
@@ -43,13 +40,13 @@ public class TestFormStatic extends Base {
     }
 
     public void refreshPage() throws InterruptedException {
-        driver.navigate().refresh();
+        Base.driver.navigate().refresh();
         waitPage.waitLong();
         formPage.closeCookiesPopup();
     }
 
     public List<String> pullUpAllLinks(){
-        linkList = driver.findElements(By.tagName("a"));
+        linkList = Base.driver.findElements(By.tagName("a"));
 
         for(WebElement link:linkList){
             cleanLinkList.add(link.getAttribute("href"));

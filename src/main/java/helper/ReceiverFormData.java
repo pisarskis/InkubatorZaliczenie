@@ -13,8 +13,8 @@ public enum ReceiverFormData {
 
     private String value;
 
-    ReceiverFormData(String velue) {
-        this.value = velue;
+    ReceiverFormData(String value) {
+        this.value = value;
     }
 
     public String getValue() {

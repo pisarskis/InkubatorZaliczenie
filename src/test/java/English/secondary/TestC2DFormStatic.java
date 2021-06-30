@@ -1,6 +1,5 @@
 package English.secondary;
 
-import helper.FormDataFactory;
 import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
@@ -9,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import pages.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TestC2DFormStatic extends Base {
@@ -18,7 +16,6 @@ public class TestC2DFormStatic extends Base {
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static ParcelTiles parcelTiles;
-    private static FormDataFactory formDataFactory;
 
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
@@ -30,7 +27,6 @@ public class TestC2DFormStatic extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         parcelTiles = new ParcelTiles();
-        formDataFactory = new FormDataFactory();
 
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
