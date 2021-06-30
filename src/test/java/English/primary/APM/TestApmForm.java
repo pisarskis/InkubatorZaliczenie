@@ -1,8 +1,6 @@
 package English.primary.APM;
 
-import helper.FormDataFactory;
-import helper.Prices;
-import helper.WaitPage;
+import helper.*;
 import org.junit.*;
 import pages.Base;
 import pages.FormPage;
@@ -14,7 +12,6 @@ public class TestApmForm extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
@@ -22,7 +19,6 @@ public class TestApmForm extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -44,9 +40,19 @@ public class TestApmForm extends Base {
 
     public void fillFormAllData() throws Exception {
         formPage.clickA();
-        formDataFactory.fillAPMFormData();
+        fillAPMFormData();
         formPage.clickTermsCheckboxEngish();
         formPage.clickNewsletterCheckbox();
+    }
+
+    public void fillAPMFormData() throws InterruptedException {
+        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
+        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
+        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
+        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
+        senderForm.fillSenderName(SenderFormData.NAME.getValue());
+        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
     }
 
     @Test

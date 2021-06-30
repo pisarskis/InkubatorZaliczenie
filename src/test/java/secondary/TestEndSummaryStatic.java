@@ -1,14 +1,11 @@
 package secondary;
 
-import helper.FormDataFactory;
+import helper.ReceiverFormData;
 import helper.SenderFormData;
 import helper.WaitPage;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import pages.*;
 
 public class TestEndSummaryStatic extends Base {
@@ -18,7 +15,6 @@ public class TestEndSummaryStatic extends Base {
     private static WaitPage waitPage;
     private static PaymentPage paymentPage;
     private static EndSummaryPage endSummaryPage;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
@@ -28,7 +24,6 @@ public class TestEndSummaryStatic extends Base {
         waitPage = new WaitPage();
         paymentPage = new PaymentPage();
         endSummaryPage = new EndSummaryPage();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -38,7 +33,7 @@ public class TestEndSummaryStatic extends Base {
     private static void formRunThrough() throws InterruptedException {
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
-        formDataFactory.fillAPMFormData();
+        fillAPMFormData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
         senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
@@ -51,6 +46,16 @@ public class TestEndSummaryStatic extends Base {
         paymentPage.clickNextButton();
         paymentPage.clickAcceptPayment();
         formPage.closeCookiesPopup();
+    }
+
+    public static void fillAPMFormData() throws InterruptedException {
+        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
+        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
+        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
+        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
+        senderForm.fillSenderName(SenderFormData.NAME.getValue());
+        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
     }
 
     @Test

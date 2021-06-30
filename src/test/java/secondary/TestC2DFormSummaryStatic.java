@@ -1,6 +1,6 @@
 package secondary;
 
-import helper.FormDataFactory;
+import helper.ReceiverFormData;
 import helper.SenderFormData;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -12,7 +12,6 @@ public class TestC2DFormSummaryStatic extends Base {
     private static ReceiverForm receiverForm;
     private static SummaryPage summaryPage;
     private static SenderForm senderForm;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
@@ -20,7 +19,6 @@ public class TestC2DFormSummaryStatic extends Base {
         receiverForm  = new ReceiverForm();
         summaryPage = new SummaryPage();
         senderForm = new SenderForm();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -28,14 +26,28 @@ public class TestC2DFormSummaryStatic extends Base {
     }
 
     private static void formRunThrough() throws InterruptedException {
-         formPage.chooseDeliveryC2D();
-        formDataFactory.fillC2DFormData();
+        formPage.chooseDeliveryC2D();
+        fillC2DFormData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
         senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
+    }
+
+    public static void fillC2DFormData() throws InterruptedException {
+        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
+        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
+        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
+        receiverForm.fillReceiverZipCode(ReceiverFormData.ZIPCODE.getValue());
+        receiverForm.fillReceiverTown(ReceiverFormData.TOWN.getValue());
+        receiverForm.fillReceiverStreet(ReceiverFormData.STREET.getValue());
+        receiverForm.fillReceiverStreetNo(ReceiverFormData.STREETNO.getValue());
+        receiverForm.fillReceiverFlatNo(ReceiverFormData.FLATNO.getValue());
+        senderForm.fillSenderName(SenderFormData.NAME.getValue());
+        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
     }
 
     @Test

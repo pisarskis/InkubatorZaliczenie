@@ -1,9 +1,7 @@
 package secondary;
 
-import helper.ActionPage;
-import helper.FormDataFactory;
+import helper.ReceiverFormData;
 import helper.SenderFormData;
-import helper.WaitPage;
 import org.junit.*;
 import pages.*;
 
@@ -12,7 +10,6 @@ public class TestApmFormSummaryStatic extends Base {
     private static ReceiverForm receiverForm;
     private static SummaryPage summaryPage;
     private static SenderForm senderForm;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
@@ -20,7 +17,6 @@ public class TestApmFormSummaryStatic extends Base {
         receiverForm  = new ReceiverForm();
         summaryPage = new SummaryPage();
         senderForm = new SenderForm();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -29,13 +25,23 @@ public class TestApmFormSummaryStatic extends Base {
 
     private static void formRunThrough() throws InterruptedException {
         formPage.chooseDeliveryToAPM();
-        formDataFactory.fillAPMFormData();
+        fillAPMFormData();
         senderForm.clickInvoice();
         senderForm.clickPlishCompanyCheckbox();
         senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
+    }
+
+    public static void fillAPMFormData() throws InterruptedException {
+        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
+        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
+        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
+        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
+        senderForm.fillSenderName(SenderFormData.NAME.getValue());
+        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
     }
 
     @Test

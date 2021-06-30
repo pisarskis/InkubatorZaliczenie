@@ -1,9 +1,6 @@
 package primary;
 
-import helper.ActionPage;
-import helper.FormDataFactory;
-import helper.Prices;
-import helper.WaitPage;
+import helper.*;
 import org.junit.*;
 import pages.*;
 
@@ -13,7 +10,6 @@ public class TestPayment extends Base {
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static PaymentPage paymentPage;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
@@ -22,16 +18,21 @@ public class TestPayment extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         paymentPage = new PaymentPage();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
-        formRunThrough();
     }
 
-    private static void formRunThrough() throws InterruptedException {
+    @After
+    public void refreshPage() throws InterruptedException {
+        Base.driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
+        waitPage.waitLong();
+        formPage.closeCookiesPopup();
+    }
 
-        formDataFactory.fillAPMFormData();
+    private void formRunThrough() throws InterruptedException {
+
+        fillAPMFormData();
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
@@ -40,43 +41,56 @@ public class TestPayment extends Base {
         waitPage.waitLong();
     }
 
+    public void fillAPMFormData() throws InterruptedException {
+        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
+        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
+        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
+        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
+        senderForm.fillSenderName(SenderFormData.NAME.getValue());
+        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
+    }
+
     @Test
-    public void shouldShowCorrectParcelAPriceInPayment() throws InterruptedException {
+    public void shouldShowAPMParcelAPriceInPayment() throws InterruptedException {
         // given
-        String desiredParcelPrice = Prices.APM_A_PL.getPrice();
+        String desiredParcelPrice = "12,99 PLN";
         String errorMessage = "";
 
         // when
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
+        formRunThrough();
 
         // then
         Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
     }
 
     @Test
-    public void shouldShowCorrectParcelBPriceInPayment() throws InterruptedException {
+    public void shouldShowAPMParcelBPriceInPayment() throws InterruptedException {
         // given
-        String desiredParcelPrice = Prices.APM_B_PL.getPrice();
+        String desiredParcelPrice = "13,99 PLN";
         String errorMessage = "";
 
         // when
         formPage.chooseDeliveryToAPM();
         formPage.clickB();
+        formRunThrough();
 
         // then
         Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
     }
 
     @Test
-    public void shouldShowCorrectParcelCPriceInPayment() throws InterruptedException {
+    public void shouldShowAPMParcelCPriceInPayment() throws InterruptedException {
         // given
-        String desiredParcelPrice = Prices.APM_C_PL.getPrice();
+        String desiredParcelPrice = "15,49 PLN";
         String errorMessage = "";
 
         // when
         formPage.chooseDeliveryToAPM();
         formPage.clickC();
+        formRunThrough();
 
         // then
         Assert.assertEquals(errorMessage, desiredParcelPrice, paymentPage.getSenderParcelPrice().getText());
@@ -91,6 +105,7 @@ public class TestPayment extends Base {
         // when
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
+        formRunThrough();
 
         // then
         Assert.assertEquals(errorMessage, desiredSenderName, paymentPage.getSenderName().getText());
@@ -105,6 +120,7 @@ public class TestPayment extends Base {
         // when
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
+        formRunThrough();
 
         // then
         Assert.assertTrue(errorMessage, paymentPage.getSenderEmail().getText().contains(desiredParcelPrice));

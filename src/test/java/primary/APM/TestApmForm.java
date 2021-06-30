@@ -1,14 +1,7 @@
 package primary.APM;
 
-import helper.ActionPage;
-import helper.FormDataFactory;
-import helper.Prices;
-import helper.WaitPage;
+import helper.*;
 import org.junit.*;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
 import pages.*;
 
 public class TestApmForm extends Base {
@@ -16,7 +9,6 @@ public class TestApmForm extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
@@ -24,7 +16,6 @@ public class TestApmForm extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -44,9 +35,19 @@ public class TestApmForm extends Base {
 
     public void fillFormAllData() throws Exception {
         formPage.clickA();
-        formDataFactory.fillAPMFormData();
+        fillAPMFormData();
         formPage.clickTermsCheckbox();
         formPage.clickNewsletterCheckbox();
+    }
+
+    public void fillAPMFormData() throws InterruptedException {
+        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
+        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
+        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
+        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
+        senderForm.fillSenderName(SenderFormData.NAME.getValue());
+        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
     }
 
     @Test

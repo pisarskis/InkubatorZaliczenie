@@ -1,6 +1,5 @@
 package English.secondary;
 
-import helper.FormDataFactory;
 import helper.Prices;
 import helper.WaitPage;
 import org.junit.After;
@@ -12,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import pages.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TestApmFormStatic extends Base {
@@ -21,7 +19,6 @@ public class TestApmFormStatic extends Base {
     private static SenderForm senderForm;
     private static WaitPage waitPage;
     private static ParcelTiles parcelTiles;
-    private static FormDataFactory formDataFactory;
 
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
@@ -33,7 +30,6 @@ public class TestApmFormStatic extends Base {
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
         parcelTiles = new ParcelTiles();
-        formDataFactory = new FormDataFactory();
 
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
@@ -46,7 +42,7 @@ public class TestApmFormStatic extends Base {
 
     @After
     public void refreshPage() throws InterruptedException {
-        driver.navigate().refresh();
+        Base.driver.navigate().refresh();
         waitPage.waitLong();
         formPage.closeCookiesPopup();
     }
@@ -61,17 +57,6 @@ public class TestApmFormStatic extends Base {
         while (cleanLinkList.remove(null)){}
 
         return cleanLinkList;
-    }
-
-    @Test
-    public void shouldSwitchLanguageToEnglish() throws Exception {
-        // given
-        String expectedHeader = "Send parcels quickly and conveniently!";
-
-        // when
-
-        // then
-        Assert.assertEquals(expectedHeader, formPage.getFormEnglishHeader().getText());
     }
 
     @Test

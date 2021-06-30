@@ -1,8 +1,6 @@
 package primary.C2D;
 
-import helper.FormDataFactory;
-import helper.Prices;
-import helper.WaitPage;
+import helper.*;
 import org.junit.*;
 import pages.*;
 
@@ -11,7 +9,6 @@ public class TestC2DForm extends Base {
     private static ReceiverForm receiverForm;
     private static SenderForm senderForm;
     private static WaitPage waitPage;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
@@ -19,7 +16,6 @@ public class TestC2DForm extends Base {
         receiverForm  = new ReceiverForm();
         senderForm  = new SenderForm();
         waitPage = new WaitPage();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -35,13 +31,6 @@ public class TestC2DForm extends Base {
         driver.navigate().refresh();
         waitPage.waitLong();
         formPage.closeCookiesPopup();
-    }
-
-    public void fillFormAllData() throws Exception {
-        formPage.clickA();
-        formDataFactory.fillC2DFormData();
-        formPage.clickTermsCheckbox();
-        formPage.clickNewsletterCheckbox();
     }
 
     @Test

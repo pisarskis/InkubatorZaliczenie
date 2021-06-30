@@ -1,7 +1,8 @@
 package English.primary;
 
 import English.primary.APM.TestApmForm;
-import helper.FormDataFactory;
+import helper.ReceiverFormData;
+import helper.SenderFormData;
 import helper.WaitPage;
 import org.junit.After;
 import org.junit.Assert;
@@ -18,7 +19,6 @@ public class TestEndSummary extends Base {
     private static TestApmForm testApmForm;
     private static SummaryPage summaryPage;
     private static EndSummaryPage endSummaryPage;
-    private static FormDataFactory formDataFactory;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
@@ -30,7 +30,6 @@ public class TestEndSummary extends Base {
         testApmForm = new TestApmForm();
         summaryPage = new SummaryPage();
         endSummaryPage = new EndSummaryPage();
-        formDataFactory = new FormDataFactory();
 
         formPage.closeCookiesPopup();
         formPage.closeBottomCookiesPopup();
@@ -45,16 +44,26 @@ public class TestEndSummary extends Base {
         formPage.closeCookiesPopup();
     }
 
-    private static void formRunThrough() throws InterruptedException {
+    private void formRunThrough() throws InterruptedException {
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
-        formDataFactory.fillAPMFormData();
+        fillAPMFormData();
         formPage.clickTermsCheckboxEngish();
         formPage.clickNewsletterCheckbox();
         formPage.clickSendButton();
         formPage.clickPayButton();
         paymentPage.clickBank();
         paymentPage.clickNextButton();
+    }
+
+    public void fillAPMFormData() throws InterruptedException {
+        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
+        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
+        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
+        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
+        senderForm.fillSenderName(SenderFormData.NAME.getValue());
+        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
+        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
     }
 
     public void checkRefreshButton(String expectedMessage) throws InterruptedException {
