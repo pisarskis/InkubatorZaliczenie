@@ -1,6 +1,7 @@
 package English.primary.APM;
 
 import helper.FormDataFactory;
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import pages.Base;
@@ -175,7 +176,7 @@ public class TestApmForm extends Base {
     @Test
     public void shouldReturnCorrectParcelAPrice() throws Exception {
         // given
-        String correctParcelPrice = "PLN 12.99";
+        String correctParcelPrice = Prices.APM_A_EN.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -188,7 +189,7 @@ public class TestApmForm extends Base {
     @Test
     public void shouldReturnCorrectParcelBPrice() throws Exception {
         //given
-        String correctParcelPrice = "PLN 13.99";
+        String correctParcelPrice = Prices.APM_B_EN.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -201,7 +202,7 @@ public class TestApmForm extends Base {
     @Test
     public void shouldReturnCorrectParcelCPrice() throws Exception {
         // given
-        String correctParcelPrice = "PLN 15.49";
+        String correctParcelPrice = Prices.APM_C_EN.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when

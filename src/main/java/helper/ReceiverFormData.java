@@ -1,7 +1,6 @@
 package helper;
 
 public enum ReceiverFormData {
-
     NAME("foo"),
     EMAIL("foo@foo.pl"),
     PHONENO("555555555"),

@@ -3,6 +3,8 @@ package helper;
 import pages.ReceiverForm;
 import pages.SenderForm;
 
+import java.util.HashMap;
+
 public class FormDataFactory {
     private static ReceiverForm receiverForm = new ReceiverForm();
     private static SenderForm senderForm = new SenderForm();

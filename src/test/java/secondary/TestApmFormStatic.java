@@ -1,5 +1,6 @@
 package secondary;
 
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import org.openqa.selenium.By;
@@ -133,7 +134,7 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileAPrice() {
         // given
-        String correctParcelPrice = "12,99 zł";
+        String correctParcelPrice = Prices.APM_A_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -145,7 +146,7 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileBPrice() {
         //given
-        String correctParcelPrice = "13,99 zł";
+        String correctParcelPrice = Prices.APM_B_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -157,7 +158,7 @@ public class TestApmFormStatic extends Base {
     @Test
     public void shouldReturnCorrectTileCPrice() {
         // given
-        String correctParcelPrice = "15,49 zł";
+        String correctParcelPrice = Prices.APM_C_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when

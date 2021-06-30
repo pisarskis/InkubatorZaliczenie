@@ -12,6 +12,7 @@ public enum SenderFormData {
     FLATNO("1"),
     NIPNO("6793087624");
 
+
     private String value;
 
     SenderFormData(String velue) {

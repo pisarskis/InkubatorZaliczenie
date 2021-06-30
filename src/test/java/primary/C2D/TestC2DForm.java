@@ -1,6 +1,7 @@
 package primary.C2D;
 
 import helper.FormDataFactory;
+import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import pages.*;
@@ -170,7 +171,7 @@ public class TestC2DForm extends Base {
     @Test
     public void shouldReturnCorrectParcelAPrice() {
         // given
-        String correctParcelPrice = "14,99 zł";
+        String correctParcelPrice = Prices.C2D_A_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
@@ -183,7 +184,7 @@ public class TestC2DForm extends Base {
     @Test
     public void shouldReturnCorrectParcelBPrice() {
         //given
-        String correctParcelPrice = "16,49 zł";
+        String correctParcelPrice = Prices.C2D_B_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
@@ -196,7 +197,7 @@ public class TestC2DForm extends Base {
     @Test
     public void shouldReturnCorrectParcelCPrice() {
         // given
-        String correctParcelPrice = "19,99 zł";
+        String correctParcelPrice = Prices.C2D_C_PL.getPrice();
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
