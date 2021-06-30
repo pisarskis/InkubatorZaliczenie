@@ -37,11 +37,6 @@ public class TestEndSummary extends Base {
         formPage.closeCookiesPopup();
     }
 
-    public void apmSummarySetUp() throws InterruptedException {
-        Base.driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
-        formRunThrough();
-    }
-
     @After
     public void refreshPage() throws InterruptedException {
         Base.driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
