@@ -7,27 +7,13 @@ import pages.*;
 
 @Tag("en")
 public class TestApmFormSummaryEng extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SenderForm senderForm;
-    private static WaitPage waitPage;
-    private static TestApmFormEng apmTest;
-    private static SummaryPage summaryPage;
-
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
-        apmTest = new TestApmFormEng();
-        summaryPage = new SummaryPage();
-        waitPage = new WaitPage();
-
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
-        formPage.clickLanguageSelector();
-        formPage.closeCookiesPopup();
+        Base.getFormPage().closeCookiesPopup();
+        Base.getFormPage().closeBottomCookiesPopup();
+        Base.getFormPage().clickLanguageSelector();
+        Base.getFormPage().closeCookiesPopup();
     }
 
     @Before
@@ -37,26 +23,16 @@ public class TestApmFormSummaryEng extends Base {
 
     @After
     public void refreshPage() throws InterruptedException {
-        driver.navigate().refresh();
-        waitPage.waitLong();
-        formPage.closeCookiesPopup();
+        Base.driver.navigate().refresh();
+        Base.getWaitPage().waitLong();
+        Base.getFormPage().closeCookiesPopup();
     }
 
     private void formRunThrough() throws InterruptedException {
-        formPage.chooseDeliveryToAPM();
-        fillAPMFormData();
-        formPage.clickTermsCheckboxEngish();
-        formPage.clickNewsletterCheckbox();
-    }
-
-    public void fillAPMFormData() throws InterruptedException {
-        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
-        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
-        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
-        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
-        senderForm.fillSenderName(SenderFormData.NAME.getValue());
-        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
-        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
+        Base.getFormPage().chooseDeliveryToAPM();
+        Base.fillAPMFormData();
+        Base.getFormPage().clickTermsCheckboxEngish();
+        Base.getFormPage().clickNewsletterCheckbox();
     }
 
     @Test
@@ -66,11 +42,11 @@ public class TestApmFormSummaryEng extends Base {
         String expectedParcelSize = "Small";
 
         // when
-        formPage.clickA();
-        formPage.clickSendButton();
+        Base.getFormPage().clickA();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(expectedParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(expectedParcelSize, Base.getSummaryPage().getParcelSize().getText());
     }
 
     @Test
@@ -80,11 +56,11 @@ public class TestApmFormSummaryEng extends Base {
         String expectedParcelSize = "Medium";
 
         // when
-        formPage.clickB();
-        formPage.clickSendButton();
+        Base.getFormPage().clickB();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(expectedParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(expectedParcelSize, Base.getSummaryPage().getParcelSize().getText());
     }
 
     @Test
@@ -94,11 +70,11 @@ public class TestApmFormSummaryEng extends Base {
         String expectedParcelSize = "Large";
 
         // when
-        formPage.clickC();
-        formPage.clickSendButton();
+        Base.getFormPage().clickC();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(expectedParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(expectedParcelSize, Base.getSummaryPage().getParcelSize().getText());
     }
 
     @Test
@@ -109,11 +85,11 @@ public class TestApmFormSummaryEng extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickA();
-        formPage.clickSendButton();
+        Base.getFormPage().clickA();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertTrue( errorMessage,summaryPage.getParcelImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,Base.getSummaryPage().getParcelImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -124,11 +100,11 @@ public class TestApmFormSummaryEng extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickB();
-        formPage.clickSendButton();
+        Base.getFormPage().clickB();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertTrue( errorMessage,summaryPage.getParcelImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,Base.getSummaryPage().getParcelImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -139,11 +115,11 @@ public class TestApmFormSummaryEng extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickC();
-        formPage.clickSendButton();
+        Base.getFormPage().clickC();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertTrue( errorMessage,summaryPage.getParcelImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,Base.getSummaryPage().getParcelImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -153,11 +129,11 @@ public class TestApmFormSummaryEng extends Base {
         String expectedParcelPrice = Prices.APM_A_EN.getPrice();
 
         // when
-        formPage.clickA();
-        formPage.clickSendButton();
+        Base.getFormPage().clickA();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(expectedParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(expectedParcelPrice, Base.getSummaryPage().getParcelPrice().getText());
     }
 
     @Test
@@ -167,11 +143,11 @@ public class TestApmFormSummaryEng extends Base {
         String expectedParcelPrice = Prices.APM_B_EN.getPrice();
 
         // when
-        formPage.clickB();
-        formPage.clickSendButton();
+        Base.getFormPage().clickB();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(expectedParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(expectedParcelPrice, Base.getSummaryPage().getParcelPrice().getText());
     }
 
     @Test
@@ -181,10 +157,10 @@ public class TestApmFormSummaryEng extends Base {
         String expectedParcelPrice = Prices.APM_C_EN.getPrice();
 
         // when
-        formPage.clickC();
-        formPage.clickSendButton();
+        Base.getFormPage().clickC();
+        Base.getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(expectedParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(expectedParcelPrice, Base.getSummaryPage().getParcelPrice().getText());
     }
 }

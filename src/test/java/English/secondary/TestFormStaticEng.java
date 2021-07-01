@@ -15,36 +15,24 @@ import java.util.List;
 
 @Tag("en")
 public class TestFormStaticEng extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SenderForm senderForm;
-    private static WaitPage waitPage;
-    private static FormPageStatics formPageStatics;
-
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
-        waitPage = new WaitPage();
-        formPageStatics = new FormPageStatics();
-
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
 
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
-        formPage.clickLanguageSelector();
-        formPage.closeCookiesPopup();
+        getFormPage().closeCookiesPopup();
+        getFormPage().closeBottomCookiesPopup();
+        getFormPage().clickLanguageSelector();
+        getFormPage().closeCookiesPopup();
     }
 
     public void refreshPage() throws InterruptedException {
         Base.driver.navigate().refresh();
-        waitPage.waitLong();
-        formPage.closeCookiesPopup();
+        getWaitPage().waitLong();
+        getFormPage().closeCookiesPopup();
     }
 
     public List<String> pullUpAllLinks(){
@@ -67,10 +55,10 @@ public class TestFormStaticEng extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickHowToSendParcel();
+        getFormPage().clickHowToSendParcel();
 
         // then
-        Assert.assertEquals(errorMessage, expectedTitle, formPageStatics.getModalTitle().getText());
+        Assert.assertEquals(errorMessage, expectedTitle, getFormPageStatics().getModalTitle().getText());
         refreshPage();
     }
 
@@ -88,10 +76,10 @@ public class TestFormStaticEng extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickHowToSendParcel();
+        getFormPage().clickHowToSendParcel();
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getModalBody().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getModalBody().getText());
         refreshPage();
     }
 
@@ -103,10 +91,10 @@ public class TestFormStaticEng extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickHowToPackParcel();
+        getFormPage().clickHowToPackParcel();
 
         // then
-        Assert.assertEquals(errorMessage, expectedTitle, formPageStatics.getModalTitle().getText());
+        Assert.assertEquals(errorMessage, expectedTitle, getFormPageStatics().getModalTitle().getText());
         refreshPage();
     }
 
@@ -120,7 +108,7 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedText, formPageStatics.getTermsTextEnglish().getText());
+        Assert.assertEquals(errorMessage, expectedText, getFormPageStatics().getTermsTextEnglish().getText());
     }
 
     @Test
@@ -138,7 +126,7 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedText, formPageStatics.getNewsletterBody().getText());
+        Assert.assertEquals(errorMessage, expectedText, getFormPageStatics().getNewsletterBody().getText());
     }
 
     @Test
@@ -149,10 +137,10 @@ public class TestFormStaticEng extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickHowToPackParcel();
+        getFormPage().clickHowToPackParcel();
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getModalBody().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getModalBody().getText());
         refreshPage();
     }
 
@@ -190,7 +178,7 @@ public class TestFormStaticEng extends Base {
 
     @Test
     @Tag("en")
-    public void shouldPrintHeaderFirstText() throws Exception {
+    public void shouldPrintHeaderFirstText() {
         // given
         String expectedBody = "Pack the parcel";
         String errorMessage = "";
@@ -198,12 +186,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepFistText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getHomeHeaderStepFistText().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintHeaderStepSecondText() throws Exception {
+    public void shouldPrintHeaderStepSecondText() {
         // given
         String expectedBody = "Complete delivery details";
         String errorMessage = "";
@@ -211,12 +199,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepSecondText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getHomeHeaderStepSecondText().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintHeaderStepThirdText() throws Exception {
+    public void shouldPrintHeaderStepThirdText() {
         // given
         String expectedBody = "Pay for, print, and stick on the label";
         String errorMessage = "";
@@ -224,12 +212,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepThirdText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getHomeHeaderStepThirdText().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintHeaderStepFourthText() throws Exception {
+    public void shouldPrintHeaderStepFourthText() {
         // given
         String expectedBody = "Send from a Parcel Locker or Parcel Point";
         String errorMessage = "";
@@ -237,12 +225,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepFourthText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getHomeHeaderStepFourthText().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintTypeOfDeliveryHeader() throws Exception {
+    public void shouldPrintTypeOfDeliveryHeader() {
         // given
         String expectedBody = "Delivery method";
         String errorMessage = "";
@@ -250,12 +238,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getTypeOfDeliveryHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getTypeOfDeliveryHeader().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintTypeOfDeliveryHeaderSubtitle() throws Exception {
+    public void shouldPrintTypeOfDeliveryHeaderSubtitle() {
         // given
         String expectedBody = "Choose a delivery method";
         String errorMessage = "";
@@ -263,12 +251,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getTypeOfDeliveryHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getTypeOfDeliveryHeaderSubtitle().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintSizeOfParcelHeader() throws Exception {
+    public void shouldPrintSizeOfParcelHeader() {
         // given
         String expectedBody = "Parcel size";
         String errorMessage = "";
@@ -276,12 +264,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSizeOfParcelHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSizeOfParcelHeader().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintSizeOfParcelHeaderSubtitle() throws Exception {
+    public void shouldPrintSizeOfParcelHeaderSubtitle() {
         // given
         String expectedBody = "Choose parcel size";
         String errorMessage = "";
@@ -289,12 +277,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSizeOfParcelHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSizeOfParcelHeaderSubtitle().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintReceiverHeader() throws Exception {
+    public void shouldPrintReceiverHeader() {
         // given
         String expectedBody = "Parcel size";
         String errorMessage = "";
@@ -302,12 +290,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getReceiverHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getReceiverHeader().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintReceiverHeaderSubtitle() throws Exception {
+    public void shouldPrintReceiverHeaderSubtitle() {
         // given
         String expectedBody = "Enter receiver's data";
         String errorMessage = "";
@@ -315,12 +303,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getReceiverHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getReceiverHeaderSubtitle().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintSenderHeader() throws Exception {
+    public void shouldPrintSenderHeader() {
         // given
         String expectedBody = "Sender";
         String errorMessage = "";
@@ -328,12 +316,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSenderHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSenderHeader().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintSenderHeaderSubtitle() throws Exception {
+    public void shouldPrintSenderHeaderSubtitle() {
         // given
         String expectedBody = "Enter your data";
         String errorMessage = "";
@@ -341,12 +329,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSenderHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSenderHeaderSubtitle().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintSummaryHeader() throws Exception {
+    public void shouldPrintSummaryHeader() {
         // given
         String expectedBody = "Summary";
         String errorMessage = "";
@@ -354,12 +342,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSummaryHeader().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintSummaryTypeOfDelivery() throws Exception {
+    public void shouldPrintSummaryTypeOfDelivery() {
         // given
         String expectedBody = "Delivery";
         String errorMessage = "";
@@ -367,12 +355,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryTypeOfDelivery().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSummaryTypeOfDelivery().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintSummaryInsuranceHeader() throws Exception {
+    public void shouldPrintSummaryInsuranceHeader() {
         // given
         String expectedBody = "Insurance";
         String errorMessage = "";
@@ -380,12 +368,12 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryInsuranceHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSummaryInsuranceHeader().getText());
     }
 
     @Test
     @Tag("en")
-    public void shouldPrintSummaryInsuranceHeaderSubtitle() throws Exception {
+    public void shouldPrintSummaryInsuranceHeaderSubtitle() {
         // given
         String expectedBody = "Parcel has basic insurance amount up to PLN 5000.";
         String errorMessage = "";
@@ -393,6 +381,6 @@ public class TestFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryInsuranceHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSummaryInsuranceHeaderSubtitle().getText());
     }
 }

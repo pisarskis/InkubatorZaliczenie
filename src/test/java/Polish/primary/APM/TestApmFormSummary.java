@@ -7,49 +7,27 @@ import pages.*;
 
 @Tag("pl")
 public class TestApmFormSummary extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SenderForm senderForm;
-    private static WaitPage waitPage;
-    private static TestApmForm apmTest;
-    private static SummaryPage summaryPage;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
-        apmTest = new TestApmForm();
-        summaryPage = new SummaryPage();
-        waitPage = new WaitPage();
 
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
+        getFormPage().closeCookiesPopup();
+        getFormPage().closeBottomCookiesPopup();
     }
 
     @Before
     public void formRunThrough() throws InterruptedException {
-        formPage.chooseDeliveryToAPM();
+        getFormPage().chooseDeliveryToAPM();
         fillAPMFormData();
-        formPage.clickTermsCheckbox();
-        formPage.clickNewsletterCheckbox();
+        getFormPage().clickTermsCheckbox();
+        getFormPage().clickNewsletterCheckbox();
     }
 
     @After
     public void refreshPage() throws InterruptedException {
         Base.driver.navigate().refresh();
-        waitPage.waitShort();
-        formPage.closeCookiesPopup();
-    }
-
-    public void fillAPMFormData() throws InterruptedException {
-        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
-        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
-        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
-        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
-        senderForm.fillSenderName(SenderFormData.NAME.getValue());
-        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
-        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
+        getWaitPage().waitShort();
+        getFormPage().closeCookiesPopup();
     }
 
     @Test
@@ -61,11 +39,11 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickA();
-        formPage.clickSendButton();
+        getFormPage().clickA();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, expectedParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(errorMessage, expectedParcelSize, getSummaryPage().getParcelSize().getText());
     }
 
     @Test
@@ -77,11 +55,11 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickB();
-        formPage.clickSendButton();
+        getFormPage().clickB();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, expectedParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(errorMessage, expectedParcelSize, getSummaryPage().getParcelSize().getText());
     }
 
     @Test
@@ -93,11 +71,11 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickC();
-        formPage.clickSendButton();
+        getFormPage().clickC();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, expectedParcelSize, summaryPage.getParcelSize().getText());
+        Assert.assertEquals(errorMessage, expectedParcelSize, getSummaryPage().getParcelSize().getText());
     }
 
     @Test
@@ -108,11 +86,11 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickA();
-        formPage.clickSendButton();
+        getFormPage().clickA();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertTrue( errorMessage,summaryPage.getParcelImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,getSummaryPage().getParcelImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -123,11 +101,11 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickB();
-        formPage.clickSendButton();
+        getFormPage().clickB();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertTrue( errorMessage,summaryPage.getParcelImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,getSummaryPage().getParcelImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -138,11 +116,11 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickC();
-        formPage.clickSendButton();
+        getFormPage().clickC();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertTrue( errorMessage,summaryPage.getParcelImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,getSummaryPage().getParcelImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -154,11 +132,11 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickA();
-        formPage.clickSendButton();
+        getFormPage().clickA();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, expectedParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, getSummaryPage().getParcelPrice().getText());
     }
 
     @Test
@@ -170,11 +148,11 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickB();
-        formPage.clickSendButton();
+        getFormPage().clickB();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, expectedParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, getSummaryPage().getParcelPrice().getText());
     }
 
     @Test
@@ -186,10 +164,10 @@ public class TestApmFormSummary extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickC();
-        formPage.clickSendButton();
+        getFormPage().clickC();
+        getFormPage().clickSendButton();
 
         // then
-        Assert.assertEquals(errorMessage, expectedParcelPrice, summaryPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, expectedParcelPrice, getSummaryPage().getParcelPrice().getText());
     }
 }

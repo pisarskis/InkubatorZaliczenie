@@ -12,34 +12,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TestFormStatic extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SenderForm senderForm;
-    private static WaitPage waitPage;
-    private static FormPageStatics formPageStatics;
-
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
-        waitPage = new WaitPage();
-        formPageStatics = new FormPageStatics();
-
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
 
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
+        getFormPage().closeCookiesPopup();
+        getFormPage().closeBottomCookiesPopup();
     }
 
     public void refreshPage() throws InterruptedException {
         driver.navigate().refresh();
-        waitPage.waitLong();
-        formPage.closeCookiesPopup();
+        getWaitPage().waitLong();
+        getFormPage().closeCookiesPopup();
     }
 
     public List<String> pullUpAllLinks(){
@@ -62,10 +50,10 @@ public class TestFormStatic extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickHowToSendParcel();
+        getFormPage().clickHowToSendParcel();
 
         // then
-        Assert.assertEquals(errorMessage, expectedTitle, formPageStatics.getModalTitle().getText());
+        Assert.assertEquals(errorMessage, expectedTitle, getFormPageStatics().getModalTitle().getText());
         refreshPage();
     }
 
@@ -83,10 +71,10 @@ public class TestFormStatic extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickHowToSendParcel();
+        getFormPage().clickHowToSendParcel();
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getModalBody().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getModalBody().getText());
         refreshPage();
     }
 
@@ -98,10 +86,10 @@ public class TestFormStatic extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickHowToPackParcel();
+        getFormPage().clickHowToPackParcel();
 
         // then
-        Assert.assertEquals(errorMessage, expectedTitle, formPageStatics.getModalTitle().getText());
+        Assert.assertEquals(errorMessage, expectedTitle, getFormPageStatics().getModalTitle().getText());
         refreshPage();
     }
 
@@ -115,7 +103,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedText, formPageStatics.getTermsText().getText());
+        Assert.assertEquals(errorMessage, expectedText, getFormPageStatics().getTermsText().getText());
     }
 
     @Test
@@ -133,7 +121,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedText, formPageStatics.getNewsletterBody().getText());
+        Assert.assertEquals(errorMessage, expectedText, getFormPageStatics().getNewsletterBody().getText());
     }
 
     @Test
@@ -144,10 +132,10 @@ public class TestFormStatic extends Base {
         String errorMessage = "";
 
         // when
-        formPage.clickHowToPackParcel();
+        getFormPage().clickHowToPackParcel();
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getModalBody().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getModalBody().getText());
         refreshPage();
     }
 
@@ -202,7 +190,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepFistText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getHomeHeaderStepFistText().getText());
     }
 
     @Test
@@ -216,7 +204,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepSecondText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getHomeHeaderStepSecondText().getText());
     }
 
     @Test
@@ -230,7 +218,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepThirdText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getHomeHeaderStepThirdText().getText());
     }
 
     @Test
@@ -244,7 +232,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getHomeHeaderStepFourthText().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getHomeHeaderStepFourthText().getText());
     }
 
     @Test
@@ -257,7 +245,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getTypeOfDeliveryHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getTypeOfDeliveryHeader().getText());
     }
 
     @Test
@@ -270,7 +258,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getTypeOfDeliveryHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getTypeOfDeliveryHeaderSubtitle().getText());
     }
 
     @Test
@@ -283,7 +271,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSizeOfParcelHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSizeOfParcelHeader().getText());
     }
 
     @Test
@@ -296,7 +284,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSizeOfParcelHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSizeOfParcelHeaderSubtitle().getText());
     }
 
     @Test
@@ -309,7 +297,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getReceiverHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getReceiverHeader().getText());
     }
 
     @Test
@@ -322,7 +310,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getReceiverHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getReceiverHeaderSubtitle().getText());
     }
 
     @Test
@@ -335,7 +323,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSenderHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSenderHeader().getText());
     }
 
     @Test
@@ -348,7 +336,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSenderHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSenderHeaderSubtitle().getText());
     }
 
     @Test
@@ -361,7 +349,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSummaryHeader().getText());
     }
 
     @Test
@@ -375,7 +363,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryTypeOfDelivery().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSummaryTypeOfDelivery().getText());
     }
 
     @Test
@@ -388,7 +376,7 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryInsuranceHeader().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSummaryInsuranceHeader().getText());
     }
 
     @Test
@@ -401,6 +389,6 @@ public class TestFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedBody, formPageStatics.getSummaryInsuranceHeaderSubtitle().getText());
+        Assert.assertEquals(errorMessage, expectedBody, getFormPageStatics().getSummaryInsuranceHeaderSubtitle().getText());
     }
 }

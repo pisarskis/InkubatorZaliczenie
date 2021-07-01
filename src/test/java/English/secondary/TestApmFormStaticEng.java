@@ -15,37 +15,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestApmFormStaticEng extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SenderForm senderForm;
-    private static WaitPage waitPage;
-    private static ParcelTiles parcelTiles;
-
     private static List<WebElement> linkList;
     private static List<String> cleanLinkList;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
-        waitPage = new WaitPage();
-        parcelTiles = new ParcelTiles();
-
         linkList = new ArrayList<WebElement>();
         cleanLinkList = new ArrayList<String>();
 
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
-        formPage.clickLanguageSelector();
-        formPage.closeCookiesPopup();
+        getFormPage().closeCookiesPopup();
+        getFormPage().closeBottomCookiesPopup();
+        getFormPage().clickLanguageSelector();
+        getFormPage().closeCookiesPopup();
     }
 
     @After
     public void refreshPage() throws InterruptedException {
         Base.driver.navigate().refresh();
-        waitPage.waitLong();
-        formPage.closeCookiesPopup();
+        getWaitPage().waitLong();
+        getFormPage().closeCookiesPopup();
     }
 
     @Test
@@ -55,10 +43,10 @@ public class TestApmFormStaticEng extends Base {
         String expectedTitle = "How to send the parcel?";
 
         // when
-        formPage.clickHowToSendParcel();
+        getFormPage().clickHowToSendParcel();
 
         // then
-        Assert.assertEquals(expectedTitle, formPage.getModalTitle().getText());
+        Assert.assertEquals(expectedTitle, getFormPage().getModalTitle().getText());
 
         refreshPage();
     }
@@ -73,7 +61,7 @@ public class TestApmFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelATileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, getParcelTiles().getParcelATileDimensions().getText());
     }
 
     @Test
@@ -86,7 +74,7 @@ public class TestApmFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelBTileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, getParcelTiles().getParcelBTileDimensions().getText());
     }
 
     @Test
@@ -99,7 +87,7 @@ public class TestApmFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelCTileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, getParcelTiles().getParcelCTileDimensions().getText());
     }
 
     @Test
@@ -111,7 +99,7 @@ public class TestApmFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(getParcelTiles().getParcelATileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -123,7 +111,7 @@ public class TestApmFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(getParcelTiles().getParcelBTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -135,7 +123,7 @@ public class TestApmFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertTrue(parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue(getParcelTiles().getParcelCTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -147,7 +135,7 @@ public class TestApmFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
+        Assert.assertEquals(correctParcelPrice, getParcelTiles().getParcelATilePrice().getText());
     }
 
     @Test
@@ -159,7 +147,7 @@ public class TestApmFormStaticEng extends Base {
         //when
 
         //then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
+        Assert.assertEquals(correctParcelPrice, getParcelTiles().getParcelBTilePrice().getText());
     }
 
     @Test
@@ -171,6 +159,6 @@ public class TestApmFormStaticEng extends Base {
         // when
 
         // then
-        Assert.assertEquals(correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
+        Assert.assertEquals(correctParcelPrice, getParcelTiles().getParcelCTilePrice().getText());
     }
 }

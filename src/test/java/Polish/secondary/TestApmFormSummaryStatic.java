@@ -8,42 +8,23 @@ import pages.*;
 
 @Tag("pl")
 public class TestApmFormSummaryStatic extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SummaryPage summaryPage;
-    private static SenderForm senderForm;
 
     @BeforeClass
     public static void closeAllCookies() throws Exception {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        summaryPage = new SummaryPage();
-        senderForm = new SenderForm();
-
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
+        getFormPage().closeCookiesPopup();
+        getFormPage().closeBottomCookiesPopup();
         formRunThrough();
     }
 
     private static void formRunThrough() throws InterruptedException {
-        formPage.chooseDeliveryToAPM();
+        getFormPage().chooseDeliveryToAPM();
         fillAPMFormData();
-        senderForm.clickInvoice();
-        senderForm.clickPlishCompanyCheckbox();
-        senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
-        formPage.clickTermsCheckbox();
-        formPage.clickNewsletterCheckbox();
-        formPage.clickSendButton();
-    }
-
-    public static void fillAPMFormData() throws InterruptedException {
-        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
-        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
-        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
-        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
-        senderForm.fillSenderName(SenderFormData.NAME.getValue());
-        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
-        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
+        getSenderForm().clickInvoice();
+        getSenderForm().clickPlishCompanyCheckbox();
+        getSenderForm().clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
+        getFormPage().clickTermsCheckbox();
+        getFormPage().clickNewsletterCheckbox();
+        getFormPage().clickSendButton();
     }
 
     @Test
@@ -56,7 +37,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverName, summaryPage.getReceiverName().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverName, getSummaryPage().getReceiverName().getText());
     }
 
     @Test
@@ -69,7 +50,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverPhoneNo, summaryPage.getReceiverPhoneNo().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverPhoneNo, getSummaryPage().getReceiverPhoneNo().getText());
     }
 
     @Test
@@ -82,7 +63,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverEmail, summaryPage.getReceiverEmail().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverEmail, getSummaryPage().getReceiverEmail().getText());
     }
 
     @Test
@@ -95,7 +76,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderName, summaryPage.getSenderName().getText());
+        Assert.assertEquals(errorMessage, expectedSenderName, getSummaryPage().getSenderName().getText());
     }
 
     @Test
@@ -108,7 +89,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderPhoneNo, summaryPage.getSenderPhoneNo().getText());
+        Assert.assertEquals(errorMessage, expectedSenderPhoneNo, getSummaryPage().getSenderPhoneNo().getText());
     }
 
     @Test
@@ -121,7 +102,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderEmail, summaryPage.getSenderEmail().getText());
+        Assert.assertEquals(errorMessage, expectedSenderEmail, getSummaryPage().getSenderEmail().getText());
     }
 
     @Test
@@ -134,7 +115,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedApmNo, summaryPage.getApmNo().getText());
+        Assert.assertEquals(errorMessage, expectedApmNo, getSummaryPage().getApmNo().getText());
     }
 
     @Test
@@ -147,7 +128,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedApmAdress, summaryPage.getApmAdress().getText());
+        Assert.assertEquals(errorMessage, expectedApmAdress, getSummaryPage().getApmAdress().getText());
     }
 
     @Test
@@ -160,7 +141,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceName, summaryPage.getInvoiceName().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceName, getSummaryPage().getInvoiceName().getText());
     }
 
     @Test
@@ -173,7 +154,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceNIP, summaryPage.getInvoiceNIP().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceNIP, getSummaryPage().getInvoiceNIP().getText());
     }
 
     @Test
@@ -186,7 +167,7 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceTown, summaryPage.getInvoiceTown().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceTown, getSummaryPage().getInvoiceTown().getText());
     }
 
     @Test
@@ -199,6 +180,6 @@ public class TestApmFormSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceStreet, summaryPage.getInvoiceStreet().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceStreet, getSummaryPage().getInvoiceStreet().getText());
     }
 }

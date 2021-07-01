@@ -11,34 +11,25 @@ import pages.SenderForm;
 
 @Tag("en")
 public class TestC2DFormEng extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SenderForm senderForm;
-    private static WaitPage waitPage;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
-        waitPage = new WaitPage();
-
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
-        formPage.clickLanguageSelector();
-        formPage.closeCookiesPopup();
+        Base.getFormPage().closeCookiesPopup();
+        Base.getFormPage().closeBottomCookiesPopup();
+        Base.getFormPage().clickLanguageSelector();
+        Base.getFormPage().closeCookiesPopup();
     }
 
     @Before
     public void setUpBeforeEach() throws InterruptedException {
-        formPage.chooseDeliveryC2D();
+        Base.getFormPage().chooseDeliveryC2D();
     }
 
     @After
     public void refreshPage() throws InterruptedException {
-        driver.navigate().refresh();
-        waitPage.waitLong();
-        formPage.closeCookiesPopup();
+        Base.driver.navigate().refresh();
+        Base.getWaitPage().waitLong();
+        Base.getFormPage().closeCookiesPopup();
     }
 
     @Test
@@ -48,8 +39,8 @@ public class TestC2DFormEng extends Base {
         String parcelASize = "small";
 
         // when
-        formPage.clickA();
-        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
+        Base.getFormPage().clickA();
+        String returnedSize = Base.getFormPage().getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelASize;
 
         // then
@@ -63,8 +54,8 @@ public class TestC2DFormEng extends Base {
         String parcelBSize = "medium";
 
         // when
-        formPage.clickB();
-        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
+        Base.getFormPage().clickB();
+        String returnedSize = Base.getFormPage().getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelBSize;
 
         // then
@@ -78,8 +69,8 @@ public class TestC2DFormEng extends Base {
         String parcelCSize = "large";
 
         // when
-        formPage.clickC();
-        String returnedSize = formPage.getParcelSizeText().getText().toLowerCase();
+        Base.getFormPage().clickC();
+        String returnedSize = Base.getFormPage().getParcelSizeText().getText().toLowerCase();
         String errorMessage = "The size text in summary is printed wrong. Is: " + returnedSize + " should be: " + parcelCSize;
 
 
@@ -95,10 +86,10 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickA();
+        Base.getFormPage().clickA();
 
         // then
-        Assert.assertTrue( errorMessage,formPage.getParcelSizeImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,Base.getFormPage().getParcelSizeImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -109,10 +100,10 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickB();
+        Base.getFormPage().clickB();
 
         // then
-        Assert.assertTrue( errorMessage,formPage.getParcelSizeImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,Base.getFormPage().getParcelSizeImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -123,10 +114,10 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "Wrong img loaded for chosen parcel size.";
 
         // when
-        formPage.clickC();
+        Base.getFormPage().clickC();
 
         // then
-        Assert.assertTrue( errorMessage,formPage.getParcelSizeImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage,Base.getFormPage().getParcelSizeImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -137,10 +128,10 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
-        formPage.clickA();
+        Base.getFormPage().clickA();
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, Base.getFormPage().getParcelPrice().getText());
     }
 
     @Test
@@ -151,10 +142,10 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "Wrong price for parcel of this size.";
 
         //when
-        formPage.clickB();
+        Base.getFormPage().clickB();
 
         //then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, Base.getFormPage().getParcelPrice().getText());
     }
 
     @Test
@@ -165,10 +156,10 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "Wrong price for parcel of this size.";
 
         // when
-        formPage.clickC();
+        Base.getFormPage().clickC();
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, formPage.getParcelPrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, Base.getFormPage().getParcelPrice().getText());
     }
 
     @Test
@@ -180,11 +171,11 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "";
 
         // when
-        receiverForm.fillReceiverEmail(email);
-        formPage.chooseDeliveryToAPM();
+        Base.getReceiverForm().fillReceiverEmail(email);
+        Base.getFormPage().chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, expectedErrorMessage, receiverForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, Base.getReceiverForm().emailErrorMessage().getText());
     }
 
     @Test
@@ -196,11 +187,11 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "";
 
         // when
-        receiverForm.fillReceiverEmail(email);
-        formPage.chooseDeliveryToAPM();
+        Base.getReceiverForm().fillReceiverEmail(email);
+        Base.getFormPage().chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, expectedErrorMessage, receiverForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, Base.getReceiverForm().emailErrorMessage().getText());
     }
 
     @Test
@@ -212,11 +203,11 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "";
 
         // when
-        senderForm.fillSenderEmail(email);
-        formPage.chooseDeliveryToAPM();
+        Base.getSenderForm().fillSenderEmail(email);
+        Base.getFormPage().chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, Base.getSenderForm().emailErrorMessage().getText());
     }
 
     @Test
@@ -228,10 +219,10 @@ public class TestC2DFormEng extends Base {
         String errorMessage = "";
 
         // when
-        senderForm.fillSenderEmail(email);
-        formPage.chooseDeliveryToAPM();
+        Base.getSenderForm().fillSenderEmail(email);
+        Base.getFormPage().chooseDeliveryToAPM();
 
         // then
-        Assert.assertEquals(errorMessage, expectedErrorMessage, senderForm.emailErrorMessage().getText());
+        Assert.assertEquals(errorMessage, expectedErrorMessage, Base.getSenderForm().emailErrorMessage().getText());
     }
 }

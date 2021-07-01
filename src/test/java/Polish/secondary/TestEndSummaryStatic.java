@@ -10,53 +10,29 @@ import org.junit.jupiter.api.Tag;
 import pages.*;
 
 public class TestEndSummaryStatic extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SenderForm senderForm;
-    private static WaitPage waitPage;
-    private static PaymentPage paymentPage;
-    private static EndSummaryPage endSummaryPage;
-
     @BeforeClass
     public static void closeAllCookies() throws Exception {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
-        waitPage = new WaitPage();
-        paymentPage = new PaymentPage();
-        endSummaryPage = new EndSummaryPage();
-
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
+        getFormPage().closeCookiesPopup();
+        getFormPage().closeBottomCookiesPopup();
         formRunThrough();
     }
 
     private static void formRunThrough() throws InterruptedException {
-        formPage.chooseDeliveryToAPM();
-        formPage.clickA();
+        getFormPage().chooseDeliveryToAPM();
+        getFormPage().clickA();
         fillAPMFormData();
-        senderForm.clickInvoice();
-        senderForm.clickPlishCompanyCheckbox();
-        senderForm.clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
-        formPage.clickTermsCheckbox();
-        formPage.clickNewsletterCheckbox();
-        formPage.clickSendButton();
-        formPage.clickPayButton();
-        waitPage.waitLong();
-        paymentPage.clickBank();
-        paymentPage.clickNextButton();
-        paymentPage.clickAcceptPayment();
-        formPage.closeCookiesPopup();
-    }
-
-    public static void fillAPMFormData() throws InterruptedException {
-        receiverForm.fillReceiverName(ReceiverFormData.NAME.getValue());
-        receiverForm.fillReceiverEmail(ReceiverFormData.EMAIL.getValue());
-        receiverForm.fillReceiverNumber(ReceiverFormData.PHONENO.getValue());
-        receiverForm.fillReceiverAPMCode(ReceiverFormData.APNNO.getValue());
-        senderForm.fillSenderName(SenderFormData.NAME.getValue());
-        senderForm.fillSenderEmail(SenderFormData.EMAIL.getValue());
-        senderForm.fillSenderNumber(SenderFormData.PHONENO.getValue());
+        getSenderForm().clickInvoice();
+        getSenderForm().clickPlishCompanyCheckbox();
+        getSenderForm().clickPolishCompanyNIP(SenderFormData.NIPNO.getValue());
+        getFormPage().clickTermsCheckbox();
+        getFormPage().clickNewsletterCheckbox();
+        getFormPage().clickSendButton();
+        getFormPage().clickPayButton();
+        getWaitPage().waitLong();
+        getPaymentPage().clickBank();
+        getPaymentPage().clickNextButton();
+        getPaymentPage().clickAcceptPayment();
+        getFormPage().closeCookiesPopup();
     }
 
     @Test
@@ -69,7 +45,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverName, endSummaryPage.getReceiverName().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverName, getEndSummaryPage().getReceiverName().getText());
     }
 
     @Test
@@ -82,7 +58,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverPhoneNo, endSummaryPage.getReceiverPhoneNo().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverPhoneNo, getEndSummaryPage().getReceiverPhoneNo().getText());
     }
 
     @Test
@@ -95,7 +71,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedReceiverEmail, endSummaryPage.getReceiverEmail().getText());
+        Assert.assertEquals(errorMessage, expectedReceiverEmail, getEndSummaryPage().getReceiverEmail().getText());
     }
 
     @Test
@@ -108,7 +84,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderName, endSummaryPage.getSenderName().getText());
+        Assert.assertEquals(errorMessage, expectedSenderName, getEndSummaryPage().getSenderName().getText());
     }
 
     @Test
@@ -121,7 +97,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderPhoneNo, endSummaryPage.getSenderPhoneNo().getText());
+        Assert.assertEquals(errorMessage, expectedSenderPhoneNo, getEndSummaryPage().getSenderPhoneNo().getText());
     }
 
     @Test
@@ -134,7 +110,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedSenderEmail, endSummaryPage.getSenderEmail().getText());
+        Assert.assertEquals(errorMessage, expectedSenderEmail, getEndSummaryPage().getSenderEmail().getText());
     }
 
     @Test
@@ -147,7 +123,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedApmNo, endSummaryPage.getApmNo().getText());
+        Assert.assertEquals(errorMessage, expectedApmNo, getEndSummaryPage().getApmNo().getText());
     }
 
     @Test
@@ -160,7 +136,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedApmAdress, endSummaryPage.getApmAdress().getText());
+        Assert.assertEquals(errorMessage, expectedApmAdress, getEndSummaryPage().getApmAdress().getText());
     }
 
     @Test
@@ -173,7 +149,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceName, endSummaryPage.getInvoiceName().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceName, getEndSummaryPage().getInvoiceName().getText());
     }
 
     @Test
@@ -186,7 +162,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceNIP, endSummaryPage.getInvoiceNIP().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceNIP, getEndSummaryPage().getInvoiceNIP().getText());
     }
 
     @Test
@@ -199,7 +175,7 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceTown, endSummaryPage.getInvoiceTown().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceTown, getEndSummaryPage().getInvoiceTown().getText());
     }
 
     @Test
@@ -212,6 +188,6 @@ public class TestEndSummaryStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, expectedInvoiceStreet, endSummaryPage.getInvoiceStreet().getText());
+        Assert.assertEquals(errorMessage, expectedInvoiceStreet, getEndSummaryPage().getInvoiceStreet().getText());
     }
 }
