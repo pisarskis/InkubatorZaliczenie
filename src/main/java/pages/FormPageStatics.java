@@ -108,6 +108,7 @@ public class FormPageStatics {
     }
 
     public WebElement getTermsText() { return termsText; }
+
     public WebElement getTermsTextEnglish() { return termsTextEnglish; }
 
     public WebElement getNewsletterBody() {

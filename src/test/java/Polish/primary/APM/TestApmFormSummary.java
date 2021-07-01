@@ -1,4 +1,4 @@
-package primary.APM;
+package Polish.primary.APM;
 
 import helper.*;
 import org.junit.*;
@@ -147,7 +147,7 @@ public class TestApmFormSummary extends Base {
 
     @Test
     @Tag("pl")
-    @Tag("vitalTest")
+    @Tag("primary")
     public void shouldShowCorrectParcelAPriceInSummary() throws Exception {
         // given
         String expectedParcelPrice = Prices.APM_A_PL.getPrice();
@@ -163,7 +163,7 @@ public class TestApmFormSummary extends Base {
 
     @Test
     @Tag("pl")
-    @Tag("vitalTest")
+    @Tag("primary")
     public void shouldShowCorrectParcelBPriceInSummary() throws Exception {
         // given
         String expectedParcelPrice = Prices.APM_B_PL.getPrice();
@@ -179,7 +179,7 @@ public class TestApmFormSummary extends Base {
 
     @Test
     @Tag("pl")
-    @Tag("vitalTest")
+    @Tag("primary")
     public void shouldShowCorrectParcelCPriceInSummary() throws Exception {
         // given
         String expectedParcelPrice = Prices.APM_C_PL.getPrice();

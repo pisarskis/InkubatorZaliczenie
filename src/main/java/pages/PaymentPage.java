@@ -36,14 +36,13 @@ public class PaymentPage {
 
     @FindBy(css = "button[value='3']")
     private WebElement setPaymentAsPendingButton;
-    WebDriverWait wait = new WebDriverWait(Base.driver, 60);
 
     public PaymentPage() {
         PageFactory.initElements(Base.driver, this);
     }
 
     public PaymentPage clickBank() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div[title='Płacę z Alior Banku")));
+        waitPage.waitForCss("div[title='Płacę z Alior Banku");
         actionPage.clickElement(aliorBank);
         return this;
     }
@@ -55,32 +54,38 @@ public class PaymentPage {
     }
 
     public PaymentPage clickAcceptPayment() throws InterruptedException {
+        waitPage.waitForCss("button[value='1']");
         actionPage.clickElement(acceptPaymentButton);
         waitPage.waitLong();
         return this;
     }
 
     public PaymentPage clickDeclinePaymentButton() throws InterruptedException {
+        waitPage.waitForCss("button[value='2']");
         actionPage.clickElement(declinePaymentButton);
         waitPage.waitLong();
         return this;
     }
 
     public PaymentPage clickSetPaymentAsPendingButton() throws InterruptedException {
+        waitPage.waitForCss("button[value='3']");
         actionPage.clickElement(setPaymentAsPendingButton);
         waitPage.waitShort();
         return this;
     }
 
     public WebElement getSenderName() {
+        waitPage.waitForCss("div[title='Płacę z Alior Banku");
         return buyerName;
     }
 
     public WebElement getSenderEmail() {
+        waitPage.waitForCss("div[title='Płacę z Alior Banku");
         return buyerEmail;
     }
 
     public WebElement getSenderParcelPrice() {
+        waitPage.waitForCss("div[title='Płacę z Alior Banku");
         return parcelPrice;
     }
 }

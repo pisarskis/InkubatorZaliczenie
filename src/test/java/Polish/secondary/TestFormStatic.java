@@ -1,4 +1,4 @@
-package secondary;
+package Polish.secondary;
 
 import helper.WaitPage;
 import org.junit.*;

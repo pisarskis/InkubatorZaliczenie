@@ -1,4 +1,4 @@
-package primary;
+package Polish.primary;
 
 import helper.*;
 import org.junit.*;
@@ -77,6 +77,7 @@ public class TestInvoice extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldPrintPolishCompanyNameWhenNIPGiven() throws Exception {
         // given
         String nipNo = "6793087624";

@@ -1,4 +1,4 @@
-package primary;
+package Polish.primary;
 
 import helper.*;
 import org.junit.*;
@@ -55,6 +55,7 @@ public class TestPayment extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldShowAPMParcelAPriceInPayment() throws InterruptedException {
         // given
         String expectedParcelPrice = "12,99 PLN";
@@ -71,6 +72,7 @@ public class TestPayment extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldShowAPMParcelBPriceInPayment() throws InterruptedException {
         // given
         String expectedParcelPrice = "13,99 PLN";
@@ -87,6 +89,7 @@ public class TestPayment extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldShowAPMParcelCPriceInPayment() throws InterruptedException {
         // given
         String expectedParcelPrice = "15,49 PLN";
