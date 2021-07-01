@@ -112,7 +112,6 @@ public class FormPage {
 
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
-    WebDriverWait wait = new WebDriverWait(Base.driver, 60);
 
     public FormPage() {
         PageFactory.initElements(Base.driver, this);

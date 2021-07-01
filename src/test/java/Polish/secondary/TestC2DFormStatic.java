@@ -8,34 +8,23 @@ import pages.*;
 
 @Tag("pl")
 public class TestC2DFormStatic extends Base {
-    private static FormPage formPage;
-    private static ReceiverForm receiverForm;
-    private static SenderForm senderForm;
-    private static WaitPage waitPage;
-    private static ParcelTiles parcelTiles;
-
+    
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
-        formPage = new FormPage();
-        receiverForm  = new ReceiverForm();
-        senderForm  = new SenderForm();
-        waitPage = new WaitPage();
-        parcelTiles = new ParcelTiles();
-
-        formPage.closeCookiesPopup();
-        formPage.closeBottomCookiesPopup();
+        getFormPage().closeCookiesPopup();
+        getFormPage().closeBottomCookiesPopup();
     }
 
     @Before
     public void setUpForm() throws InterruptedException {
-        formPage.chooseDeliveryC2D();
+        getFormPage().chooseDeliveryC2D();
     }
 
     @After
     public void refreshPage() throws InterruptedException {
         driver.navigate().refresh();
-        waitPage.waitLong();
-        formPage.closeCookiesPopup();
+        getWaitPage().waitLong();
+        getFormPage().closeCookiesPopup();
     }
 
     @Test
@@ -49,7 +38,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelATileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, getParcelTiles().getParcelATileDimensions().getText());
     }
 
     @Test
@@ -63,7 +52,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelBTileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, getParcelTiles().getParcelBTileDimensions().getText());
     }
 
     @Test
@@ -77,7 +66,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(parcelADimensions, parcelTiles.getParcelCTileDimensions().getText());
+        Assert.assertEquals(parcelADimensions, getParcelTiles().getParcelCTileDimensions().getText());
     }
 
     @Test
@@ -90,7 +79,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue( errorMessage, parcelTiles.getParcelATileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, getParcelTiles().getParcelATileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -103,7 +92,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue( errorMessage, parcelTiles.getParcelBTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, getParcelTiles().getParcelBTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -116,7 +105,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertTrue( errorMessage, parcelTiles.getParcelCTileImg().getAttribute("src").contains(imgSize));
+        Assert.assertTrue( errorMessage, getParcelTiles().getParcelCTileImg().getAttribute("src").contains(imgSize));
     }
 
     @Test
@@ -129,7 +118,7 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelATilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, getParcelTiles().getParcelATilePrice().getText());
     }
 
     @Test
@@ -142,7 +131,7 @@ public class TestC2DFormStatic extends Base {
         //when
 
         //then
-        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelBTilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, getParcelTiles().getParcelBTilePrice().getText());
     }
 
     @Test
@@ -155,6 +144,6 @@ public class TestC2DFormStatic extends Base {
         // when
 
         // then
-        Assert.assertEquals(errorMessage, correctParcelPrice, parcelTiles.getParcelCTilePrice().getText());
+        Assert.assertEquals(errorMessage, correctParcelPrice, getParcelTiles().getParcelCTilePrice().getText());
     }
 }
