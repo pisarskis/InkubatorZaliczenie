@@ -1,0 +1,14 @@
+helper\WaitPage.class
+helper\SenderFormData.class
+pages\SenderForm.class
+helper\ActionPage.class
+helper\Prices.class
+helper\ReceiverFormData.class
+pages\SummaryPage.class
+pages\EndSummaryPage.class
+pages\FormPage.class
+pages\ParcelTiles.class
+pages\Base.class
+pages\ReceiverForm.class
+pages\PaymentPage.class
+pages\FormPageStatics.class

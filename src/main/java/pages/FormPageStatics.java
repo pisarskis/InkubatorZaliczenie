@@ -13,6 +13,9 @@ public class FormPageStatics {
     @FindBy(css = "app-section.col-12 > div.title-section > app-input.section-input > div > span.label > span.custom-action-in-title")
     private WebElement howToSendParcel;
 
+//    @FindBy(xpath = "//h4[contains(.,'Jak spakować paczkę?')]")
+//    private WebElement packInstructions;
+
     @FindBy(css = "app-section.mt-3 > div.form-section > app-input.section-input > div > span.label > span.custom-action-in-title")
     private WebElement howToPackParcel;
 
