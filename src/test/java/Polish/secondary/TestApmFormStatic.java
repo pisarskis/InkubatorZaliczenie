@@ -27,7 +27,8 @@ public class TestApmFormStatic extends Base {
     @DisplayName("Should return corret tile dimensions for Parcel size A")
     public void shouldReturnCorrectTileADimensions() {
         // given
-        String parcelADimensions = "max.\n" +
+        String parcelADimensions =
+                "max.\n" +
                 "8 x 38 x 64 cm\n" +
                 "do 25 kg";
 
