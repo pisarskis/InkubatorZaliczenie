@@ -4,9 +4,6 @@ import helper.*;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;
 import pages.Base;
-import pages.FormPage;
-import pages.ReceiverForm;
-import pages.SenderForm;
 
 public class TestApmFormEng extends Base {
 

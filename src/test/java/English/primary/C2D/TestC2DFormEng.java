@@ -1,13 +1,9 @@
 package English.primary.C2D;
 
 import helper.Prices;
-import helper.WaitPage;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;
 import pages.Base;
-import pages.FormPage;
-import pages.ReceiverForm;
-import pages.SenderForm;
 
 @Tag("en")
 public class TestC2DFormEng extends Base {

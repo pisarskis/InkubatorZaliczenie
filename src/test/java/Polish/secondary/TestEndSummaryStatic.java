@@ -1,8 +1,6 @@
 package Polish.secondary;
 
-import helper.ReceiverFormData;
 import helper.SenderFormData;
-import helper.WaitPage;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

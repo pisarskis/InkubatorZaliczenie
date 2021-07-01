@@ -1,6 +1,5 @@
 package English.secondary;
 
-import helper.WaitPage;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

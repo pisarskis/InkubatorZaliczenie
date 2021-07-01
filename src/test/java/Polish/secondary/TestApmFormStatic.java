@@ -1,26 +1,16 @@
 package Polish.secondary;
 
 import helper.Prices;
-import helper.WaitPage;
 import org.junit.*;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import pages.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Tag("pl")
 public class TestApmFormStatic extends Base {
-    private static List<WebElement> linkList;
-    private static List<String> cleanLinkList;
 
     @BeforeClass
     public static void setUpOnce() throws InterruptedException {
-        linkList = new ArrayList<WebElement>();
-        cleanLinkList = new ArrayList<String>();
-
         getFormPage().closeCookiesPopup();
         getFormPage().closeBottomCookiesPopup();
     }
@@ -32,21 +22,9 @@ public class TestApmFormStatic extends Base {
         getFormPage().closeCookiesPopup();
     }
 
-    public List<String> pullUpAllLinks() {
-        linkList = driver.findElements(By.tagName("a"));
-
-        for (WebElement link : linkList) {
-            cleanLinkList.add(link.getAttribute("href"));
-        }
-
-        while (cleanLinkList.remove(null)) {
-        }
-
-        return cleanLinkList;
-    }
-
     @Test
     @Tag("pl")
+    @DisplayName("Should return corret tile dimensions for Parcel size A")
     public void shouldReturnCorrectTileADimensions() {
         // given
         String parcelADimensions = "max.\n" +
@@ -61,6 +39,7 @@ public class TestApmFormStatic extends Base {
 
     @Test
     @Tag("pl")
+    @DisplayName("Should return correct tile dimensions for Parcel size B")
     public void shouldReturnCorrectTileBDimensions() {
         // given
         String parcelADimensions = "max.\n" +
@@ -75,6 +54,7 @@ public class TestApmFormStatic extends Base {
 
     @Test
     @Tag("pl")
+    @DisplayName("Should return correct tile dimensions for Parcel size C")
     public void shouldReturnCorrectTileCDimensions() {
         // given
         String parcelADimensions = "max.\n" +
@@ -89,6 +69,7 @@ public class TestApmFormStatic extends Base {
 
     @Test
     @Tag("pl")
+    @DisplayName("Should return correct tile image for Parcel size A")
     public void shouldReturnCorrectTileAImg() {
         // given
         String imgSize = "20351";
@@ -102,6 +83,7 @@ public class TestApmFormStatic extends Base {
 
     @Test
     @Tag("pl")
+    @DisplayName("Should return correct tile image for Parcel size B")
     public void shouldReturnCorrectTileBImg() {
         // given
         String imgSize = "20350";
@@ -115,6 +97,7 @@ public class TestApmFormStatic extends Base {
 
     @Test
     @Tag("pl")
+    @DisplayName("Should return correct tile image for Parcel size C")
     public void shouldReturnCorrectTileCImg() {
         // given
         String imgSize = "20349";
@@ -128,6 +111,7 @@ public class TestApmFormStatic extends Base {
 
     @Test
     @Tag("pl")
+    @DisplayName("Should return correct tile price for Parcel size A")
     public void shouldReturnCorrectTileAPrice() {
         // given
         String correctParcelPrice = Prices.APM_A_PL.getPrice();
@@ -141,6 +125,7 @@ public class TestApmFormStatic extends Base {
 
     @Test
     @Tag("pl")
+    @DisplayName("Should return correct tile price for Parcel size B")
     public void shouldReturnCorrectTileBPrice() {
         //given
         String correctParcelPrice = Prices.APM_B_PL.getPrice();
@@ -154,6 +139,7 @@ public class TestApmFormStatic extends Base {
 
     @Test
     @Tag("pl")
+    @DisplayName("Should return correct tile price for Parcel size C")
     public void shouldReturnCorrectTileCPrice() {
         // given
         String correctParcelPrice = Prices.APM_C_PL.getPrice();

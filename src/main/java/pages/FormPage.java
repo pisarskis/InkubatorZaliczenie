@@ -221,22 +221,9 @@ public class FormPage {
         return modalTitle;
     }
 
-    public WebElement getModalBody() {
-        return modalBody;
-    }
-
-    public WebElement getTermsText() { return termsText; }
-
     public WebElement getTermsError() { return termsError; }
 
     public WebElement getTermsErrorEnglish() { return termsErrorEnglish; }
 
-    public WebElement getNewsletterBody() {
-        return newsletterText;
-    }
-
-    public WebElement getFormEnglishHeader() {
-        return formEnglishHeader;
-    }
 }
 
