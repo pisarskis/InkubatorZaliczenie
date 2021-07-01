@@ -1,4 +1,4 @@
-package primary.C2D;
+package Polish.primary.C2D;
 
 import helper.*;
 import org.junit.*;
@@ -170,6 +170,7 @@ public class TestC2DForm extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldReturnCorrectParcelAPrice() {
         // given
         String correctParcelPrice = Prices.C2D_A_PL.getPrice();
@@ -184,6 +185,7 @@ public class TestC2DForm extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldReturnCorrectParcelBPrice() {
         //given
         String correctParcelPrice = Prices.C2D_B_PL.getPrice();
@@ -198,6 +200,7 @@ public class TestC2DForm extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldReturnCorrectParcelCPrice() {
         // given
         String correctParcelPrice = Prices.C2D_C_PL.getPrice();

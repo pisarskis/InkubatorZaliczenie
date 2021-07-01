@@ -2,6 +2,7 @@ package English.primary.APM;
 
 import helper.*;
 import org.junit.*;
+import org.junit.jupiter.api.Tag;
 import pages.Base;
 import pages.FormPage;
 import pages.ReceiverForm;
@@ -56,6 +57,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectSizeForAParcel() throws Exception {
         // given
         String parcelASize = "Small";
@@ -70,6 +72,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectSizeForBParcel() throws Exception {
         // given
         String parcelBSize = "Medium";
@@ -84,6 +87,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectSizeForCParcel() throws Exception {
         // given
         String parcelCSize = "Large";
@@ -99,6 +103,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelADimensions() throws Exception {
         // given
         String parcelADimensions = "max. dimension\n" +
@@ -113,6 +118,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelBDimensions() throws Exception {
         // given
         String parcelADimensions = "max. dimension\n" +
@@ -127,6 +133,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelCDimensions() throws Exception {
         // given
         String parcelADimensions = "max. dimension\n" +
@@ -141,6 +148,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelAImg() throws Exception {
         // given
         String imgSize = "parcel_A";
@@ -154,6 +162,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelBImg() throws Exception {
         // given
         String imgSize = "parcel_B";
@@ -167,6 +176,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelCImg() throws Exception {
         // given
         String imgSize = "parcel_C";
@@ -180,6 +190,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelAPrice() throws Exception {
         // given
         String correctParcelPrice = Prices.APM_A_EN.getPrice();
@@ -193,6 +204,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelBPrice() throws Exception {
         //given
         String correctParcelPrice = Prices.APM_B_EN.getPrice();
@@ -206,6 +218,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldReturnCorrectParcelCPrice() throws Exception {
         // given
         String correctParcelPrice = Prices.APM_C_EN.getPrice();
@@ -219,6 +232,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorForBadReceiverEmail() throws Exception {
         // given
         String email = "qweqwe.pl";
@@ -234,6 +248,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorForShortReceiverEmail() throws Exception {
         // given
         String email = "q";
@@ -249,6 +264,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorForBadSenderEmail() throws Exception {
         // given
         String email = "qweqwe.pl";
@@ -264,6 +280,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorForShortSenderEmail() throws Exception {
         // given
         String email = "q";
@@ -279,6 +296,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldPrintInvoiceOptions() throws Exception {
         // given
         String expectedText = "Company in Poland";
@@ -294,6 +312,7 @@ public class TestApmFormEng extends Base {
 
 
     @Test
+    @Tag("en")
     public void shouldOpenParcelMap() throws Exception {
         // given
         String expectedModalHeader = "Parcel locker or Parcel Point where your shipment will be delivered";
@@ -307,6 +326,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldSearchMapModalForParcelBox() throws Exception {
         // given
         String parcelBox = "POP-WAW62";
@@ -326,6 +346,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldShotParcelBoxDetailsInModal() throws Exception {
         // given
         String parcelBox = "POP-WAW62";
@@ -344,6 +365,7 @@ public class TestApmFormEng extends Base {
     }
 
     @Test
+    @Tag("en")
     public void shouldThrowErrorWhenTermsNotChecked() throws Exception {
         // given
         String expectedErrorMessage = "REQUIRED FIELD";

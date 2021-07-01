@@ -180,7 +180,7 @@ public class SenderForm {
         return this;
     }
 
-    public SenderForm fillInvoiceCountryTaxNo(String taxNo) throws InterruptedException {
+    public SenderForm fillInvoiceCountryTaxNo(String taxNo) {
         actionPage.writeToForm(invoiceCountryTaxNo ,taxNo);
         return this;
     }

@@ -1,16 +1,10 @@
-package secondary;
+package Polish.secondary;
 
 import helper.Prices;
 import helper.WaitPage;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import pages.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Tag("pl")
 public class TestC2DFormStatic extends Base {

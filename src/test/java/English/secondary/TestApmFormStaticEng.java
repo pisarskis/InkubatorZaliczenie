@@ -48,18 +48,6 @@ public class TestApmFormStaticEng extends Base {
         formPage.closeCookiesPopup();
     }
 
-    public List<String> pullUpAllLinks(){
-        linkList = driver.findElements(By.tagName("a"));
-
-        for(WebElement link:linkList){
-            cleanLinkList.add(link.getAttribute("href"));
-        }
-
-        while (cleanLinkList.remove(null)){}
-
-        return cleanLinkList;
-    }
-
     @Test
     @Tag("en")
     public void shouldPrintCorrectHTSModalTitle() throws Exception {
@@ -80,7 +68,7 @@ public class TestApmFormStaticEng extends Base {
     public void shouldReturnCorrectTileADimensions() {
         // given
         String parcelADimensions = "max. 8 x 38 x 64 cm\n" +
-                "up to 25 kg";
+                                   "up to 25 kg";
 
         // when
 
@@ -93,7 +81,7 @@ public class TestApmFormStaticEng extends Base {
     public void shouldReturnCorrectTileBDimensions() {
         // given
         String parcelADimensions = "max. 19 x 38 x 64 cm\n" +
-                "up to 25 kg";
+                                   "up to 25 kg";
 
         // when
 
@@ -106,7 +94,7 @@ public class TestApmFormStaticEng extends Base {
     public void shouldReturnCorrectTileCDimensions() {
         // given
         String parcelADimensions = "max. 41 x 38 x 64 cm\n" +
-                "up to 25 kg";
+                                   "up to 25 kg";
 
         // when
 

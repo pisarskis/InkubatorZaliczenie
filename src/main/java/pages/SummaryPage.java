@@ -1,5 +1,6 @@
 package pages;
 
+import helper.WaitPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,8 +10,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SummaryPage {
+    private WebDriver driver;
+    private WaitPage waitPage = new WaitPage();
 
-    @FindBy(css = "div.d-block > button.btn-primary")
+    @FindBy(css = "div.d-block > button.btn-Polish.primary")
     private WebElement payButton;
 
     @FindBy(css = "div.ml-20 > h4")
@@ -67,81 +70,97 @@ public class SummaryPage {
     @FindBy(css = "div.third-column > div.mb-3 > div:nth-of-type(4)")
     private WebElement invoiceStreet;
 
-
-    private WebDriver driver;
-
-    private WebDriverWait wait = new WebDriverWait(Base.driver, 60);
-
     public SummaryPage () {
         PageFactory.initElements(Base.driver, this);
     }
 
     public WebElement getParcelSize() {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.ml-20 > h4")));
+        waitPage.waitForCss("div.ml-20 > h4");
         return parcelSize;
     }
 
-    public WebElement getParcelImg() { return parcelImg; }
+    public WebElement getParcelImg() {
+        waitPage.waitForCss("div.ml-20 > h4");
+        return parcelImg;
+    }
 
-    public WebElement getParcelPrice() { return parcelPrice; }
+    public WebElement getParcelPrice() {
+        waitPage.waitForCss("div.ml-20 > h4");
+        return parcelPrice;
+    }
 
     public WebElement getReceiverName() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return receiverName;
     }
 
     public WebElement getReceiverPhoneNo() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return receiverPhoneNo;
     }
 
     public WebElement getReceiverEmail() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return receiverEmail;
     }
 
     public WebElement getSenderName() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return senderName;
     }
 
     public WebElement getSenderPhoneNo() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return senderPhoneNo;
     }
 
     public WebElement getSenderEmail() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return senderEmail;
     }
 
     public WebElement getSenderTown() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return senderTown;
     }
 
     public WebElement getSenderStreet() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return senderStreet;
     }
 
     public WebElement getSenderCountry() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return senderCountry;
     }
 
     public WebElement getApmNo() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return apmNo;
     }
 
     public WebElement getApmAdress() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return apmAdress;
     }
 
     public WebElement getInvoiceName() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return invoiceName;
     }
 
     public WebElement getInvoiceNIP() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return invoiceNIP;
     }
 
     public WebElement getInvoiceTown() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return invoiceTown;
     }
 
     public WebElement getInvoiceStreet() {
+        waitPage.waitForCss("div.ml-20 > h4");
         return invoiceStreet;
     }
 }

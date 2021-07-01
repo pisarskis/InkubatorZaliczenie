@@ -1,12 +1,11 @@
-package primary;
+package Polish.primary;
 
 import helper.*;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;
 import pages.*;
-import primary.APM.TestApmForm;
+import Polish.primary.APM.TestApmForm;
 
-@Tag("pl")
 public class TestEndSummary extends Base {
     private static FormPage formPage;
     private static ReceiverForm receiverForm;
@@ -32,14 +31,8 @@ public class TestEndSummary extends Base {
         formPage.closeBottomCookiesPopup();
     }
 
-    @After
-    public void refreshPage() throws InterruptedException {
-        Base.driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
-        waitPage.waitLong();
-        formPage.closeCookiesPopup();
-    }
-
-    private void formRunThrough() throws InterruptedException {
+    @Before
+    public void formRunThrough() throws InterruptedException {
         formPage.chooseDeliveryToAPM();
         formPage.clickA();
         fillAPMFormData();
@@ -83,7 +76,6 @@ public class TestEndSummary extends Base {
         String errorMessage = "";
 
         // when
-        formRunThrough();
         paymentPage.clickAcceptPayment();
         waitPage.waitShort();
         formPage.closeCookiesPopup();
@@ -103,7 +95,6 @@ public class TestEndSummary extends Base {
         String errorMessage = "";
 
         // when
-        formRunThrough();
         paymentPage.clickSetPaymentAsPendingButton();
         waitPage.waitLong();
         formPage.closeCookiesPopup();
@@ -123,12 +114,18 @@ public class TestEndSummary extends Base {
         String errorMessage = "";
 
         // when
-        formRunThrough();
         paymentPage.clickDeclinePaymentButton();
         waitPage.waitLong();
         formPage.closeCookiesPopup();
 
         // then
         Assert.assertEquals(errorMessage, expectedMessage, endSummaryPage.getPaymentStatus().getText());
+    }
+
+    @After
+    public void refreshPage() throws InterruptedException {
+        Base.driver.get("https://test-oneclick-pl.easypack24.net/SzybkieNadania/");
+        waitPage.waitLong();
+        formPage.closeCookiesPopup();
     }
 }

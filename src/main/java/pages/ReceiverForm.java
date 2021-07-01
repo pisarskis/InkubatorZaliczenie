@@ -43,9 +43,6 @@ public class ReceiverForm {
     @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[5]/div/app-input/div/div/app-error/small/ul/li")
     private WebElement badEmailError;
 
-    @FindBy(xpath = "//*[@id=\"parcelForm\"]/div/div[1]/app-dynamic-form/form/app-section[1]/div/app-input[2]/div/span/span[2]" )
-    private WebElement howToSendParcelModal;
-
 //    Parcelbox map
 
     @FindBy(css = ".open-map")
@@ -156,10 +153,12 @@ public class ReceiverForm {
     }
 
     public WebElement getMapModal() {
+        waitPage.waitForCss(".modal-title");
         return mModal;
     }
 
     public ReceiverForm fillSearchBarWithData(String town) throws InterruptedException {
+        waitPage.waitForCss(".modal-title");
         actionPage.writeToForm(mMSearchBar ,town);
         waitPage.waitShort();
         return this;
@@ -197,10 +196,5 @@ public class ReceiverForm {
 
     public WebElement getMMDetailsParcelBoxNo() {
         return mMDetailsParcelBoxNo;
-    }
-
-    public ReceiverForm clickHowToSendParcelModal() throws InterruptedException {
-        actionPage.clickElement(howToSendParcelModal);
-        return this;
     }
 }

@@ -110,8 +110,6 @@ public class FormPage {
     private WebElement homeHeaderStepFourthText;
 
 
-
-
     ActionPage actionPage = new ActionPage();
     WaitPage waitPage = new WaitPage();
     WebDriverWait wait = new WebDriverWait(Base.driver, 60);
@@ -127,7 +125,7 @@ public class FormPage {
     }
 
     public FormPage closeCookiesPopup() throws InterruptedException {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("onetrust-accept-btn-handler")));
+        waitPage.waitForID("onetrust-accept-btn-handler");
         cookiesButton.click();
         waitPage.waitShort();
         return this;
@@ -140,12 +138,13 @@ public class FormPage {
     }
 
     public FormPage chooseDeliveryToAPM() throws InterruptedException {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[for = deliveryTypeboxmachine")));
+        waitPage.waitForCss("[for = deliveryTypeboxmachine");
         actionPage.clickElement(deliveryToAPM);
         return this;
     }
 
     public FormPage chooseDeliveryC2D() throws InterruptedException {
+        waitPage.waitForCss("[for = deliveryTypeaddress");
         actionPage.clickElement(deliveryToAddress);
         return this;
     }
@@ -193,14 +192,14 @@ public class FormPage {
     }
 
     public FormPage clickSendButton() throws InterruptedException {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"parcelFormButton\"]/button")));
+        waitPage.waitForXPath("//*[@id=\"parcelFormButton\"]/button");
         actionPage.clickElement(sendButton);
         waitPage.waitShort();
         return this;
     }
 
     public FormPage clickPayButton() throws InterruptedException {
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.buttons > div:nth-of-type(2) > button")));
+        waitPage.waitForCss("div.buttons > div:nth-of-type(2) > button");
         actionPage.clickElement(payButton);
         return this;
     }

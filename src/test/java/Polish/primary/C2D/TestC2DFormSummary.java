@@ -1,10 +1,10 @@
-package primary.C2D;
+package Polish.primary.C2D;
 
 import helper.*;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;
 import pages.*;
-import primary.APM.TestApmForm;
+import Polish.primary.APM.TestApmForm;
 
 @Tag("pl")
 public class TestC2DFormSummary extends Base {
@@ -157,6 +157,7 @@ public class TestC2DFormSummary extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldShowCorrectParcelAPriceInSummary() throws Exception {
         // given
         String expectedParcelPrice = Prices.C2D_A_PL.getPrice();
@@ -172,6 +173,7 @@ public class TestC2DFormSummary extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldShowCorrectParcelBPriceInSummary() throws Exception {
         // given
         String expectedParcelPrice = Prices.C2D_B_PL.getPrice();
@@ -187,6 +189,7 @@ public class TestC2DFormSummary extends Base {
 
     @Test
     @Tag("pl")
+    @Tag("primary")
     public void shouldShowCorrectParcelCPriceInSummary() throws Exception {
         // given
         String expectedParcelPrice = Prices.C2D_C_PL.getPrice();

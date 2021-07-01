@@ -1,4 +1,4 @@
-package secondary;
+package Polish.secondary;
 
 import helper.Prices;
 import helper.WaitPage;
@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import pages.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Tag("pl")
