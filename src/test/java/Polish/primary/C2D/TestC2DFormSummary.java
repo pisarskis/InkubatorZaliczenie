@@ -4,7 +4,6 @@ import helper.*;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;
 import pages.*;
-import Polish.primary.APM.TestApmForm;
 
 @Tag("pl")
 public class TestC2DFormSummary extends Base {

@@ -1,6 +1,5 @@
 package Polish.secondary;
 
-import helper.ReceiverFormData;
 import helper.SenderFormData;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;

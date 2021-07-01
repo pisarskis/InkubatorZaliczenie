@@ -1,7 +1,6 @@
 package helper;
 
 public enum SenderFormData {
-
     NAME("bar"),
     EMAIL("bar@bar.pl"),
     PHONENO("666666666"),
@@ -11,7 +10,6 @@ public enum SenderFormData {
     STREETNO("28"),
     FLATNO("1"),
     NIPNO("6793087624");
-
 
     private String value;
 

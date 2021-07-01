@@ -1,7 +1,6 @@
 package Polish.secondary;
 
 import helper.Prices;
-import helper.WaitPage;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;
 import pages.*;

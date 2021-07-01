@@ -1,6 +1,5 @@
 package Polish.secondary;
 
-import helper.WaitPage;
 import org.junit.*;
 import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.By;
@@ -182,7 +181,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintHeaderFirstText() throws Exception {
+    public void shouldPrintHeaderFirstText() {
         // given
         String expectedBody = "Spakuj paczkę";
         String errorMessage = "";
@@ -195,7 +194,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintHeaderStepSecondText() throws Exception {
+    public void shouldPrintHeaderStepSecondText() {
         // given
         String expectedBody = "Uzupełnij dane\n" +
                              "dostawy";
@@ -209,7 +208,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintHeaderStepThirdText() throws Exception {
+    public void shouldPrintHeaderStepThirdText() {
         // given
         String expectedBody = "Opłać, wydrukuj i naklej\n" +
                              "etykietę na paczkę";
@@ -223,7 +222,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintHeaderStepFourthText() throws Exception {
+    public void shouldPrintHeaderStepFourthText() {
         // given
         String expectedBody = "Nadaj w Paczkomacie\n" +
                              "lub PaczkoPunkcie";
@@ -237,7 +236,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintTypeOfDeliveryHeader() throws Exception {
+    public void shouldPrintTypeOfDeliveryHeader() {
         // given
         String expectedBody = "Sposób dostawy";
         String errorMessage = "";
@@ -250,7 +249,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintTypeOfDeliveryHeaderSubtitle() throws Exception {
+    public void shouldPrintTypeOfDeliveryHeaderSubtitle() {
         // given
         String expectedBody = "Wybierz sposób dostawy";
         String errorMessage = "";
@@ -263,7 +262,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintSizeOfParcelHeader() throws Exception {
+    public void shouldPrintSizeOfParcelHeader() {
         // given
         String expectedBody = "Rozmiar paczki";
         String errorMessage = "";
@@ -276,7 +275,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintSizeOfParcelHeaderSubtitle() throws Exception {
+    public void shouldPrintSizeOfParcelHeaderSubtitle() {
         // given
         String expectedBody = "Wybierz rozmiar paczki";
         String errorMessage = "";
@@ -289,7 +288,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintReceiverHeader() throws Exception {
+    public void shouldPrintReceiverHeader() {
         // given
         String expectedBody = "Rozmiar paczki";
         String errorMessage = "";
@@ -302,7 +301,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintReceiverHeaderSubtitle() throws Exception {
+    public void shouldPrintReceiverHeaderSubtitle() {
         // given
         String expectedBody = "Wpisz dane odbiorcy";
         String errorMessage = "";
@@ -315,7 +314,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintSenderHeader() throws Exception {
+    public void shouldPrintSenderHeader() {
         // given
         String expectedBody = "Nadawca";
         String errorMessage = "";
@@ -328,7 +327,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintSenderHeaderSubtitle() throws Exception {
+    public void shouldPrintSenderHeaderSubtitle() {
         // given
         String expectedBody = "Wpisz swoje dane";
         String errorMessage = "";
@@ -341,7 +340,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintSummaryHeader() throws Exception {
+    public void shouldPrintSummaryHeader() {
         // given
         String expectedBody = "Podsumowanie";
         String errorMessage = "";
@@ -354,7 +353,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintSummaryTypeOfDelivery() throws Exception {
+    public void shouldPrintSummaryTypeOfDelivery() {
         // given
         String expectedBody = "Sposób\n" +
                 "dostawy";
@@ -368,7 +367,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintSummaryInsuranceHeader() throws Exception {
+    public void shouldPrintSummaryInsuranceHeader() {
         // given
         String expectedBody = "Ubezpieczenie";
         String errorMessage = "";
@@ -381,7 +380,7 @@ public class TestFormStatic extends Base {
 
     @Test
     @Tag("pl")
-    public void shouldPrintSummaryInsuranceHeaderSubtitle() throws Exception {
+    public void shouldPrintSummaryInsuranceHeaderSubtitle() {
         // given
         String expectedBody = "Przesyłka jest objęta podstawowym ubezpieczeniem do kwoty 5000 zł.";
         String errorMessage = "";

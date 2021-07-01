@@ -1,13 +1,11 @@
 package English.secondary;
 
 import helper.Prices;
-import helper.WaitPage;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.Tag;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
 
