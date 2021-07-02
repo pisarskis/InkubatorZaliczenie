@@ -14,7 +14,7 @@ public class FormPage {
     @FindBy(id = "onetrust-accept-btn-handler")
     private WebElement cookiesButton;
 
-    @FindBy(className = "btn-cookie-trigger")
+    @FindBy(css = "button.btn-cookie-trigger")
     private WebElement cookiesBottomButton;
 
 // type of parcel
@@ -124,15 +124,17 @@ public class FormPage {
     }
 
     public FormPage closeCookiesPopup() throws InterruptedException {
-        waitPage.waitForID("onetrust-accept-btn-handler");
-        cookiesButton.click();
-        waitPage.waitShort();
+//        Z one-clicka zniknął popup z cookiami
+//        waitPage.waitForID("onetrust-accept-btn-handler");
+//        cookiesButton.click();
+//        waitPage.waitShort();
         return this;
     }
 
     public FormPage closeBottomCookiesPopup() throws InterruptedException {
+        waitPage.waitForCss("button.btn-cookie-trigger");
         cookiesBottomButton.click();
-        waitPage.waitShort();
+        waitPage.waitLong();
         return this;
     }
 
